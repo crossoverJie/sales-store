@@ -15,12 +15,12 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDao userDao ;
 
-	public User load(String id) {
+	public User load(int id) {
 		// TODO Auto-generated method stub
 		return userDao.load(id);
 	}
 
-	public User get(String id) {
+	public User get(int id) {
 		// TODO Auto-generated method stub
 		return userDao.get(id);
 	}
@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
 		userDao.persist(entity);
 	}
 
-	public String save(User entity) {
+	public int save(User entity) {
 		// TODO Auto-generated method stub
 		return userDao.save(entity);
 	}
@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
 		userDao.saveOrUpdate(entity);
 	}
 
-	public void delete(String id) {
+	public void delete(int id) {
 		userDao.delete(id);
 	}
 

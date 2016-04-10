@@ -5,19 +5,19 @@ import java.util.List;
 import com.crossoverJie.entity.User;
 
 public interface UserService {
-	User load(String id);
+	User load(int id);
 
-	User get(String id);
+	User get(int id);
 
 	List<User> findAll();
 
 	void persist(User entity);
 
-	String save(User entity);
+	int save(User entity);
 
 	void saveOrUpdate(User entity);
 
-	void delete(String id);
+	void delete(int id);
 
 	void flush();
 }

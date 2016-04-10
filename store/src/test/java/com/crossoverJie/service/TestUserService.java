@@ -26,10 +26,10 @@ public class TestUserService {
 	@Test
 	public void save() {
 		User user = new User();
-		user.setId(UUID.randomUUID().toString());
-		user.setUsername("andy");
-		user.setPassword("aaaa");
-		String id = userService.save(user);
+//		user.setId(null);
+		user.setUsername("crossoverJie2");
+		user.setPassword("aaa2a");
+		int id = userService.save(user);
 		LOGGER.info(JSON.toJSONString(id));
 	}
 

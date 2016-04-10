@@ -21,11 +21,11 @@ public class UserDaoImpl implements UserDao {
 		return this.sessionFactory.getCurrentSession();
 	}
 	
-	public User load(String id) {
+	public User load(int id) {
 		return (User) this.getCurrentSession().load(User.class, id);
 	}
 
-	public User get(String id) {
+	public User get(int id) {
 		// TODO Auto-generated method stub
 		return (User) this.getCurrentSession().get(User.class, id);
 	}
@@ -41,9 +41,9 @@ public class UserDaoImpl implements UserDao {
 		this.getCurrentSession().persist(entity);
 	}
 
-	public String save(User entity) {
+	public int save(User entity) {
 		// TODO Auto-generated method stub
-		return (String) this.getCurrentSession().save(entity);
+		return (Integer) this.getCurrentSession().save(entity);
 	}
 
 	public void saveOrUpdate(User entity) {
@@ -51,7 +51,7 @@ public class UserDaoImpl implements UserDao {
 		this.getCurrentSession().saveOrUpdate(entity);
 	}
 
-	public void delete(String id) {
+	public void delete(int id) {
 		// TODO Auto-generated method stub
 		User user = this.load(id) ;
 		this.getCurrentSession().delete(user);

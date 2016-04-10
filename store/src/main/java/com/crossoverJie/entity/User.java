@@ -25,14 +25,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @Entity
 @Table(name = "user", catalog = "salesstore")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+//@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class User implements java.io.Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 6980093847795726310L;
-	private String id;
+	private int id;
 	private String username;
 	private String password;
 	private Date registerTime;
@@ -57,12 +57,12 @@ public class User implements java.io.Serializable {
 //	}
 
 	@Id
-	@Column(name = "id", unique = true, nullable = false)
-	public String getId() {
+	@Column(name = "id", unique = true, nullable = true)
+	public int getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
