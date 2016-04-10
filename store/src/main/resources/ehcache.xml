@@ -16,7 +16,7 @@
 	<!-- Special objects setting. -->
 
 	<cache 
-	     name="org.andy.work.entity.AcctUser"
+	     name="com.crossoverJie.entity.User"
 		 maxElementsInMemory="2"
 		 memoryStoreEvictionPolicy="LRU" 
 		 eternal="true" 
