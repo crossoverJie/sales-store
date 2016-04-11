@@ -52,7 +52,7 @@
 					</td>
 				</tr>
 			</table>
-			<div style="text-align: center; padding: 8px;margin-right: 130px">
+			<div style="text-align: center; padding: 8px;margin-right: 110px">
 				<a href="javascript:void(0)" onclick="submitQuery()"
 					class="easyui-linkbutton" iconCls="icon-ok">查 询</a> <a
 					href="javascript:void(0)" onclick="formClear('queryUserForm')"

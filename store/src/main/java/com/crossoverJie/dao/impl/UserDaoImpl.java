@@ -3,15 +3,20 @@ package com.crossoverJie.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.SimpleExpression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.crossoverJie.dao.UserDao;
 import com.crossoverJie.entity.User;
 import com.crossoverJie.util.Page;
+import com.crossoverJie.util.StringUtil;
 
 @Repository("userDao")
 public class UserDaoImpl implements UserDao {
@@ -84,14 +89,22 @@ public class UserDaoImpl implements UserDao {
 	 */
 	@SuppressWarnings("unchecked")
 	public Page<User> findByParams(User user, int page, int rows) {
+		Criteria criteria=getCurrentSession().createCriteria(User.class);
 		int open = (page-1)*rows ;
 		int end = page*rows;
 		Page<User> p = new Page<User>() ;
-		String hql = "from User" ;
-		Query query = this.getCurrentSession().createQuery(hql) ;
-		query.setFirstResult(open);
-		query.setMaxResults(end) ;
-		List<User> list = query.list() ;
+		String username =user.getUsername() ;
+		String realname = user.getRealname() ;
+		if(!StringUtil.isNullOrEmpty(username)){
+			criteria.add(Restrictions.like("username", username, MatchMode.ANYWHERE).ignoreCase());
+		}
+		if(!StringUtil.isNullOrEmpty(realname)){
+			criteria.add(Restrictions.like("realname", realname, MatchMode.ANYWHERE).ignoreCase());
+		}
+		
+		criteria.setFirstResult(open);
+		criteria.setMaxResults(end) ;
+		List<User> list = criteria.list() ;
 		p.setRows(list);
 		p.setPageNo(page);
 		p.setLimit(rows);

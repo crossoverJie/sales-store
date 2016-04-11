@@ -1,5 +1,6 @@
 package com.crossoverJie.entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -39,6 +40,8 @@ public class User implements java.io.Serializable {
 	private Date regester_date ;
 	private Date login_date ;
 	private String province ;
+	/**用于格式日期**/
+	private String parsedate ;
 	
 	
 //	private Date registerTime;
@@ -103,10 +106,12 @@ public class User implements java.io.Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "register_date", length = 19)
 	public Date getRegester_date() {
+		
 		return regester_date;
 	}
 
 	public void setRegester_date(Date regester_date) {
+		
 		this.regester_date = regester_date;
 	}
 
@@ -127,6 +132,20 @@ public class User implements java.io.Serializable {
 
 	public void setProvince(String province) {
 		this.province = province;
+	}
+
+	public String getParsedate() {
+		
+		return parsedate;
+	}
+
+	public void setParsedate(String parsedate) {
+		SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss") ;
+		if(regester_date != null){
+			String date = sm.format(regester_date) ;
+			
+		}
+		this.parsedate = parsedate;
 	}
 
 //	@JsonIgnoreProperties(value={"acctUsers", "acctAuthorities"})
