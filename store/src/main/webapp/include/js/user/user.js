@@ -11,19 +11,9 @@ datagridD = [{
 	title : '用户名',
 	width : 200,
 	align : 'center'
-}, {
-	field : 'email',
-	title : '邮箱',
-	width : 200,
-	align : 'center'
 },{
 	field : 'realname',
 	title : '真实姓名',
-	width : 100,
-	align : 'center'
-},{
-	field : 'sex',
-	title : '性别',
 	width : 100,
 	align : 'center'
 },{
@@ -54,12 +44,6 @@ tabrs = [ {
 		queryUser();
 	}
 
-}, '-', {
-	text : '新增',
-	iconCls : 'icon-add',
-	handler : function() {
-		add();
-	}
 }, '-', {
 	text : '删除',
 	iconCls : 'icon-remove',

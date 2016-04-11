@@ -47,7 +47,7 @@
 			<div title="系统管理" data-options="iconCls:'icon-sys',selected:true"
 				style="overflow:auto;padding:10px;">
 				<p>
-					<a href="javascript:void(0)" onClick="getMain(this,'user/turnToUserList')">用户管理</a>
+					<a href="javascript:void(0)" onClick="getMain(this,'user/turnToUserList')">会员管理</a>
 				</p>
 				<p>
 					<a href="javascript:void(0)" onClick="getMain(this,'role/turnToRoleList')">角色管理</a>

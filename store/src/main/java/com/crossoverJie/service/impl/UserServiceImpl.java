@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
 
 	public Page<User> findByParams(User user, int page, int rows) {
 		
-		return null ;
+		return userDao.findByParams(user, page, rows) ;
 		
 	}
 	

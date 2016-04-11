@@ -59,7 +59,7 @@ public class Intercept implements HandlerInterceptor {
 			return true;
 		}else {
 			logger.debug("当前状态------>  拦截 ");
-			response.sendRedirect("/company/login.jsp") ;
+			response.sendRedirect("/store/login.jsp") ;
 //			request.getRequestDispatcher("/login.jsp").forward(request, response);  
 			return false ;
 		}

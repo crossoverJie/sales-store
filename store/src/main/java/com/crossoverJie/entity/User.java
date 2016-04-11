@@ -73,16 +73,6 @@ public class User implements java.io.Serializable {
 	}
 
 
-//	@Temporal(TemporalType.TIMESTAMP)
-//	@Column(name = "register_time", length = 19)
-//	public Date getRegisterTime() {
-//		return this.registerTime;
-//	}
-//
-//	public void setRegisterTime(Date registerTime) {
-//		this.registerTime = registerTime;
-//	}
-
 	@Column(name = "username", nullable = false)
 	public String getUsername() {
 		return username;

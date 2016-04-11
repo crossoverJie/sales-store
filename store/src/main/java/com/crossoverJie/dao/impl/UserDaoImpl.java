@@ -3,6 +3,7 @@ package com.crossoverJie.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class UserDaoImpl implements UserDao {
 
 	public List<User> findAll() {
 		List<User> list = new ArrayList<User>() ;
-		list = this.getCurrentSession().createQuery("from user ").list();
+		list = this.getCurrentSession().createQuery("from User ").list();
 		return list ;
 	}
 
@@ -77,11 +78,27 @@ public class UserDaoImpl implements UserDao {
 		}
 	}
 
+	/**
+	 * page是第几页 
+	 * row是一页显示多少条数据
+	 */
+	@SuppressWarnings("unchecked")
 	public Page<User> findByParams(User user, int page, int rows) {
+		int open = (page-1)*rows ;
+		int end = page*rows;
+		Page<User> p = new Page<User>() ;
+		String hql = "from User" ;
+		Query query = this.getCurrentSession().createQuery(hql) ;
+		query.setFirstResult(open);
+		query.setMaxResults(end) ;
+		List<User> list = query.list() ;
+		p.setRows(list);
+		p.setPageNo(page);
+		p.setLimit(rows);
+		int total = this.findAll().size() ;
+		p.setTotal(total); ;
 		
-		
-		
-		return null;
+		return p;
 	}
 
 }
