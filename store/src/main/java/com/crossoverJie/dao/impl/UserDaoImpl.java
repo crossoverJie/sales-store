@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.crossoverJie.dao.UserDao;
 import com.crossoverJie.entity.User;
+import com.crossoverJie.util.Page;
 
 @Repository("userDao")
 public class UserDaoImpl implements UserDao {
@@ -60,6 +61,27 @@ public class UserDaoImpl implements UserDao {
 	public void flush() {
 		// TODO Auto-generated method stub
 		this.getCurrentSession().flush();
+	}
+
+	public User findByLogin(User entity) {
+		List<User> list = this.getCurrentSession().
+				createQuery(" from User  "
+						+ "where username=? and password=?"
+						).setParameter(0, entity.getUsername())
+						.setParameter(1, entity.getPassword())
+				.list();
+		if(list.size() == 0){
+			return null ;
+		}else{
+			return list.get(0) ;
+		}
+	}
+
+	public Page<User> findByParams(User user, int page, int rows) {
+		
+		
+		
+		return null;
 	}
 
 }

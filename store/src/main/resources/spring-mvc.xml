@@ -29,13 +29,25 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 
-	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.JstlView" />
+	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- 这里的配置我的理解是自动给后面action的方法return的字符串加上前缀和后缀，变成一个 可用的url地址 -->
 		<property name="prefix" value="/WEB-INF/views" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+	
+	
+	<!-- 配置拦截器 -->
+    <mvc:interceptors>
+    	<mvc:interceptor>
+    		<!-- <mvc:mapping path="/**"/>拦截所有 -->
+    		<mvc:mapping path="/user/**"/>
+    		<mvc:mapping path="/role/**"/>
+    		<mvc:mapping path="/function/**"/>
+    		<mvc:mapping path="/news/**"/>
+    		<mvc:mapping path="/img/**"/>
+    		<bean class="com.crossoverJie.intercept.Intercept"></bean>
+    	</mvc:interceptor>
+    </mvc:interceptors>
 
 </beans>

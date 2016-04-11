@@ -3,6 +3,7 @@ package com.crossoverJie.service;
 import java.util.List;
 
 import com.crossoverJie.entity.User;
+import com.crossoverJie.util.Page;
 
 public interface UserService {
 	User load(int id);
@@ -20,4 +21,8 @@ public interface UserService {
 	void delete(int id);
 
 	void flush();
+	
+	User findLogin(User entity) ;
+
+	Page<User> findByParams(User user, int page, int rows);
 }

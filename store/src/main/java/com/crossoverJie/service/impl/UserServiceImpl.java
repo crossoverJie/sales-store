@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.crossoverJie.dao.UserDao;
 import com.crossoverJie.entity.User;
 import com.crossoverJie.service.UserService;
+import com.crossoverJie.util.Page;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
@@ -49,8 +50,17 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public void flush() {
-		// TODO Auto-generated method stub
 		userDao.flush();
+	}
+
+	public User findLogin(User entity) {
+		return userDao.findByLogin(entity);
+	}
+
+	public Page<User> findByParams(User user, int page, int rows) {
+		
+		return null ;
+		
 	}
 	
 	
