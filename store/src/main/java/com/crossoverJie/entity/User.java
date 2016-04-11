@@ -40,9 +40,7 @@ public class User implements java.io.Serializable {
 	private Date regester_date ;
 	private Date login_date ;
 	private String province ;
-	/**用于格式日期**/
-	private String parsedate ;
-	
+	private String parseDate ;
 	
 //	private Date registerTime;
 	//private Set<AcctRole> acctRoles = new HashSet<AcctRole>(0);
@@ -134,19 +132,14 @@ public class User implements java.io.Serializable {
 		this.province = province;
 	}
 
-	public String getParsedate() {
-		
-		return parsedate;
+	public String getParseDate() {
+		return parseDate;
 	}
 
-	public void setParsedate(String parsedate) {
-		SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss") ;
-		if(regester_date != null){
-			String date = sm.format(regester_date) ;
-			
-		}
-		this.parsedate = parsedate;
+	public void setParseDate(String parseDate) {
+		this.parseDate = parseDate;
 	}
+
 
 //	@JsonIgnoreProperties(value={"acctUsers", "acctAuthorities"})
 //	@ManyToMany(fetch = FetchType.LAZY)

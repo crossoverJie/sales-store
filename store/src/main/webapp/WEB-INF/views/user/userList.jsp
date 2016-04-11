@@ -116,14 +116,14 @@
 					<th>真实姓名</th>
 					<td><input type="text" id="realname_edit" style="width:200px;" /></td>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<th>备注</th>
 					<td><input type="text" id="remark_edit" style="width:200px;" /></td>
-				</tr>
-				<tr>
+				</tr> -->
+				<!-- <tr>
 					<th>角色</th>
 					<td><input type="text" id="role_id_edit" style="width:200px;" /></td>
-				</tr>
+				</tr> -->
 			</table>
 			<div style="padding:5px 0;text-align: center;color: red;"
 						id="showMsg_edit"></div>

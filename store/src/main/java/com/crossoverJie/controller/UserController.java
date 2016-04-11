@@ -9,6 +9,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.hibernate.annotations.Parent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,22 +65,19 @@ public class UserController {
 	public void getUserList(@ModelAttribute User user,HttpServletResponse response ,int page,int rows){
 		response.setCharacterEncoding("utf-8");
 		Page<User> users = userService.findByParams(user,page,rows) ;
-//		for(User u :users.getRows()){
-//			//将角色ID转换为角色名称
-//			String role_id = u.getRole_id() ;
-//			if(role_id != null){
-//				Role role = roleService.selectByPrimaryKey(Integer.parseInt(role_id)) ;
-//				u.setRolename(role.getRole_name()) ;
-//			}
-//			Date date = u.getLast_date() ;
-//			if(date != null){
-//				SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss") ;
-//				String strDate = sm.format(date) ;
-//				u.setParsedate(strDate) ;
-//			}
-//		}
+		for(User u :users.getRows()){
+			Date date = u.getLogin_date();
+			String parseDate ="";
+					
+			if(date != null){
+				SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss") ;
+				parseDate = sm.format(date) ;
+				u.setParseDate(parseDate); 
+			}
+		}
 		
 		String json = JSON.toJSONString(users) ;
+		System.out.println(json);
 		try {
 			response.getWriter().print(json) ;
 		} catch (IOException e) {
@@ -87,4 +85,25 @@ public class UserController {
 		}
 		
 	}
+	
+	/**
+	 * 
+	 * @Description: 修改
+	 * @param @param user
+	 * @param @param response   
+	 * @return void  
+	 * @throws
+	 * @author crossoverJie
+	 * @date 2016年4月11日  下午8:14:50
+	 */
+	@RequestMapping("/edit") 
+	public void edit(User user,HttpServletResponse response){
+		try {
+			userService.saveOrUpdate(user) ;
+			response.getWriter().print("true") ;
+		} catch (Exception e) {
+			e.printStackTrace() ;
+		}
+	}
+	
 }

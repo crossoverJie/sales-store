@@ -66,4 +66,27 @@ public class LoginController {
 		}
 	}
 	
+	
+	/**
+	 * 
+	 * @Description: 注销
+	 * @param @param request
+	 * @param @param type
+	 * @param @param model
+	 * @param @return   
+	 * @return String  
+	 * @throws
+	 * @author crossoverJie
+	 * @date 2016年4月11日  下午8:17:42
+	 */
+	@RequestMapping("/loginOut")
+	public String loginOut(HttpServletRequest request,String type,Model model){
+		request.getSession().removeAttribute("user") ;
+		return "../../../login" ;
+	}
+	
+	
+	
+	
+	
 }

@@ -17,19 +17,14 @@ datagridD = [{
 	width : 100,
 	align : 'center'
 },{
-	field : 'remark',
-	title : '备注',
-	width : 100,
-	align : 'center'
-},{
 	field : 'rolename',
 	title : '角色名称',
 	width : 100,
 	align : 'center'
 },{
-	field : 'parsedate',
+	field : 'parseDate',
 	title : '最后登录日期',
-	width : 100,
+	width : 140,
 	align : 'center'
 }
 
@@ -105,17 +100,9 @@ function modifyUser(){
 			title : '提示'
 		});
 	}else{
-		$("#role_id_edit").combobox({
-			url:"user/getAllRoles",
-			valueField : "id" ,
-			textField:"role_name"
-				
-		}) ;
 		$("#modifyUserWin").window("open") ;
-		$("#role_id_edit").combobox("setValue",target[0].role_id) ;
 		$("#username_edit").val(target[0].username);
 		$("#realname_edit").val(target[0].realname);
-		$("#remark_edit").val(target[0].remark) ;
 	}
 }
 
@@ -129,9 +116,7 @@ function saveEdit(){
 	var target = $('#user_list').datagrid('getSelections');
 	var username = $("#username_edit").val() ;
 	var realname = $("#realname_edit").val() ;
-	var remark = $("#remark_edit").val() ;
-	var role_id =$("#role_id_edit").combobox("getValue") ;
-	if(username =="" || realname == "" || remark ==""){
+	if(username =="" || realname == ""){
 		$("#showMsg_edit").html("请将数据填写完整");
 		return ;
 	}else{
@@ -140,9 +125,7 @@ function saveEdit(){
 	var json ={
 		"id":target[0].id,
 		"username":username,
-		"realname":realname,
-		"remark":remark,
-		"role_id":role_id
+		"realname":realname
 	}
 	
     $.ajax({            
