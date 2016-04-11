@@ -336,10 +336,6 @@
 				<input type="text" name="username" class="form-control" id="register-username" required="required"
 				min="1" maxlength="20" placeholder="用户名(1-20位中英文、数字。下划线)"/>
 			  </div>
-			  <div class="form-group" id="div-email">
-			    <label for="register-email">邮箱</label>
-			    <input type="email" name="email" required="required" class="form-control" id="register-email" placeholder="邮箱">
-			  </div>
 			  
 			  <div class="form-group " id="div-password1">
 			    <label for="exampleInputPassword1">密码</label>
@@ -363,6 +359,9 @@
 
   	<footer>
 		<p class="text-center">© 2016 crossoverJie</p>
+		<p class="text-center">
+			<a href="<%=path%>/login.jsp">后台登录</a>
+		</p>
 		<p class="text-center">
 
 		<script language="javascript" type="text/javascript" src="http://js.users.51.la/18800358.js"></script>

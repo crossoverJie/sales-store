@@ -27,7 +27,6 @@
 					<li class="active"><a title="COJ" href="<%=path %>/index/turnToIndex/1"><span class="glyphicon glyphicon-th" aria-hidden="true"></span> 
 					<span class="sr-only">(current)</span>
 					</a></li>
-					<li><a href="#">basketball <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span> </a></li>
 					<li><a href="#" data-toggle="modal" data-target="#about">关于</a></li>
 				</ul>
 				<form class="navbar-form navbar-left" action="<%=path %>/index/query" target="_blank" method="post" role="search">

@@ -25,4 +25,6 @@ public interface UserService {
 	User findLogin(User entity) ;
 
 	Page<User> findByParams(User user, int page, int rows);
+
+	int findAllCount(User u);
 }

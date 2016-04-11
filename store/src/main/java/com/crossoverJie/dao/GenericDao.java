@@ -38,5 +38,7 @@ public interface GenericDao<T, PK extends Serializable> {
 	 * @author crossoverJie
 	 * @date 2016年4月11日  上午12:46:16
 	 */
-	Page<T> findByParams(User user, int page, int rows) ;
+	Page<T> findByParams(T entity, int page, int rows) ;
+	
+	int findAllCount(T entity) ;
 }

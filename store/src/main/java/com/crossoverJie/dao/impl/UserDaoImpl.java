@@ -114,4 +114,14 @@ public class UserDaoImpl implements UserDao {
 		return p;
 	}
 
+	public int findAllCount(User user) {
+		Criteria criteria=getCurrentSession().createCriteria(User.class);
+		String username =user.getUsername() ;
+		if(!StringUtil.isNullOrEmpty(username)){
+			criteria.add(Restrictions.eq("username", username));
+		}
+		List<User> list = criteria.list() ;
+		return list.size();
+	}
+
 }

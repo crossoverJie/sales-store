@@ -44,6 +44,26 @@ public class UserController {
 		return "/index" ;
 	}
 	
+	/**
+	 * 
+	 * @Description: 删除方法
+	 * @param @param ids
+	 * @param @param response
+	 * @param @throws IOException   
+	 * @return void  
+	 * @throws
+	 * @author crossoverJie
+	 * @date 2016年4月11日  下午10:16:53
+	 */
+	@RequestMapping("/delete")
+	public void delete(String ids,HttpServletResponse response) throws IOException{
+		String[] str_ids = ids.split(",") ;
+		for(String id : str_ids){
+			userService.delete(Integer.parseInt(id)) ;
+			response.getWriter().print("true") ;
+		}
+	}
+	
 	@RequestMapping("/turnToUserList")
 	public String turnToUserList(){
 		return "/user/userList" ;

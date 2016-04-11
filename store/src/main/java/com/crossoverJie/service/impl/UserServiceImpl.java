@@ -62,6 +62,10 @@ public class UserServiceImpl implements UserService {
 		return userDao.findByParams(user, page, rows) ;
 		
 	}
+
+	public int findAllCount(User u) {
+		return userDao.findAllCount(u);
+	}
 	
 	
 

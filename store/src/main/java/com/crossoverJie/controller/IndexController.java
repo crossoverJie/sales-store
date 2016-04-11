@@ -49,8 +49,10 @@ public class IndexController extends AbstractController {
 	
 	@RequestMapping("/register")
 	public String register(User u,HttpServletRequest request) throws IOException{
-		u.setRegester_date(new Date());
+		//系统初始化的时候要上传一张默认头像
+//		u.setImg_id("1001");//设置默认头像
 		u.setLogin_date(new Date());
+		u.setRegester_date(new Date());
 		userService.save(u) ;
 //		注册完之后直接登录
 		request.getSession().setAttribute("user", u) ;
@@ -96,6 +98,27 @@ public class IndexController extends AbstractController {
 			
 		}else{//为1的话表示更新基本设置 刷新界面就可以了 不需要去掉session
 			return null ;
+		}
+	}
+	
+	 /* @Description: 检查用户名或者是邮箱是否重复
+	 * @param @param u
+	 * @param @param response
+	 * @param @throws IOException   
+	 * @return void  
+	 * @throws
+	 * @author chj
+	 * @date 2016-1-24  下午1:08:17
+	 */
+	@RequestMapping("/checkIsRepeat")
+	public void checkIsRepeat(User u,HttpServletResponse response) throws IOException{
+		response.setCharacterEncoding("utf-8") ;
+		response.setContentType("html/text") ;
+		int count = userService.findAllCount(u) ;
+		if(count ==0){
+			response.getWriter().print("true") ;
+		}else {
+			response.getWriter().print("false") ;
 		}
 	}
 	
