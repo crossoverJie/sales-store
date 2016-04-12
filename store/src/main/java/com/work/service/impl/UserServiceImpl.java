@@ -66,6 +66,10 @@ public class UserServiceImpl implements UserService {
 	public int findAllCount(User u) {
 		return userDao.findAllCount(u);
 	}
+
+	public void update(User user) {
+		userDao.update(user);
+	}
 	
 	
 

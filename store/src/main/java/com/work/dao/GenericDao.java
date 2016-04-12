@@ -40,5 +40,6 @@ public interface GenericDao<T, PK extends Serializable> {
 	 */
 	Page<T> findByParams(T entity, int page, int rows) ;
 	
+	void update(T entity) ;
 	int findAllCount(T entity) ;
 }

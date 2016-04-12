@@ -27,4 +27,6 @@ public interface UserService {
 	Page<User> findByParams(User user, int page, int rows);
 
 	int findAllCount(User u);
+
+	void update(User user);
 }

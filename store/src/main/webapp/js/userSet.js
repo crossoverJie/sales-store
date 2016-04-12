@@ -9,6 +9,10 @@ $(function(){
 		}
 	}
 	
+	var province = $("#hiddenProvince").val() ;
+	$("#province").val(province) ;
+	
+	
 	$("#currentPwd").blur(function(){
 		var currenPwd=$("#currentPwd").val() ;
 		var id = $("#hiddenId").val() ;//当前用户的ID

@@ -117,11 +117,43 @@ public class UserDaoImpl implements UserDao {
 	public int findAllCount(User user) {
 		Criteria criteria=getCurrentSession().createCriteria(User.class);
 		String username =user.getUsername() ;
+		int id = user.getId();
+		String password = user.getPassword() ;
 		if(!StringUtil.isNullOrEmpty(username)){
 			criteria.add(Restrictions.eq("username", username));
 		}
+		if(!StringUtil.isNullOrEmpty(id)){
+			criteria.add(Restrictions.eq("id", id));
+		}
+		if(!StringUtil.isNullOrEmpty(password)){
+			criteria.add(Restrictions.eq("password", password));
+		}
 		List<User> list = criteria.list() ;
 		return list.size();
+	}
+
+	public void update(User entity) {
+		User user = this.get(entity.getId()) ;
+		if(entity.getUsername() != null){
+			user.setUsername(entity.getUsername());
+		}
+		if(entity.getRealname() != null){
+			user.setRealname(entity.getRealname());
+		}
+		if(entity.getLogin_date()!= null){
+			user.setLogin_date(entity.getLogin_date());
+		}
+		if(entity.getPassword()!= null){
+			user.setPassword(entity.getPassword() );
+		}
+		if(entity.getProvince()!= null){
+			user.setProvince(entity.getProvince());
+		}
+		if(entity.getRole_id()!= null){
+			user.setRole_id(entity.getRole_id());
+		}
+		
+		this.getCurrentSession().update(user); 
 	}
 
 }

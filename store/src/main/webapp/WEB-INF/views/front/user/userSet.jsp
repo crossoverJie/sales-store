@@ -80,13 +80,17 @@
 						<tr>
 							<td class="td-head"><h4>真实姓名</h4></td>
 						 	<td>
-								<h4><input type="text" class="form-control" name="realname" id="realname" value="${currentUser.realname }" /></h4>
+								<h4>
+									<input type="text" class="form-control" name="realname" id="realname" value="${currentUser.realname }" />
+									<input type="hidden" name="id" value="${currentUser.id }" />
+								</h4>
 							</td>
 						</tr>
 						<tr>
 							<td class="td-head"><h4>省份</h4></td>
 							<td>
-								<select name="province" class="form-control input-sm" style="width: 200px">
+								<input type="hidden" id="hiddenProvince" value="${currentUser.province }" />
+								<select id="province" name="province" class="form-control input-sm" style="width: 200px">
 									<option value="北京">北京市</option>
                                     <option value="浙江省">浙江省</option>
                                     <option value="天津市">天津市</option>

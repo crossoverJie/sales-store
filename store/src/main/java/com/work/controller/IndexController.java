@@ -1,14 +1,9 @@
 package com.work.controller;
 
 
-import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.DecimalFormat;
 import java.util.Date;
-import java.util.List;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -18,13 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.mysql.fabric.Response;
-import com.sun.org.apache.regexp.internal.recompile;
-import com.sun.org.apache.xml.internal.serializer.ElemDesc;
+import com.work.entity.Role;
 import com.work.entity.User;
+import com.work.service.RoleService;
 import com.work.service.UserService;
 import com.work.util.AbstractController;
 
@@ -34,6 +26,9 @@ public class IndexController extends AbstractController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private RoleService roleService ;
 	
 	@Autowired
 	private HttpServletRequest request ;
@@ -53,6 +48,8 @@ public class IndexController extends AbstractController {
 //		u.setImg_id("1001");//设置默认头像
 		u.setLogin_date(new Date());
 		u.setRegester_date(new Date());
+		//默认2为普通会员
+		u.setRole_id("2");
 		userService.save(u) ;
 //		注册完之后直接登录
 		request.getSession().setAttribute("user", u) ;
@@ -91,7 +88,7 @@ public class IndexController extends AbstractController {
 	 */
 	@RequestMapping("/updateUserInfo")
 	public String updateUserInfo(User user,String flag ,HttpSession session){
-		userService.saveOrUpdate(user) ;
+		userService.update(user) ;
 		if(flag.equals("0")){//为0就是修改密码
 			session.removeAttribute("user") ;
 			return "redirect:../index/turnToIndex/1" ;
@@ -99,6 +96,12 @@ public class IndexController extends AbstractController {
 		}else{//为1的话表示更新基本设置 刷新界面就可以了 不需要去掉session
 			return null ;
 		}
+	}
+	
+	@RequestMapping("/updateBaseUserInfo")
+	public String updateBaseUserInfo(User user,HttpServletRequest request){
+		userService.update(user) ;
+		return "redirect:../user/frontUserSet/"+user.getId() ;
 	}
 	
 	 /* @Description: 检查用户名或者是邮箱是否重复
@@ -139,12 +142,12 @@ public class IndexController extends AbstractController {
 	public void checkCurrentPwd(User user,HttpServletResponse response) throws IOException{
 		response.setContentType("text/html");
 	    response.setCharacterEncoding("utf-8");
-//	    int count = userService.find(user) ;
-//	    if(count ==0){
-//	    	response.getWriter().print("false") ;
-//	    }else {
-//	    	response.getWriter().print("true") ;
-//	    }
+	    int count = userService.findAllCount(user) ;
+	    if(count ==0){
+	    	response.getWriter().print("false") ;
+	    }else {
+	    	response.getWriter().print("true") ;
+	    }
 	}
 	
 	

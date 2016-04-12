@@ -9,7 +9,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.hibernate.annotations.Parent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +17,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSON;
+import com.work.entity.Role;
 import com.work.entity.User;
+import com.work.service.RoleService;
 import com.work.service.UserService;
 import com.work.util.Page;
 
@@ -30,6 +31,9 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private RoleService roleService ;
 	
 	@RequestMapping("/showUser/{id}")
 	public String showUserInfo(Model model,@PathVariable int id){
@@ -94,6 +98,12 @@ public class UserController {
 				parseDate = sm.format(date) ;
 				u.setParseDate(parseDate); 
 			}
+			String role_id = u.getRole_id() ;
+			String role_name ="" ;
+			if(role_id != null){
+				role_name = roleService.get(Integer.parseInt(role_id)).getRole_name() ;
+			}
+			u.setRole_name(role_name);
 		}
 		
 		String json = JSON.toJSONString(users) ;
@@ -119,7 +129,7 @@ public class UserController {
 	@RequestMapping("/edit") 
 	public void edit(User user,HttpServletResponse response){
 		try {
-			userService.saveOrUpdate(user) ;
+			userService.update(user) ;
 			response.getWriter().print("true") ;
 		} catch (Exception e) {
 			e.printStackTrace() ;
@@ -143,6 +153,19 @@ public class UserController {
 		return "/front/user/userSet" ;
 	}
 	
+	
+	@RequestMapping("/getAllRoles")
+	public void getAllRoles(HttpServletResponse response){
+		response.setCharacterEncoding("utf-8") ;
+		List<Role> roles = roleService.findAll() ;
+		String json = JSON.toJSONString(roles) ;
+		try {
+			response.getWriter().print(json) ;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 	
 	

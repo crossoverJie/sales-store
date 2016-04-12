@@ -41,7 +41,9 @@ public class User implements java.io.Serializable {
 	private Date login_date ;
 	private String province ;
 	private String parseDate ;
+	private String role_id ;
 	
+	private String role_name ;
 //	private Date registerTime;
 	//private Set<AcctRole> acctRoles = new HashSet<AcctRole>(0);
 
@@ -132,6 +134,16 @@ public class User implements java.io.Serializable {
 		this.province = province;
 	}
 
+	
+	@Column(name="role_id")
+	public String getRole_id() {
+		return role_id;
+	}
+
+	public void setRole_id(String role_id) {
+		this.role_id = role_id;
+	}
+
 	public String getParseDate() {
 		return parseDate;
 	}
@@ -139,8 +151,6 @@ public class User implements java.io.Serializable {
 	public void setParseDate(String parseDate) {
 		this.parseDate = parseDate;
 	}
-
-
 //	@JsonIgnoreProperties(value={"acctUsers", "acctAuthorities"})
 //	@ManyToMany(fetch = FetchType.LAZY)
 //	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -152,4 +162,12 @@ public class User implements java.io.Serializable {
 //	public void setAcctRoles(Set<AcctRole> acctRoles) {
 //		this.acctRoles = acctRoles;
 //	}
+
+	public String getRole_name() {
+		return role_name;
+	}
+
+	public void setRole_name(String role_name) {
+		this.role_name = role_name;
+	}
 }

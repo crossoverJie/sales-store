@@ -17,7 +17,12 @@ datagridD = [{
 	width : 100,
 	align : 'center'
 },{
-	field : 'rolename',
+	field : 'province',
+	title : '省份',
+	width : 100,
+	align : 'center'
+},{
+	field : 'role_name',
 	title : '角色名称',
 	width : 100,
 	align : 'center'
@@ -88,6 +93,13 @@ function submitQuery(){
 }
 
 function modifyUser(){
+	
+	$("#role_id_edit").combobox({
+		 url:'user/getAllRoles',    
+	     valueField:'id',    
+	     textField:'role_name'
+	});
+	
 	var target = $('#user_list').datagrid('getSelections');
 	if (target.length < 1) {
 		$.messager.show( {
@@ -100,6 +112,7 @@ function modifyUser(){
 			title : '提示'
 		});
 	}else{
+		$("#role_id_edit").combobox('setValue',target[0].role_id);
 		$("#modifyUserWin").window("open") ;
 		$("#username_edit").val(target[0].username);
 		$("#realname_edit").val(target[0].realname);
@@ -114,6 +127,7 @@ function closeWin(obj){
  */
 function saveEdit(){
 	var target = $('#user_list').datagrid('getSelections');
+	var role_id = $("#role_id_edit").combobox('getValue');
 	var username = $("#username_edit").val() ;
 	var realname = $("#realname_edit").val() ;
 	if(username =="" || realname == ""){
@@ -125,6 +139,7 @@ function saveEdit(){
 	var json ={
 		"id":target[0].id,
 		"username":username,
+		"role_id":role_id,
 		"realname":realname
 	}
 	
