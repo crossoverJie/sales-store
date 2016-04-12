@@ -2,26 +2,29 @@ package com.work.intercept;
 
 import java.util.List;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.work.entity.Function;
 import com.work.entity.User;
+import com.work.service.FunctionService;
+import com.work.service.RoleService;
 
 
 public class Intercept implements HandlerInterceptor {
 
 	private static Logger logger = Logger.getLogger(Intercept.class) ;
 	
-//	@Resource
-//	private IFunctionService functionService ;
-//	
-//	@Resource
-//	private IRoleService roleService ;
+	@Autowired
+	private FunctionService functionService ;
+	
+	@Autowired
+	private RoleService roleService ;
 	/**
 	 * 第一次执行
 	 */
@@ -33,29 +36,29 @@ public class Intercept implements HandlerInterceptor {
 		logger.debug("当前URL------>  "+url);
 		System.out.println("当前URL------>  "+url);
 		if(user != null){
-//			String role_id = user.getRole_id() ;
-//			if(role_id != null){
-//				//说拥有的所有权限ID
-//				String function_id = roleService.selectByPrimaryKey(Integer.parseInt(role_id)).getFunction_id() ;
-//				Function function = new Function() ;
-//				function.setFunction_url(url) ;
-//				List<Function> list = functionService.findAll(function) ;
-//				if(list.size() <=0){
-//					return true ;
-//				}else{
+			String role_id = user.getRole_id() ;
+			if(role_id != null){
+				//说拥有的所有权限ID
+				String function_id = roleService.get(Integer.parseInt(role_id)).getFunction_id() ;
+				Function function = new Function() ;
+				function.setFunction_url(url) ;
+				List<Function> list = functionService.findAll(function) ;
+				if(list.size() <=0){
+					return true ;
+				}else{
 //					Function f = functionService.findAll(function).get(0) ;
 //					String currenId = f.getId()+"" ;
 //					if(function_id.indexOf(currenId) == -1){
-//						response.sendRedirect("/company/notfound.jsp") ;
+//						response.sendRedirect("/store/notfound.jsp") ;
 //						response.getWriter().print("false") ;
 //						return false ;
 //					}else {
 //						return true ;
 //					}
-//					
-//				}
-//			}
-//			
+					
+				}
+			}
+			
 			return true;
 		}else {
 			logger.debug("当前状态------>  拦截 ");

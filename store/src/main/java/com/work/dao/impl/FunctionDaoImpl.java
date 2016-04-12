@@ -60,8 +60,8 @@ public class FunctionDaoImpl implements FunctionDao {
 
 	public void delete(int id) {
 		// TODO Auto-generated method stub
-		Function Function = this.load(id) ;
-		this.getCurrentSession().delete(Function);
+		Function function = this.get(id) ;
+		this.getCurrentSession().delete(function);
 	}
 
 	public void flush() {
@@ -99,11 +99,11 @@ public class FunctionDaoImpl implements FunctionDao {
 		return p;
 	}
 
-	public int findAllCount(Function Function) {
+	public int findAllCount(Function function) {
 		Criteria criteria=getCurrentSession().createCriteria(Function.class);
-		String Function_name =Function.getFunction_name() ;
-		int id = Function.getId();
-		String remark = Function.getRemark() ;
+		String Function_name =function.getFunction_name() ;
+		int id = function.getId();
+		String remark = function.getRemark() ;
 		if(!StringUtil.isNullOrEmpty(Function_name)){
 			criteria.add(Restrictions.eq("Function_name", Function_name));
 		}
@@ -118,18 +118,50 @@ public class FunctionDaoImpl implements FunctionDao {
 	}
 
 	public void update(Function entity) {
-		Function Function = this.get(entity.getId()) ;
+		Function function = this.get(entity.getId()) ;
 		if(entity.getRemark() != null){
-			Function.setRemark(entity.getRemark());
+			function.setRemark(entity.getRemark());
 		}
 		if(entity.getFunction_name() != null){
-			Function.setFunction_name(entity.getFunction_name());
+			function.setFunction_name(entity.getFunction_name());
 		}
-		this.getCurrentSession().update(Function); 
+		if(entity.getFunction_url() != null){
+			function.setFunction_url(entity.getFunction_url());
+		}
+		this.getCurrentSession().update(function); 
 	}
 
-	public Function findByLogin(Function entity) {
-		return null;
+
+	@SuppressWarnings("unchecked")
+	public List<Function> findAll(Function function) {
+		Criteria criteria=getCurrentSession().createCriteria(Function.class);
+		String Function_name =function.getFunction_name() ;
+		int id = function.getId()==0?0:function.getId();
+		int parent_id = function.getParent_id()==null?0:function.getParent_id() ;
+		String remark = function.getRemark() ;
+		if(!StringUtil.isNullOrEmpty(Function_name)){
+			criteria.add(Restrictions.eq("Function_name", Function_name));
+		}
+		if(id!=0){
+			criteria.add(Restrictions.eq("id", id));
+		}
+		if(parent_id!=0){
+			criteria.add(Restrictions.eq("parent_id", parent_id));
+		}
+		if(!StringUtil.isNullOrEmpty(remark)){
+			criteria.add(Restrictions.eq("remark", remark));
+		}
+		List<Function> list = criteria.list() ;
+		return list;
+	}
+
+	/**
+	 * 根据父节点删除ID
+	 */
+	public void deleteByPrentId(int parseInt) {
+		Function f = new Function() ;
+		f.setParent_id(parseInt);
+		this.getCurrentSession().delete(f); 
 	}
 
 	

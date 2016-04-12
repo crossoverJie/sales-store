@@ -14,58 +14,63 @@ import com.work.util.Page;
 public class FunctionServiceImpl implements FunctionService {
 
 	@Autowired
-	private FunctionDao FunctionDao ;
+	private FunctionDao functionDao ;
 
 	public Function load(int id) {
 		// TODO Auto-generated method stub
-		return FunctionDao.load(id);
+		return functionDao.load(id);
 	}
 
 	public Function get(int id) {
 		// TODO Auto-generated method stub
-		return FunctionDao.get(id);
+		return functionDao.get(id);
 	}
 
 	public List<Function> findAll() {
-		return FunctionDao.findAll();
+		return functionDao.findAll();
 	}
 
 	public void persist(Function entity) {
 		// TODO Auto-generated method stub
-		FunctionDao.persist(entity);
+		functionDao.persist(entity);
 	}
 
 	public int save(Function entity) {
 		// TODO Auto-generated method stub
-		return FunctionDao.save(entity);
+		return functionDao.save(entity);
 	}
 
 	public void saveOrUpdate(Function entity) {
-		FunctionDao.saveOrUpdate(entity);
+		functionDao.saveOrUpdate(entity);
 	}
 
 	public void delete(int id) {
-		FunctionDao.delete(id);
+		functionDao.delete(id);
 	}
 
 	public void flush() {
-		FunctionDao.flush();
+		functionDao.flush();
 	}
 
-	public Function findLogin(Function entity) {
-		return FunctionDao.findByLogin(entity);
-	}
 
 	public Page<Function> findByParams(Function Function, int page, int rows) {
-		return FunctionDao.findByParams(Function, page, rows) ;
+		return functionDao.findByParams(Function, page, rows) ;
 	}
 
 	public int findAllCount(Function u) {
-		return FunctionDao.findAllCount(u);
+		return functionDao.findAllCount(u);
 	}
 
 	public void update(Function Function) {
-		FunctionDao.update(Function);
+		functionDao.update(Function);
+	}
+
+	public List<Function> findAll(Function function) {
+		return functionDao.findAll(function);
+	}
+
+	public void deleteByPrentId(int parseInt) {
+		functionDao.deleteByPrentId(parseInt) ;
 	}
 	
 	

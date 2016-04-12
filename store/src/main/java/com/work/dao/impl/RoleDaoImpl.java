@@ -125,13 +125,12 @@ public class RoleDaoImpl implements RoleDao {
 		if(entity.getRole_name() != null){
 			role.setRole_name(entity.getRole_name());
 		}
+		if(entity.getFunction_id() != null){
+			role.setFunction_id(entity.getFunction_id());
+		}
 		this.getCurrentSession().update(role); 
 	}
 
-	public Role findByLogin(Role entity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	
 

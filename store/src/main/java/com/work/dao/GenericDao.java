@@ -24,7 +24,7 @@ public interface GenericDao<T, PK extends Serializable> {
 	
 	void flush();
 	
-	T findByLogin(T entity) ;
+	
 	
 	/**
 	 * 

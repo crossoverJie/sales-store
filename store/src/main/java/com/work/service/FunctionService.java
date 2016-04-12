@@ -27,4 +27,8 @@ public interface FunctionService {
 	int findAllCount(Function u);
 
 	void update(Function Function);
+
+	List<Function> findAll(Function function);
+
+	void deleteByPrentId(int parseInt);
 }

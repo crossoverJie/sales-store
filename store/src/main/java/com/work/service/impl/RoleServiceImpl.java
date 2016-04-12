@@ -52,9 +52,6 @@ public class RoleServiceImpl implements RoleService {
 		RoleDao.flush();
 	}
 
-	public Role findLogin(Role entity) {
-		return RoleDao.findByLogin(entity);
-	}
 
 	public Page<Role> findByParams(Role Role, int page, int rows) {
 		return RoleDao.findByParams(Role, page, rows) ;

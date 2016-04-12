@@ -37,6 +37,9 @@ public class Role implements java.io.Serializable {
 	private String role_name ;
 	private String remark ;
 	
+	private String function_id ;
+	private String all_function_name;//角色的所有功能名称
+	
 //	private Date registerTime;
 	//private Set<AcctRole> acctRoles = new HashSet<AcctRole>(0);
 
@@ -84,6 +87,22 @@ public class Role implements java.io.Serializable {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+	@Column(name="function_id",length=30)
+	public String getFunction_id() {
+		return function_id;
+	}
+
+	public void setFunction_id(String function_id) {
+		this.function_id = function_id;
+	}
+
+	public String getAll_function_name() {
+		return all_function_name;
+	}
+
+	public void setAll_function_name(String all_function_name) {
+		this.all_function_name = all_function_name;
 	}
 
 
