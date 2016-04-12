@@ -1,4 +1,4 @@
-package com.crossoverJie.entity;
+package com.work.entity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * 
  * ClassName: User 
  * @Description: 会员实体类
- * @author crossoverJie
+ * @author work
  * @date 2016年4月10日 下午10:22:35
  */
 @Entity

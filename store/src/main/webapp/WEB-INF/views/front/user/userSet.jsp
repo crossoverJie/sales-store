@@ -70,7 +70,6 @@
 			  <ul class="nav nav-tabs" role="tablist" id="tab-list">
 			    <li role="presentation" class="active"><a href="#baseSet" aria-controls="home" role="tab" data-toggle="tab">基本设置</a></li>
 			    <li role="presentation"><a href="#updatePassword" aria-controls="profile" role="tab" data-toggle="tab">修改密码</a></li>
-			    <li role="presentation"><a href="#updateHeadImg" aria-controls="profile" role="tab" data-toggle="tab">修改头像</a></li>
 			  </ul>
 			  
 			  <div class="tab-content">
@@ -79,35 +78,48 @@
 		    		<form method="post" action="<%=path%>/index/updateBaseUserInfo">
 					<table class="table" id="baseSetTable">
 						<tr>
-							<td class="td-head"><h4>性别</h4></td>
-							<td>
-								<h4><input type="radio" id="man" value="1" name="sex">男&nbsp;&nbsp;&nbsp;
-									<input type="radio" id="woman" value="0" name="sex">女
-									<input type="hidden" id="hiddenSex" value="${currentUser.sex }"/>
-									<input type="hidden" name="id" value="${user.id }">
-								</h4>
-							</td>
-						</tr>
-						<tr>
 							<td class="td-head"><h4>真实姓名</h4></td>
 						 	<td>
 								<h4><input type="text" class="form-control" name="realname" id="realname" value="${currentUser.realname }" /></h4>
 							</td>
 						</tr>
 						<tr>
-							<td class="td-head"><h4>简介</h4></td>
-						 	<td>
-								<h4><input type="text" class="form-control" name="remark" id="remark" value="${currentUser.remark }" /></h4>
-							</td>
-						</tr>
-						<tr>
-							<td class="td-head"><h4>居住地</h4></td>
+							<td class="td-head"><h4>省份</h4></td>
 							<td>
-								<select class="form-control input-sm" style="width: 200px">
-									
-								</select>
-								<select class="form-control input-sm" style="width: 200px">
-									
+								<select name="province" class="form-control input-sm" style="width: 200px">
+									<option value="北京">北京市</option>
+                                    <option value="浙江省">浙江省</option>
+                                    <option value="天津市">天津市</option>
+                                    <option value="安徽省">安徽省</option>
+                                    <option value="上海市">上海市</option>
+                                    <option value="福建省">福建省</option>
+                                    <option value="重庆市">重庆市</option>
+                                    <option value="江西省">江西省</option>
+                                    <option value="山东省">山东省</option>
+                                    <option value="河南省">河南省</option>
+                                    <option value="湖北省">湖北省</option>
+                                    <option value="湖南省">湖南省</option>
+                                    <option value="广东省">广东省</option>
+                                    <option value="海南省">海南省</option>
+                                    <option value="山西省">山西省</option>
+                                    <option value="青海省">青海省</option>
+                                    <option value="江苏省">江苏省</option>
+                                    <option value="辽宁省">辽宁省</option>
+                                    <option value="吉林省">吉林省</option>
+                                    <option value="台湾省">台湾省</option>
+                                    <option value="河北省">河北省</option>
+                                    <option value="贵州省">贵州省</option>
+                                    <option value="四川省">四川省</option>
+                                    <option value="云南省">云南省</option>
+                                    <option value="陕西省">陕西省</option>
+                                    <option value="甘肃省">甘肃省</option>
+                                    <option value="黑龙江省">黑龙江省</option>
+                                    <option value="香港特别行政区">香港特别行政区</option>
+                                    <option value="澳门特别行政区">澳门特别行政区</option>
+                                    <option value="广西壮族自治区">广西壮族自治区</option>
+                                    <option value="宁夏回族自治区">宁夏回族自治区</option>
+                                    <option value="新疆维吾尔自治区">新疆维吾尔自治区</option>
+                                    <option value="内蒙古自治区">内蒙古自治区</option>
 								</select>
 							</td>
 						</tr>
@@ -159,21 +171,6 @@
 							</td>
 						</tr>
 					</table>
-				</div>
-			</div>
-			
-			<div role="tabpanel" class="tab-pane" id="updateHeadImg">
-				<div class="panle panel-info">
-					<form id="addImgForm" action="<%=path%>/index/updateHeadImg" method="post" enctype="multipart/form-data">
-						<div class="form-group">
-							<label for="exampleInputFile">头像</label> 
-							<input type="file" required  id="file" name="file">
-							<input type="hidden" name="id" value="${user.id }">
-							<p class="help-block">请选择高度不超过512px的图片</p>
-						</div>
-						<button type="submit"  class="btn btn-default">保存</button>
-						<button type="reset" class="btn btn-danger">重置</button>
-					</form>
 				</div>
 			</div>
 			

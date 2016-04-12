@@ -1,4 +1,4 @@
-package com.crossoverJie.controller;
+package com.work.controller;
 
 
 import java.io.File;
@@ -21,12 +21,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.crossoverJie.entity.User;
-import com.crossoverJie.service.UserService;
-import com.crossoverJie.util.AbstractController;
 import com.mysql.fabric.Response;
 import com.sun.org.apache.regexp.internal.recompile;
 import com.sun.org.apache.xml.internal.serializer.ElemDesc;
+import com.work.entity.User;
+import com.work.service.UserService;
+import com.work.util.AbstractController;
 
 @Controller
 @RequestMapping("/index")

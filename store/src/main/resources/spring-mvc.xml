@@ -10,7 +10,7 @@
 		http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
 
 	<!-- 自动扫描@Controller注入为bean -->
-	<context:component-scan base-package="com.crossoverJie.controller" />
+	<context:component-scan base-package="com.work.controller" />
 
 	<!-- 以下为SpringMVC配置 -->
 	<mvc:annotation-driven>
@@ -46,7 +46,7 @@
     		<mvc:mapping path="/function/**"/>
     		<mvc:mapping path="/news/**"/>
     		<mvc:mapping path="/img/**"/>
-    		<bean class="com.crossoverJie.intercept.Intercept"></bean>
+    		<bean class="com.work.intercept.Intercept"></bean>
     	</mvc:interceptor>
     </mvc:interceptors>
 

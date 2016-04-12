@@ -1,4 +1,4 @@
-package com.crossoverJie.dao.impl;
+package com.work.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,10 +13,10 @@ import org.hibernate.criterion.SimpleExpression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.crossoverJie.dao.UserDao;
-import com.crossoverJie.entity.User;
-import com.crossoverJie.util.Page;
-import com.crossoverJie.util.StringUtil;
+import com.work.dao.UserDao;
+import com.work.entity.User;
+import com.work.util.Page;
+import com.work.util.StringUtil;
 
 @Repository("userDao")
 public class UserDaoImpl implements UserDao {

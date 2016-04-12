@@ -1,4 +1,4 @@
-package com.crossoverJie.controller;
+package com.work.controller;
 
 
 import java.io.IOException;
@@ -16,15 +16,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.crossoverJie.entity.User;
-import com.crossoverJie.service.UserService;
 import com.mysql.fabric.Response;
+import com.work.entity.User;
+import com.work.service.UserService;
 
 /**
  * 
  * ClassName: LoginController 
  * @Description: 登录的控制器
- * @author crossoverJie
+ * @author work
  * @date 2016年4月10日 下午11:03:10
  */
 @Controller
@@ -43,7 +43,7 @@ public class LoginController {
 	 * @param @throws IOException   
 	 * @return void  
 	 * @throws
-	 * @author crossoverJie
+	 * @author work
 	 * @date 2016年4月10日  下午11:39:38
 	 */
 	@SuppressWarnings("unused")
@@ -76,7 +76,7 @@ public class LoginController {
 	 * @param @return   
 	 * @return String  
 	 * @throws
-	 * @author crossoverJie
+	 * @author work
 	 * @date 2016年4月11日  下午8:17:42
 	 */
 	@RequestMapping("/loginOut")

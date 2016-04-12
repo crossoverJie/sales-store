@@ -1,4 +1,4 @@
-package com.crossoverJie.controller;
+package com.work.controller;
 
 
 import java.io.IOException;
@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSON;
-import com.crossoverJie.entity.User;
-import com.crossoverJie.service.UserService;
-import com.crossoverJie.util.Page;
+import com.work.entity.User;
+import com.work.service.UserService;
+import com.work.util.Page;
 
 
 @Controller
@@ -52,7 +52,7 @@ public class UserController {
 	 * @param @throws IOException   
 	 * @return void  
 	 * @throws
-	 * @author crossoverJie
+	 * @author work
 	 * @date 2016年4月11日  下午10:16:53
 	 */
 	@RequestMapping("/delete")
@@ -78,7 +78,7 @@ public class UserController {
 	 * @param @param rows 一页显示多少条  
 	 * @return void  
 	 * @throws
-	 * @author crossoverJie
+	 * @author work
 	 * @date 2016年4月11日  上午12:58:32
 	 */
 	@RequestMapping("/getUserList")
@@ -113,7 +113,7 @@ public class UserController {
 	 * @param @param response   
 	 * @return void  
 	 * @throws
-	 * @author crossoverJie
+	 * @author work
 	 * @date 2016年4月11日  下午8:14:50
 	 */
 	@RequestMapping("/edit") 
@@ -125,5 +125,25 @@ public class UserController {
 			e.printStackTrace() ;
 		}
 	}
+	/**
+	 * 
+	 * @Description: 前台页面用户详情设置
+	 * @param @param id
+	 * @param @param model
+	 * @param @return   
+	 * @return String  
+	 * @throws
+	 * @author work
+	 * @date 2016年4月12日  下午7:28:14
+	 */
+	@RequestMapping("/frontUserSet/{id}")
+	public String frontUserSet(@PathVariable int id,Model model){
+		User user = userService.get(id) ;
+		model.addAttribute("currentUser", user) ;
+		return "/front/user/userSet" ;
+	}
+	
+	
+	
 	
 }

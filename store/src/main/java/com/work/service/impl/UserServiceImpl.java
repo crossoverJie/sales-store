@@ -1,14 +1,14 @@
-package com.crossoverJie.service.impl;
+package com.work.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.crossoverJie.dao.UserDao;
-import com.crossoverJie.entity.User;
-import com.crossoverJie.service.UserService;
-import com.crossoverJie.util.Page;
+import com.work.dao.UserDao;
+import com.work.entity.User;
+import com.work.service.UserService;
+import com.work.util.Page;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {

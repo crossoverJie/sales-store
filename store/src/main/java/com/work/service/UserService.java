@@ -1,9 +1,9 @@
-package com.crossoverJie.service;
+package com.work.service;
 
 import java.util.List;
 
-import com.crossoverJie.entity.User;
-import com.crossoverJie.util.Page;
+import com.work.entity.User;
+import com.work.util.Page;
 
 public interface UserService {
 	User load(int id);

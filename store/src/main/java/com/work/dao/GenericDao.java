@@ -1,10 +1,10 @@
-package com.crossoverJie.dao;
+package com.work.dao;
 
 import java.io.Serializable;
 import java.util.List;
 
-import com.crossoverJie.entity.User;
-import com.crossoverJie.util.Page;
+import com.work.entity.User;
+import com.work.util.Page;
 
 public interface GenericDao<T, PK extends Serializable> {
 
@@ -35,7 +35,7 @@ public interface GenericDao<T, PK extends Serializable> {
 	 * @param @return   
 	 * @return Page<T>  
 	 * @throws
-	 * @author crossoverJie
+	 * @author work
 	 * @date 2016年4月11日  上午12:46:16
 	 */
 	Page<T> findByParams(T entity, int page, int rows) ;

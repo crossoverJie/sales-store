@@ -1,4 +1,4 @@
-package com.crossoverJie.util;
+package com.work.util;
 
 public class AbstractPojo {
 	private Integer startIndex;

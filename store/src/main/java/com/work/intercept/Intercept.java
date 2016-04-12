@@ -1,4 +1,4 @@
-package com.crossoverJie.intercept;
+package com.work.intercept;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.crossoverJie.entity.User;
+import com.work.entity.User;
 
 
 public class Intercept implements HandlerInterceptor {

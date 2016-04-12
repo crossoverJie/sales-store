@@ -1,4 +1,4 @@
-package com.crossoverJie.controller;
+package com.work.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * 
  * ClassName: BaseController 
  * @Description: 基础控制器
- * @author crossoverJie
+ * @author work
  * @date 2016年4月10日 下午11:06:07
  */
 public class BaseController {

@@ -1,6 +1,6 @@
-package com.crossoverJie.dao;
+package com.work.dao;
 
-import com.crossoverJie.entity.User;
+import com.work.entity.User;
 
 public interface UserDao extends GenericDao<User,String> {
 
