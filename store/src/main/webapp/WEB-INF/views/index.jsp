@@ -57,11 +57,11 @@
 				</p>
 			</div>
 			
-			<div title="信息管理"
+			<div title="产品管理"
 				data-options="iconCls:'icon-sys' "
 				style="padding:10px;">
 				<p>
-					<a href="javascript:void(0)" onClick="getMain(this,'news/turnToNewsList')">新闻管理</a>
+					<a href="javascript:void(0)" onClick="getMain(this,'category/turnToCategoryList')">分类管理</a>
 				</p>
 				<p>
 					<a href="javascript:void(0)" onClick="getMain(this,'img/turnToImgList')">图片管理</a>

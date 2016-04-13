@@ -46,15 +46,17 @@ public class Intercept implements HandlerInterceptor {
 				if(list.size() <=0){
 					return true ;
 				}else{
-//					Function f = functionService.findAll(function).get(0) ;
-//					String currenId = f.getId()+"" ;
-//					if(function_id.indexOf(currenId) == -1){
-//						response.sendRedirect("/store/notfound.jsp") ;
-//						response.getWriter().print("false") ;
-//						return false ;
-//					}else {
-//						return true ;
-//					}
+					Function f = functionService.findAll(function).get(0) ;
+					String currenId = f.getId()+"" ;
+					if(function_id.indexOf(currenId) == -1){
+						response.sendRedirect("/store/notfound.jsp") ;
+						response.getWriter().print("false") ;
+						logger.debug("当前状态------>  无权限 ");
+						return false ;
+					}else {
+						logger.debug("当前状态------>  通过 ");
+						return true ;
+					}
 					
 				}
 			}

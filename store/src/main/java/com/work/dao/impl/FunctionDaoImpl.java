@@ -139,8 +139,9 @@ public class FunctionDaoImpl implements FunctionDao {
 		int id = function.getId()==0?0:function.getId();
 		int parent_id = function.getParent_id()==null?0:function.getParent_id() ;
 		String remark = function.getRemark() ;
+		String function_url = function.getFunction_url() ;
 		if(!StringUtil.isNullOrEmpty(Function_name)){
-			criteria.add(Restrictions.eq("Function_name", Function_name));
+			criteria.add(Restrictions.eq("function_name", Function_name));
 		}
 		if(id!=0){
 			criteria.add(Restrictions.eq("id", id));
@@ -150,6 +151,9 @@ public class FunctionDaoImpl implements FunctionDao {
 		}
 		if(!StringUtil.isNullOrEmpty(remark)){
 			criteria.add(Restrictions.eq("remark", remark));
+		}
+		if(!StringUtil.isNullOrEmpty(function_url)){
+			criteria.add(Restrictions.eq("function_url", function_url));
 		}
 		List<Function> list = criteria.list() ;
 		return list;
