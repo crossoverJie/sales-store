@@ -72,24 +72,19 @@
 					<th>功能类型</th>
 					<td >
 						<select id="category_type_add" class="easyui-combobox" style="width:100px;">   
-						    <option value="1">一级功能</option>   
-						    <option value="2">二级功能</option> 
-						    <option value="3">三级功能</option>   
+						    <option value="1">一级分类</option>   
+						    <option value="2">二级分类</option> 
+						    <option value="3">三级分类</option>   
 						</select>  
 					</td>
-					<th>一级功能</th>
+					<th>一级分类</th>
 					<td ><input type="text" id="funtion_type_one_add" style="width:100px;" /></td>
 				</tr>
 				<tr>
-					<th>功能名称</th>
+					<th>二级分类</th>
+					<td ><input type="text" id="funtion_type_two_add" style="width:100px;" /></td>
+					<th>分类名称</th>
 					<td><input type="text" id="category_name_add" style="width:100px;" /></td>
-				</tr>
-				<tr>
-					<th>功能地址</th>
-					<td><input type="text" id="category_url_add" style="width:100px;" /></td>
-					
-					<th>功能备注</th>
-					<td><input type="text" id="category_remark_add" style="width:100px;" /></td>
 				</tr>
 			</table>
 			<div style="padding:5px 0;text-align: center;color: red;"

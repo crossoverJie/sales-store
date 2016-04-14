@@ -141,14 +141,22 @@ public class CategoryDaoImpl implements CategoryDao {
 		String name =category.getName() ;
 		int id = category.getId();
 		String user_id = category.getUser_id() ;
+		String level = category.getLevel() ;
+		int parent_id = category.getParent_id() ;
 		if(!StringUtil.isNullOrEmpty(name)){
 			criteria.add(Restrictions.eq("name", name));
 		}
 		if(id !=0){
 			criteria.add(Restrictions.eq("id", id));
 		}
+		if(parent_id !=0){
+			criteria.add(Restrictions.eq("parent_id", parent_id));
+		}
 		if(!StringUtil.isNullOrEmpty(user_id)){
 			criteria.add(Restrictions.eq("user_id", user_id));
+		}
+		if(!StringUtil.isNullOrEmpty(level)){
+			criteria.add(Restrictions.eq("level", level));
 		}
 		List<Category> list = criteria.list() ;
 		return list;

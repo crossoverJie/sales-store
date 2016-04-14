@@ -103,11 +103,21 @@ function add(){
 	if(type=="1"){
 		$("#funtion_type_one_add").combobox({
 			disabled:true
+		});
+		$("#funtion_type_two_add").combobox({
+			disabled:true
 		})
 	}
-	
+	//初始化所有一级菜单
 	$("#funtion_type_one_add").combobox({
 		url:"category/getAllone",
+		valueField:'id', 
+		textField:'name'   
+	});
+	
+	//初始化所有二级菜单
+	$("#funtion_type_two_add").combobox({
+		url:"category/getAlltwo",
 		valueField:'id', 
 		textField:'name'   
 	});
@@ -200,14 +210,13 @@ function saveEdit(){
   });
 }
 /**
- * 新增用户之前的验证
+ * 新增之前的验证
  */
 function turnToAdd(){
-	var category_type = $("#category_type_add").combobox("getValue") ;
+	var level = $("#category_type_add").combobox("getValue") ;
 	var category_name = $("#category_name_add").val() ;
-	var category_url = $("#category_url_add").val() ;
-	var remark= $("#category_remark_add").val() ;
 	var category_type_one_add = $("#funtion_type_one_add").combobox("getValue");
+	var category_type_two_add = $("#funtion_type_two_add").combobox("getValue");
 	
 	//定义一个变量保存功能名称 因为有不同的情况 选择一级功能和二级功能。
 	var name="" ;
@@ -215,16 +224,20 @@ function turnToAdd(){
 		name= category_name;
 	}else if(category_type_one_add != ""){
 		name= category_type_one_add;
+	}else if(category_type_two_add !=""){
+		name = category_type_two_add;
 	}
 	
 	var parent_id  ;
 	if(category_type_one_add != ""){
 		parent_id = category_type_one_add;
+	}else if (category_type_two_add != ""){
+		parent_id = category_type_two_add;
 	}else {
 		parent_id = -1;
 	}
 	
-	if(name =="" ||  category_type==""){
+	if(name =="" ||  level==""){
 		$("#showMsg").html("请将数据填写完整");
 		return ;
 	}else{
@@ -232,11 +245,9 @@ function turnToAdd(){
 	}
 	
 	var json = {
-		"category_name": category_name,
-		"category_type":category_type,
-		"category_url":category_url,
-		"parent_id":parent_id,
-		"remark":remark
+		"name": category_name,
+		"level":level,
+		"parent_id":parent_id
 	};
 
     $.ajax({            
@@ -326,6 +337,16 @@ $(function(){
 			if(type=='2'){
 				$("#funtion_type_one_add").combobox({
 					disabled:false
+				});
+				$("#funtion_type_two_add").combobox({
+					disabled:true
+				});
+			}else if(type='3'){
+				$("#funtion_type_two_add").combobox({
+					disabled:false
+				});
+				$("#funtion_type_one_add").combobox({
+					disabled:true
 				})
 			}else if(type='1'){
 				$("#funtion_type_one_add").combobox({

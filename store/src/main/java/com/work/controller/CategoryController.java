@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSON;
 import com.work.entity.Category;
+import com.work.entity.User;
 import com.work.service.CategoryService;
 import com.work.util.TreeGridUtil;
 
@@ -29,6 +31,9 @@ public class CategoryController {
 	@Autowired
 	private CategoryService categoryService ;
 	
+	@Autowired
+	private HttpServletRequest request;
+	
 	@RequestMapping("/turnToCategoryList")
 	public String turnToCategoryList(){
 		return "/category/categoryList" ;
@@ -42,31 +47,46 @@ public class CategoryController {
 		category.setParent_id(-1) ;
 		List<Category> categorys = categoryService.findAll(category);
 		for(Category f:categorys){
-//			TreeGridUtil tree = new TreeGridUtil() ;
-//			tree.setId(f.getId()) ;
-//			tree.setCategory_url(f.getCategory_url());
-//			tree.setName(f.getCategory_name());
-//			tree.setRemark(f.getRemark()) ;
-//			tree.setParent_id(f.getParent_id()) ;
-////			tree.setState("closed") ;
-//			if(f.getParent_id() == -1){
-//				int parent_id = f.getId() ;
-//				Category parent = new Category() ;
-//				parent.setParent_id(parent_id) ;
-//				List<Category> lists = categoryService.findAll(parent) ;
-//				List<TreeGridUtil> t2 = new ArrayList<TreeGridUtil>() ;
-//				for(Category f_son : lists){
-//					TreeGridUtil t_son = new TreeGridUtil() ;
-//					t_son.setId(f_son.getId());
-//					t_son.setCategory_url(f_son.getCategory_url()) ;
-//					t_son.setName(f_son.getCategory_name()) ;
-//					t_son.setRemark(f_son.getRemark());
-//					t_son.setParent_id(f_son.getParent_id()) ;
-//					t2.add(t_son) ;
-//				}
-//				tree.setChildren(t2) ;
-//			}
-//			trees.add(tree) ;
+			TreeGridUtil tree = new TreeGridUtil() ;
+			tree.setId(f.getId()) ;
+			tree.setName(f.getName());
+			tree.setParent_id(f.getParent_id()) ;
+//			tree.setState("closed") ;
+			if(f.getLevel().equals("1")){
+				int parent_id = f.getId() ;
+				Category parent = new Category() ;
+				parent.setParent_id(parent_id) ;
+				List<Category> lists = categoryService.findAll(parent) ;
+				List<TreeGridUtil> t2 = new ArrayList<TreeGridUtil>() ;
+				for(Category f_son :lists){
+					TreeGridUtil t_son = new TreeGridUtil() ;
+					t_son.setId(f_son.getId());
+					t_son.setName(f_son.getName()) ;
+					t_son.setParent_id(f_son.getParent_id()) ;
+					t2.add(t_son) ;
+					
+					List<TreeGridUtil> t3 = new ArrayList<TreeGridUtil>() ;
+					if(f_son.getLevel().equals("2")){
+						int pid = f_son.getId() ;
+						Category pr = new Category() ;
+						pr.setParent_id(pid) ;
+						List<Category> listss = categoryService.findAll(pr) ;
+						for(Category c :listss){
+							TreeGridUtil t_sons = new TreeGridUtil() ;
+							t_sons.setId(c.getId());
+							t_sons.setName(c.getName()) ;
+							t_sons.setParent_id(c.getParent_id()) ;
+							t3.add(t_sons) ;
+						}
+						t_son.setChildren(t3);
+					}
+					tree.setChildren(t2);
+				}
+			}
+			
+			
+			
+			trees.add(tree) ;
 		}
 		
 		String json = JSON.toJSONString(trees) ;
@@ -78,6 +98,8 @@ public class CategoryController {
 	public void create(Category category,HttpServletResponse response) throws IOException{
 		response.setContentType("html/text") ;
 		try {
+			User user = (User) request.getSession().getAttribute("user") ;
+			category.setUser_id(user.getId()+"");
 			categoryService.save(category) ;
 			response.getWriter().print("true") ;
 		} catch (Exception e) {
@@ -88,7 +110,7 @@ public class CategoryController {
 	
 	/**
 	 * 
-	 * @Description: 获得所有一级菜单
+	 * @Description: 获得所有一级类别
 	 * @param    
 	 * @return void  
 	 * @throws IOException 
@@ -101,6 +123,27 @@ public class CategoryController {
 		response.setCharacterEncoding("utf-8") ;
 		Category f = new Category() ;
 		f.setParent_id(-1) ;
+		List<Category> fs = categoryService.findAll(f) ;
+		String json = JSON.toJSONString(fs) ;
+		response.getWriter().print(json) ;
+		
+	}
+	
+	/**
+	 * 
+	 * @Description: 查找所有的二级类别
+	 * @param @param response
+	 * @param @throws IOException   
+	 * @return void  
+	 * @throws
+	 * @author crossoverJie
+	 * @date 2016年4月14日  下午11:28:48
+	 */
+	@RequestMapping("/getAlltwo")
+	public void getAlltwo(HttpServletResponse response) throws IOException{
+		response.setCharacterEncoding("utf-8") ;
+		Category f = new Category() ;
+		f.setLevel("2") ;//所有二级分类
 		List<Category> fs = categoryService.findAll(f) ;
 		String json = JSON.toJSONString(fs) ;
 		response.getWriter().print(json) ;
