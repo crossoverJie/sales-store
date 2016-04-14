@@ -15,7 +15,7 @@ public class Category {
 	private int id ;
 	private int parent_id ;
 	private String name ;
-	private String level ;//产品等级 0：一级   1：二级    2：三级
+	private String level ;//产品等级 1：一级   2：二级    3：三级
 	private String user_id ;
 	@Id
 	public int getId() {

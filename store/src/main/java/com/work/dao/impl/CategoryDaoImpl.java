@@ -136,15 +136,15 @@ public class CategoryDaoImpl implements CategoryDao {
 
 
 	@SuppressWarnings("unchecked")
-	public List<Category> findAll(Category produce) {
+	public List<Category> findAll(Category category) {
 		Criteria criteria=getCurrentSession().createCriteria(Category.class);
-		String name =produce.getName() ;
-		int id = produce.getId();
-		String user_id = produce.getUser_id() ;
+		String name =category.getName() ;
+		int id = category.getId();
+		String user_id = category.getUser_id() ;
 		if(!StringUtil.isNullOrEmpty(name)){
 			criteria.add(Restrictions.eq("name", name));
 		}
-		if(!StringUtil.isNullOrEmpty(id)){
+		if(id !=0){
 			criteria.add(Restrictions.eq("id", id));
 		}
 		if(!StringUtil.isNullOrEmpty(user_id)){
