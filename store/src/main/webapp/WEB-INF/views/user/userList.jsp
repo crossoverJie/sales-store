@@ -30,6 +30,13 @@
 
 <body>
 	<table id="user_list"></table>
+	<div id="tabrs">
+		<a href="javascript:void(0)" onclick="removeUser();"  plain="true" class="easyui-linkbutton" iconCls="icon-remove">删除</a>
+		<a href="javascript:void(0)" onclick="modifyUser();"  plain="true" class="easyui-linkbutton" iconCls="icon-edit">编辑</a>
+		用户名:<input  class="easyui-validatebox" id="username_query"  />
+		真实姓名:<input  class="easyui-validatebox" id="realname_query" />
+		<a href="javascript:void(0)" onclick="submitQuery();"  plain="true" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+	</div>
 	
 	<div id="queryUserWin" class="easyui-window" align="left" title="查询" style="width:460px; height: 200px">
 		<form id="queryUserForm" method="post">

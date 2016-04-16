@@ -158,8 +158,6 @@ function modifyCategory(){
 	}else{
 		$("#modifyCategoryWin").window("open") ;
 		$("#category_name_edit").val(target[0].name);
-		$("#category_url_edit").val(target[0].category_url);
-		$("#remark_edit").val(target[0].remark) ;
 	}
 }
 
@@ -171,10 +169,8 @@ function closeWin(obj){
  */
 function saveEdit(){
 	var target = $('#category_list').treegrid('getSelections');
-	var category_name = $("#category_name_edit").val() ;
-	var category_url = $("#category_url_edit").val() ;
-	var remark = $("#remark_edit").val() ;
-	if(category_name =="" ){
+	var name = $("#category_name_edit").val() ;
+	if(name =="" ){
 		$("#showMsg_edit").html("请将数据填写完整");
 		return ;
 	}else{
@@ -182,9 +178,7 @@ function saveEdit(){
 	}
 	var json ={
 		"id":target[0].id,
-		"category_name":category_name,
-		"category_url":category_url,
-		"remark":remark
+		"name":name
 	}
 	
     $.ajax({            
@@ -277,18 +271,18 @@ function turnToAdd(){
 function removeCategory() {
 
 	var list = new Array();
-	var parent_id= "";
+	var level= "";
 	var rows = $('#category_list').treegrid('getSelections');
 	if (rows.length != 0) {
 		$.messager.confirm('询问', '您确定要删除所选中的数据吗?', function(answer) {
 			if (answer) {
 				for ( var i = 0; i < rows.length; i++) {
 					list.push(rows[i].id);
-					parent_id = rows[0].parent_id;
+					level = rows[0].level;
 				}
 				$.ajax( {
 					type:"POST", 
-					url : 'category/delete?ids=' + list + '&parent_id='+parent_id,
+					url : 'category/delete?ids=' + list + '&level='+level,
 					cache : false,
 					success : function(r) {
 					$("#category_list").treegrid('clearSelections'); // 清空选择状态

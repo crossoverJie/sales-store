@@ -1,8 +1,8 @@
 $(function(){
-	$("#demo-navbar .dropdown-menu a").click(function(){
-		var href = $(this).attr("href") ;
-		$("#tab-list a[href='"+href+"']").tab("show") ;
-	});
+//	$("#demo-navbar .dropdown-menu a").click(function(){
+//		var href = $(this).attr("href") ;
+//		$("#tab-list a[href='"+href+"']").tab("show") ;
+//	});
 	
 	/*检查邮箱是否被注册*/
 	
@@ -100,10 +100,10 @@ document.onkeydown = function(e) {
 function createTopic(){
 	var username = $("#session_username").val() ;
 	if(username == ""){
-		alert("请登录之后再发帖") ;
+		alert("请登录之后再发起") ;
 		$('#login').modal('show') ;
 	}else{
-		window.location.href= "../../turnToCreateTopic" ;
+		window.location.href= "../../main/turnToCreateAchat" ;
 	}
 }
 

@@ -118,20 +118,20 @@ public class CategoryDaoImpl implements CategoryDao {
 	}
 
 	public void update(Category entity) {
-		Category produce = this.get(entity.getId()) ;
+		Category category = this.get(entity.getId()) ;
 		if(entity.getName() != null){
-			produce.setName(entity.getName());
+			category.setName(entity.getName());
 		}
 		if(entity.getParent_id() != 0){
-			produce.setParent_id(entity.getParent_id());
+			category.setParent_id(entity.getParent_id());
 		}
 		if(entity.getLevel() != null){
-			produce.setLevel(entity.getLevel());
+			category.setLevel(entity.getLevel());
 		}
 		if(entity.getUser_id() != null){
-			produce.setUser_id(entity.getUser_id());
+			category.setUser_id(entity.getUser_id());
 		}
-		this.getCurrentSession().update(produce); 
+		this.getCurrentSession().update(category); 
 	}
 
 

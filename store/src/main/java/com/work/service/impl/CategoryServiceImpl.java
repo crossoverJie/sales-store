@@ -61,8 +61,8 @@ public class CategoryServiceImpl implements CategoryService {
 		return categoryDao.findAllCount(u);
 	}
 
-	public void update(Category Produce) {
-		categoryDao.update(Produce);
+	public void update(Category category) {
+		categoryDao.update(category);
 	}
 
 	public List<Category> findAll(Category function) {

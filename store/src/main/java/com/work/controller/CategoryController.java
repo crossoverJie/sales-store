@@ -151,17 +151,49 @@ public class CategoryController {
 	}
 	
 	@RequestMapping("/delete")
-	public void delete(String ids,String parent_id,HttpServletResponse response) throws IOException{
+	public void delete(String ids,String level,HttpServletResponse response) throws IOException{
 		String[] str_ids = ids.split(",") ;
 		for(String id : str_ids){
 			//当parent_id为-1时候 表示该节点为一级菜单 所以要删除下边所有的记录。
-			if(parent_id.equals("-1")){
-				//首先删除所有父节点为id的
+			if(level.equals("1")){
+				//删除所有三级菜单，也就是三级分类的parent_id为二级分类的ID的数据
+				Category c = new Category() ;
+				c.setParent_id(Integer.parseInt(id));
+				List<Category> list_tow = categoryService.findAll(c) ;
+				for(Category c2 : list_tow){
+					int c2_id = c2.getId() ;
+					Category c3 = new Category() ;
+					c3.setParent_id(c2_id);
+					
+					//通过c2的ID找到所有的三级分类
+					List<Category> list_three = categoryService.findAll(c3) ;
+					for(Category c4: list_three){
+						int c4_id = c4.getId() ;
+						//将所有的三级类别删除
+						categoryService.delete(c4_id);
+					}
+					
+					
+				}
+				
+				
+				//删除所有二级分类中的parent_id为id的数据
 				categoryService.deleteByPrentId(Integer.parseInt(id)) ;
 				
 				//然后删除该父节点
 				categoryService.delete(Integer.parseInt(id)) ;
-			}else{
+			}else if("2".equals(level)){//如果选中的是二级分类 就要先删除所有二级分类下的所有二级菜单
+				Category c = new Category() ;
+				c.setParent_id(Integer.parseInt(id));
+				List<Category> list_three = categoryService.findAll(c) ;
+				for(Category c_three : list_three){
+					int c3id = c_three.getId();
+					categoryService.delete(c3id);//删除所有的三级类别
+				}
+				
+				//最后删除二级类别
+				categoryService.delete(Integer.parseInt(id));
+			}else{//就是删除三级类别了
 				categoryService.delete(Integer.parseInt(id)) ;
 			}
 			response.getWriter().print("true") ;

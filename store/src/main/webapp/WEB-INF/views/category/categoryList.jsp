@@ -103,16 +103,8 @@
 		<form id="modifyCategoryForm" method="post">
 			<table style="width: 450px; overflow: hidden;">
 				<tr>
-					<th>功能名称</th>
+					<th>类别名称</th>
 					<td ><input type="text" id="category_name_edit" style="width:200px;" /></td>
-				</tr>
-				<tr>
-					<th>功能路径</th>
-					<td><input type="text" id="category_url_edit" style="width:200px;" /></td>
-				</tr>
-				<tr>
-					<th>备注</th>
-					<td><input type="text" id="remark_edit" style="width:200px;" /></td>
 				</tr>
 			</table>
 			<div style="padding:5px 0;text-align: center;color: red;"

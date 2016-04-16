@@ -275,7 +275,7 @@ $(function(){
 		pagination : true,
 		height : 'auto',
 		fit : true,
-		toolbar : tabrs,
+		toolbar : '#tabrs',
 		border : false,
 		onDblClickRow : function(rowIndex, rowData) {
 

@@ -22,13 +22,13 @@ public interface CategoryService {
 
 	void flush();
 
-	Page<Category> findByParams(Category Produce, int page, int rows);
+	Page<Category> findByParams(Category category, int page, int rows);
 
 	int findAllCount(Category u);
 
-	void update(Category Produce);
+	void update(Category category);
 
-	List<Category> findAll(Category function);
+	List<Category> findAll(Category category);
 
 	void deleteByPrentId(int parseInt);
 }
