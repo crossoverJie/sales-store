@@ -44,42 +44,55 @@
 <div class="container-fluid">
 	<div class="row">
 		
-		<div class="col-md-10 col-md-offset-1">
-			<div class="panel panel-info">
+		<div class="col-md-12">
+			<div class="panel panel-primary">
 				
 				<div class="panel-heading">
-					<h3 class="panel-title">发布</h3>
+					<div class="row">
+						<div class="col-md-4">
+							<h4>流程列表</h4>
+						</div>
+						 <div class="col-md-4 col-md-offset-4">
+							<div class="dropdown">
+							  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							    	请选择
+							    <span class="caret"></span>
+							  </button>
+							  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							    <li><a href="#">管理员处理中</a></li>
+							    <li><a href="#">供应商处理中</a></li>
+							    <li><a href="#">个人处理中</a></li>
+							    <li><a href="#">商品上架中</a></li>
+							  </ul>
+							</div>
+						</div>
+					</div>
+					
+					
 				</div>
 
 			
 				<div class="panel-body">
-				<form id="createAchatForm" method="post" action="<%=path %>/main/createAchat">
-				  <div class="form-group">
-				    <input type="text" required="required" name="title" class="form-control" id="title" placeholder="主题/标题">
-				  </div>
-				  <div class="form-group">
-					  <div class="row">
-						  <div class="col-md-4">
-						  	<input type="text" id="category_one" />
-						  </div>
-						  
-						  <div class="col-md-4">
-						  	<input id="category_two" class="easyui-combobox" />  
-						  </div>
-						  
-						  <div class="col-md-4">
-						  	<input  id="category_three" name="category_id" class="easyui-combobox" />  
-						  </div>
-					  
-					  </div>
-				  </div>
-				  <div class="form-group">
-				    <textarea required="required" class="form-control" id="content" name="content"  rows="10" cols="">
-				    </textarea>
-				  </div>
-				  
-				  <button type="submit" class="btn btn-success">发&nbsp;&nbsp;&nbsp;&nbsp;布</button>
-				</form>
+					<table class="table table-hover "  >
+						<tr>
+							<th>名称</th>
+							<th>类别</th>
+							<th>内容</th>
+							<th>创建日期</th>
+							<th>状态</th>
+						</tr>
+						
+						<c:forEach var="al" items="${achatlist }" varStatus="status" >
+							<tr>
+								<td>${al.title }</td>
+								<td>${al.title }</td>
+								<td>${al.content }</td>
+								<td>${al.create_date }</td>
+								<td>${al.state }</td>
+							</tr>
+						</c:forEach>
+						
+					</table>
 				</div>
 			</div>
 			

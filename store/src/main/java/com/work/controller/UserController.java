@@ -17,8 +17,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSON;
+import com.work.entity.Achat;
+import com.work.entity.Category;
 import com.work.entity.Role;
 import com.work.entity.User;
+import com.work.service.AchatService;
+import com.work.service.CategoryService;
 import com.work.service.RoleService;
 import com.work.service.UserService;
 import com.work.util.Page;
@@ -34,6 +38,12 @@ public class UserController {
 	
 	@Autowired
 	private RoleService roleService ;
+
+	@Autowired
+	private AchatService achatService;
+	
+	@Autowired
+	private CategoryService categoryService ;
 	
 	@RequestMapping("/showUser/{id}")
 	public String showUserInfo(Model model,@PathVariable int id){
@@ -153,6 +163,21 @@ public class UserController {
 		return "/front/user/userSet" ;
 	}
 	
+	
+	@RequestMapping("/achatDetail/{id}")
+	public String achatDetail(@PathVariable int id,Model model){
+		Achat ac = new Achat() ;
+		ac.setCreate_user(id+"");
+		List<Achat> list = achatService.findAll(ac) ;
+		for(Achat a : list){
+			String category_id = a.getCategory_id() ;
+			Category c = categoryService.get(Integer.parseInt(category_id)) ;
+			a.setCategory_name(c.getName());
+		}
+		
+		model.addAttribute("achatlist", list) ;
+		return "/front/user/achatDetail" ;
+	}
 	
 	@RequestMapping("/getAllRoles")
 	public void getAllRoles(HttpServletResponse response){

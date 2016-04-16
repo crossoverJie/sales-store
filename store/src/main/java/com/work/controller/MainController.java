@@ -2,6 +2,7 @@ package com.work.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,8 +15,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSON;
+import com.work.entity.Achat;
 import com.work.entity.Category;
 import com.work.entity.User;
+import com.work.service.AchatService;
 import com.work.service.CategoryService;
 import com.work.util.ComboboxUtil;
 
@@ -33,6 +36,9 @@ public class MainController {
 	
 	@Autowired
 	private CategoryService categoryService ;
+	
+	@Autowired
+	private AchatService achatService ;
 	
 	/**
 	 * 
@@ -108,6 +114,17 @@ public class MainController {
 			e.printStackTrace();
 		}
 	}
+	
+	@RequestMapping("/createAchat")
+	public String createAchat(Model model,Achat achat,HttpSession session){
+		User user = (User) session.getAttribute("user") ;
+		achat.setCreate_user(user.getId()+"");
+		achat.setCreate_date(new Date());
+		achat.setState("1");//默认为管理员处理中
+		achatService.save(achat) ;
+		return "redirect:../user/achatDetail/"+user.getId() ;
+	}
+	
 	
 	
 	

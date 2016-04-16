@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -40,9 +41,12 @@ public class User implements java.io.Serializable {
 	private Date regester_date ;
 	private Date login_date ;
 	private String province ;
+	
+	@Transient//不需要映射到表中
 	private String parseDate ;
 	private String role_id ;
 	
+	@Transient
 	private String role_name ;
 //	private Date registerTime;
 	//private Set<AcctRole> acctRoles = new HashSet<AcctRole>(0);

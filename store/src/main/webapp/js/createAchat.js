@@ -21,6 +21,21 @@ $(function(){
 	});
 	
 	
+	$("#createAchatForm").submit(function(){
+		var title = $("#title").val() ;
+		var content = $("#content").val();
+		var cg1 = $("#category_one").combobox("getValue");
+		var cg2 = $("#category_two").combobox("getValue");
+		var cg3 = $("#category_three").combobox("getValue");
+		if(cg1=="" || cg2 =="" || cg3==""|| title == "" || content ==""){
+			alert("请把内容填写完整！") ;
+			return false ;
+		}else{
+			return true ;
+		}
+	});
+	
+	
 	
 });
 
