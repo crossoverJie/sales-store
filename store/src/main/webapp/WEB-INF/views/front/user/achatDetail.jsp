@@ -14,7 +14,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-<title>发布采购信息</title>
+<title>采购信息列表</title>
 <!-- Bootstrap -->
 <link rel="stylesheet"
 	href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -85,7 +85,7 @@
 						<c:forEach var="al" items="${achatlist }" varStatus="status" >
 							<tr>
 								<td>${al.title }</td>
-								<td>${al.title }</td>
+								<td>${al.category_name }</td>
 								<td>${al.content }</td>
 								<td>${al.create_date }</td>
 								<td>${al.state }</td>

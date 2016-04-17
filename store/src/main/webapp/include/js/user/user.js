@@ -73,6 +73,7 @@ function add(){
 }
 
 function submitQuery(){
+	var type = $("#type").val() ;//获取类型 1是普通会员  2是供应商  3客户经理
 	var username = $("#username_query").val() ;
 	var realname = $("#realname_query").val() ;
 	if(username==""){
@@ -85,7 +86,7 @@ function submitQuery(){
 		"username":username,
 		"realname":realname
 	};
-	$("#user_list").datagrid('options').url = 'user/getUserList';
+	$("#user_list").datagrid('options').url = 'user/getUserList?type='+type;
 	$("#user_list").datagrid('options').queryParams = json;
 	$("#user_list").datagrid('load');
 	$('#queryUserWin').window("close");
@@ -255,11 +256,13 @@ function removeUser() {
 }
 
 $(function(){
+	var type = $("#type").val() ;//获取类型 1是普通会员  2是供应商  3客户经理
+	
 	$("#addUserWin").window("close") ;
 	$("#modifyUserWin").window("close") ;
 	$("#queryUserWin").window("close") ;
 	$('#user_list').datagrid({
-		url : 'user/getUserList', // 这里可以是个json文件，也可以是个动态页面，还可以是个返回json串的function
+		url : "user/getUserList?type="+type, // 这里可以是个json文件，也可以是个动态页面，还可以是个返回json串的function
 		frozenColumns : [ [ {
 			field : 'ck',
 			checkbox : true

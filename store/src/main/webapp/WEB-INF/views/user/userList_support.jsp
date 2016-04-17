@@ -37,7 +37,7 @@
 		<a href="javascript:void(0)" onclick="removeUser();"  plain="true" class="easyui-linkbutton" iconCls="icon-remove">删除</a>
 		<a href="javascript:void(0)" onclick="modifyUser();"  plain="true" class="easyui-linkbutton" iconCls="icon-edit">编辑</a>
 	</div>
-	<input type="hidden" id="type" value="1">
+	<input type="hidden" id="type" value="2">
 	<div id="queryUserWin" class="easyui-window" align="left" title="查询" style="width:460px; height: 200px">
 		<form id="queryUserForm" method="post">
 			<table style="width: 450px; overflow: hidden;">

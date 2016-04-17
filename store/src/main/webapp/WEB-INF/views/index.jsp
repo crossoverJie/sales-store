@@ -44,16 +44,27 @@
 	<div data-options="region:'west',split:true,title:'导航菜单'"
 		style="width:250px;">
 		<div id="menu" class="easyui-accordion" data-options="multiple:true">
+			
 			<div title="系统管理" data-options="iconCls:'icon-sys',selected:true"
 				style="overflow:auto;padding:10px;">
-				<p>
-					<a href="javascript:void(0)" onClick="getMain(this,'user/turnToUserList')">会员管理</a>
-				</p>
 				<p>
 					<a href="javascript:void(0)" onClick="getMain(this,'role/turnToRoleList')">角色管理</a>
 				</p>
 				<p>
 					<a href="javascript:void(0)" onClick="getMain(this,'function/turnTofunctionList')">功能管理</a>
+				</p>
+			</div>
+			
+			<div title="用户管理" data-options="iconCls:'icon-sys',selected:true"
+				style="overflow:auto;padding:10px;">
+				<p>
+					<a href="javascript:void(0)" onClick="getMain(this,'user/turnToUserList?type=1')">会员管理</a>
+				</p>
+				<p>
+					<a href="javascript:void(0)" onClick="getMain(this,'user/turnToUserList?type=2')">供应商管理</a>
+				</p>
+				<p>
+					<a href="javascript:void(0)" onClick="getMain(this,'user/turnToUserList?type=3')">客户经理管理</a>
 				</p>
 			</div>
 			
@@ -67,8 +78,13 @@
 					<a href="javascript:void(0)" onClick="getMain(this,'img/turnToImgList')">图片管理</a>
 				</p>
 			</div>
-				
-			<div title="Title3" data-options="iconCls:'icon-sys' ">content3</div>
+			<div title="流程管理"
+				data-options="iconCls:'icon-sys' "
+				style="padding:10px;">
+				<p>
+					<a href="javascript:void(0)" onClick="getMain(this,'achat/turnToAchatList')">流程管理</a>
+				</p>
+			</div>
 		</div>
 	</div>
 
@@ -79,8 +95,6 @@
 		style="height:40px;background:#A9FACD;padding:20px;">
 		<div class="center-block"></div>
 		<center>技术支持：crossoverJie
-		<script language="javascript" type="text/javascript" src="http://js.users.51.la/18800358.js"></script>
-		<noscript><a href="http://www.51.la/?18800358" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/18800358.asp" style="border:none" /></a></noscript>
 		</center>
 	</div>
 

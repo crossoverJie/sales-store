@@ -18,11 +18,14 @@ public class Achat {
 	private String title ;
 	private String content ;
 	private String create_user ;
+	private String create_username ;//发起人名字
+	
 	private Date create_date ;
 	private String category_id ;
 	
-	@Transient
+	
 	private String category_name ;
+	private String parseDate ;
 	
 	/**
 	 * 状态 0：管理员处理中      1：供应商处理中
@@ -73,10 +76,27 @@ public class Achat {
 	public void setState(String state) {
 		this.state = state;
 	}
+	
+	@Transient
 	public String getCategory_name() {
 		return category_name;
 	}
 	public void setCategory_name(String category_name) {
 		this.category_name = category_name;
+	}
+	
+	@Transient
+	public String getParseDate() {
+		return parseDate;
+	}
+	public void setParseDate(String parseDate) {
+		this.parseDate = parseDate;
+	}
+	@Transient
+	public String getCreate_username() {
+		return create_username;
+	}
+	public void setCreate_username(String create_username) {
+		this.create_username = create_username;
 	}
 }

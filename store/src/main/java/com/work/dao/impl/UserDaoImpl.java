@@ -95,11 +95,15 @@ public class UserDaoImpl implements UserDao {
 		Page<User> p = new Page<User>() ;
 		String username =user.getUsername() ;
 		String realname = user.getRealname() ;
+		String role_id = user.getRole_id() ;
 		if(!StringUtil.isNullOrEmpty(username)){
 			criteria.add(Restrictions.like("username", username, MatchMode.ANYWHERE).ignoreCase());
 		}
 		if(!StringUtil.isNullOrEmpty(realname)){
 			criteria.add(Restrictions.like("realname", realname, MatchMode.ANYWHERE).ignoreCase());
+		}
+		if(!StringUtil.isNullOrEmpty(role_id)){
+			criteria.add(Restrictions.like("role_id", role_id, MatchMode.ANYWHERE).ignoreCase());
 		}
 		
 		criteria.setFirstResult(open);
@@ -108,12 +112,30 @@ public class UserDaoImpl implements UserDao {
 		p.setRows(list);
 		p.setPageNo(page);
 		p.setLimit(rows);
-		int total = this.findAll().size() ;
+		int total = this.findAllCountLike(user) ;
 		p.setTotal(total); ;
 		
 		return p;
 	}
 
+	public int findAllCountLike(User user) {
+		Criteria criteria=getCurrentSession().createCriteria(User.class);
+		String username =user.getUsername() ;
+		String realname = user.getRealname() ;
+		String role_id = user.getRole_id() ;
+		if(!StringUtil.isNullOrEmpty(username)){
+			criteria.add(Restrictions.like("username", username, MatchMode.ANYWHERE).ignoreCase());
+		}
+		if(!StringUtil.isNullOrEmpty(realname)){
+			criteria.add(Restrictions.like("realname", realname, MatchMode.ANYWHERE).ignoreCase());
+		}
+		if(!StringUtil.isNullOrEmpty(role_id)){
+			criteria.add(Restrictions.like("role_id", role_id, MatchMode.ANYWHERE).ignoreCase());
+		}
+		List<User> list = criteria.list() ;
+		return list.size();
+	}
+	
 	public int findAllCount(User user) {
 		Criteria criteria=getCurrentSession().createCriteria(User.class);
 		String username =user.getUsername() ;

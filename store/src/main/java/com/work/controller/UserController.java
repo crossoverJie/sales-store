@@ -79,8 +79,14 @@ public class UserController {
 	}
 	
 	@RequestMapping("/turnToUserList")
-	public String turnToUserList(){
-		return "/user/userList" ;
+	public String turnToUserList(String type){
+		if("1".equals(type)){
+			return "/user/userList" ;
+		}else if("2".equals(type)){
+			return "/user/userList_support" ;
+		}else{
+			return "/user/userList_manager" ;
+		}
 	}
 	
 	/**
@@ -96,8 +102,15 @@ public class UserController {
 	 * @date 2016年4月11日  上午12:58:32
 	 */
 	@RequestMapping("/getUserList")
-	public void getUserList(@ModelAttribute User user,HttpServletResponse response ,int page,int rows){
+	public void getUserList(@ModelAttribute User user,String type,HttpServletResponse response ,int page,int rows){
 		response.setCharacterEncoding("utf-8");
+		if("1".equals(type)){
+			user.setRole_id("2");
+		}else if("2".equals(type)){
+			user.setRole_id("3");
+		}else{
+			user.setRole_id("4");
+		}
 		Page<User> users = userService.findByParams(user,page,rows) ;
 		for(User u :users.getRows()){
 			Date date = u.getLogin_date();
@@ -173,6 +186,17 @@ public class UserController {
 			String category_id = a.getCategory_id() ;
 			Category c = categoryService.get(Integer.parseInt(category_id)) ;
 			a.setCategory_name(c.getName());
+			String state = a.getState();
+			if("0".equals(state)){
+				a.setState("管理员处理中");
+			}else if("1".equals(state)){
+				a.setState("供应商报价中");
+			}else if("1".equals(state)){
+				a.setState("会员处理中");
+			}else if("1".equals(state)){
+				a.setState("供应商上架中");
+			}
+				
 		}
 		
 		model.addAttribute("achatlist", list) ;

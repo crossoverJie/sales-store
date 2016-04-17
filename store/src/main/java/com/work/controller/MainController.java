@@ -120,7 +120,7 @@ public class MainController {
 		User user = (User) session.getAttribute("user") ;
 		achat.setCreate_user(user.getId()+"");
 		achat.setCreate_date(new Date());
-		achat.setState("1");//默认为管理员处理中
+		achat.setState("0");//默认为管理员处理中
 		achatService.save(achat) ;
 		return "redirect:../user/achatDetail/"+user.getId() ;
 	}

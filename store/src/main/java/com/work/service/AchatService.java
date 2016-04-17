@@ -23,7 +23,7 @@ public interface AchatService {
 
 	void flush();
 	
-	Page<Achat> findByParams(Achat user, int page, int rows);
+	Page<Achat> findByParams(Achat achat, int page, int rows);
 
 	int findAllCount(Achat u);
 	

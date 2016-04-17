@@ -96,7 +96,7 @@ public class AchatDaoImpl implements AchatDao {
 		p.setLimit(rows);
 		int total = this.findAll().size() ;
 		p.setTotal(total); 
-		return null;
+		return p;
 	}
 
 	public int findAllCount(Achat achat) {
