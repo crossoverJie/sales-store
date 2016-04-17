@@ -37,6 +37,11 @@ datagridD = [{
 	width : 100,
 	align : 'center'
 },{
+	field : 'support_price',
+	title : '供应商报价',
+	width : 100,
+	align : 'center'
+},{
 	field : 'state',
 	title : '状态',
 	width : 100,

@@ -51,22 +51,6 @@ public class MainController {
 	 */
 	@RequestMapping("/turnToCreateAchat")
 	public String turnToCreateAchat(Model model,HttpSession session){
-		//获得所有的分类
-//		Category c_one = new Category() ;
-//		c_one.setLevel("1");
-//		List<Category> list_one = categoryService.findAll(c_one);
-//		model.addAttribute("category_one", list_one);
-//		
-//		Category c_two = new Category() ;
-//		c_one.setLevel("2");
-//		List<Category> list_two = categoryService.findAll(c_two);
-//		model.addAttribute("category_two", list_two);
-//		
-//		Category c_three = new Category() ;
-//		c_three.setLevel("3");
-//		List<Category> list_three = categoryService.findAll(c_three);
-//		model.addAttribute("category_three", list_three);
-		
 		User user = (User) session.getAttribute("user") ;
 		if(user == null){
 			return "redirect:../index/turnToIndex/1" ;

@@ -3,6 +3,7 @@ package com.work.controller;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,11 +15,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.work.entity.Achat;
 import com.work.entity.Role;
 import com.work.entity.User;
+import com.work.service.AchatService;
 import com.work.service.RoleService;
 import com.work.service.UserService;
 import com.work.util.AbstractController;
+import com.work.util.Page;
 
 @Controller
 @RequestMapping("/index")
@@ -31,13 +35,18 @@ public class IndexController extends AbstractController {
 	private RoleService roleService ;
 	
 	@Autowired
-	private HttpServletRequest request ;
-	
-	@Autowired
-	private HttpServletResponse response;
+	private AchatService achatService ;
 	
 	@RequestMapping("/turnToIndex/{pageNum}")
 	public String trunToIndex(@PathVariable int pageNum,Model model,HttpSession session){
+		User user = (User) session.getAttribute("user") ;
+		if(user != null){
+			Achat ac = new Achat();
+			ac.setCreate_user(user.getId()+"");
+			Page<Achat> achatList = achatService.findByParams(ac, 1, 6) ;
+			model.addAttribute("achatList", achatList.getRows());
+		}
+		
 		return "../../../index" ;
 	}
 	

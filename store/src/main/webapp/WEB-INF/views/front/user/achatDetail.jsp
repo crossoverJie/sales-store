@@ -59,10 +59,11 @@
 							    <span class="caret"></span>
 							  </button>
 							  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-							    <li><a href="#">管理员处理中</a></li>
-							    <li><a href="#">供应商处理中</a></li>
-							    <li><a href="#">个人处理中</a></li>
-							    <li><a href="#">商品上架中</a></li>
+							  	<li><a href="<%=path%>/user/achatDetail/${user.id}">全部</a></li>
+							    <li ><a href="<%=path%>/user/achatDetail/${user.id}?state=0">管理员处理中</a></li>
+							    <li><a href="<%=path%>/user/achatDetail/${user.id}?state=1">供应商报价中</a></li>
+							    <li><a href="<%=path%>/user/achatDetail/${user.id}?state=2">会员处理中</a></li>
+							    <li><a href="<%=path%>/user/achatDetail/${user.id}?state=3">商品上架中</a></li>
 							  </ul>
 							</div>
 						</div>
@@ -79,7 +80,10 @@
 							<th>类别</th>
 							<th>内容</th>
 							<th>创建日期</th>
+							<th>报价供应商</th>
+							<th>价格</th>
 							<th>状态</th>
+							<th>操作</th>
 						</tr>
 						
 						<c:forEach var="al" items="${achatlist }" varStatus="status" >
@@ -88,7 +92,16 @@
 								<td>${al.category_name }</td>
 								<td>${al.content }</td>
 								<td>${al.create_date }</td>
+								<td>${al.support_name }</td>
+								<td>${al.support_price }</td>
 								<td>${al.state }</td>
+								<td>
+									<c:if test="${!empty al.support_price}">
+									<a href="" class="btn btn-primary">同意</a>
+									&nbsp;&nbsp;
+									<a href="" class="btn btn-danger">拒绝</a>
+									</c:if>
+								</td>
 							</tr>
 						</c:forEach>
 						

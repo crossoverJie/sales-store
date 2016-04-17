@@ -49,7 +49,7 @@
 	<div style="position:absolute;width:100%;height:100%;background: url('<%=basePath%>include/img/homebg.gif');background-repeat:no-repeat;padding-bottom:0px;background-position-x:right;background-position-y: bottom;background-position:right bottom">
 		<div id="p" class="easyui-panel" title="通知"     
 		        style="width:700px;height:300px;padding:20px;background:#fafafa;"   
-		        data-options="iconCls:'icon-save',  
+		        data-options="iconCls:'icon-tip',  
 		        		tools:'#ts',
 		                collapsible:true,maximizable:true">
 		                
@@ -63,10 +63,7 @@
 		    <c:forEach var="ls" items="${list }" varStatus="status" >
 		    	<tr>
 					<td>
-						<a href="javascript:void(0)" 
-						onclick="getMain(this,'achat/turnToRoleList')">
 						${ls.title }
-						</a>
 					</td>
 					<td>${ls.category_name }</td>
 					<td>${ls.create_date }</td>

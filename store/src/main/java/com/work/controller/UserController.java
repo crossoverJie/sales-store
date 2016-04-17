@@ -58,6 +58,17 @@ public class UserController {
 	public String turnToIndex(){
 		return "/index" ;
 	}
+	/**
+	 * 
+	 * @Description: 显示通知
+	 * @param @param model
+	 * @param @param session
+	 * @param @return   
+	 * @return String  
+	 * @throws
+	 * @author crossoverJie
+	 * @date 2016年4月17日  下午8:43:56
+	 */
 	@RequestMapping("/turnToNotification")
 	public String turnToNotification(Model model,HttpSession session){
 		User user = (User) session.getAttribute("user") ;
@@ -73,9 +84,9 @@ public class UserController {
 				a.setState("管理员处理中");
 			}else if("1".equals(state)){
 				a.setState("供应商报价中");
-			}else if("1".equals(state)){
+			}else if("2".equals(state)){
 				a.setState("会员处理中");
-			}else if("1".equals(state)){
+			}else if("3".equals(state)){
 				a.setState("供应商上架中");
 			}
 				
@@ -204,10 +215,9 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping("/achatDetail/{id}")
-	public String achatDetail(@PathVariable int id,Model model){
-		Achat ac = new Achat() ;
-		ac.setCreate_user(id+"");
+	@RequestMapping("/achatDetail/{userid}")
+	public String achatDetail(@PathVariable int userid,Model model,Achat ac){
+		ac.setCreate_user(userid+"");
 		List<Achat> list = achatService.findAll(ac) ;
 		for(Achat a : list){
 			String category_id = a.getCategory_id() ;
@@ -218,10 +228,19 @@ public class UserController {
 				a.setState("管理员处理中");
 			}else if("1".equals(state)){
 				a.setState("供应商报价中");
-			}else if("1".equals(state)){
+			}else if("2".equals(state)){
 				a.setState("会员处理中");
-			}else if("1".equals(state)){
+			}else if("3".equals(state)){
 				a.setState("供应商上架中");
+			}
+			String uid = a.getCreate_user() ;
+			a.setCreate_username(userService.get(Integer.parseInt(uid)).getUsername());
+			String sid = a.getSupport_id() ;
+			if(sid != null){
+				a.setSupport_name(userService.get(Integer.parseInt(sid)).getUsername());
+			}else{
+				a.setSupport_name("暂无供应商报价");
+				
 			}
 				
 		}

@@ -15,6 +15,7 @@ $(function(){
 }) ;
 
 function getMain(obj,url){
+	
 	var name = $(obj).html() ;
 	if (!$('#tabs').tabs('exists', name)) {
 	$('#tabs').tabs('add',{

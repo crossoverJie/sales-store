@@ -179,15 +179,14 @@
 			
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					热门商品
+					通知
 				</div>
-				<c:forEach var="com" items="${hotTopic }" varStatus="status">
+				<c:forEach var="com" items="${achatList }" varStatus="status">
 				  	<div class="panel-body">
-				    	<a href="<%=path%>/topic/${com.news_id}">${com.news_title }</a>
-				    	<span class="label label-primary">
-							<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-							 ${com.count_news }
-						</span>
+				    	<a href="<%=path%>/user/achatDetail/${user.id}">${com.title }</a>
+				    	&nbsp;&nbsp;&nbsp;
+				    	${com.support_price }
+				    	<span class="glyphicon glyphicon-jpy" aria-hidden="true"></span>
 				  	</div>
 				</c:forEach>
 				
@@ -195,21 +194,6 @@
 			
 			<hr class="hr-right"/>
 			
-			<div class="panel panel-danger">
-				<div class="panel-heading">
-					活跃用户
-				</div>
-				<c:forEach var="user" items="${hotUser }" varStatus="status">
-			  	<div class="panel-body">
-			  		<a href="<%=path%>/frontuser/${user.id}">
-			  		<img id="sm-name" src="<%=path%>/${user.path}" alt="" class="img-circle">
-			  		${user.username }</a>
-			  		<span class="badge">${user.post_user_count}</span>
-			  	</div>
-			  	</c:forEach>
-			</div>
-			
-			<hr class="hr-right"/>
 			
 		</div>
 	</div>

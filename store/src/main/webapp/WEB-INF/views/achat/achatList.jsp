@@ -39,7 +39,6 @@
 		<a href="javascript:void(0)" onclick="removeAchat();"  plain="true" class="easyui-linkbutton" iconCls="icon-remove">删除</a>
 	</div>
 	
-	
 	<div id="supportWin" class="easyui-window" align="left" title="分发至供应商" style="width:700px; height: 460px">
 		<div class="easyui-layout" fit="true">
 			<div region="center" border="true" >
@@ -51,32 +50,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- add -->
 	
-	<div id="modifyAchatWin" class="easyui-window" title="编辑数据"
-		data-options="iconCls:'icon-edit'">
-		<form id="modifyAchatForm" method="post">
-			<table style="width: 450px; overflow: hidden;">
-				<tr>
-					<th>角色名</th>
-					<td ><input type="text" id="achat_name_edit" style="width:200px;" /></td>
-				</tr>
-				<tr>
-					<th>备注</th>
-					<td><input type="text" id="remark_edit" style="width:200px;" /></td>
-				</tr>
-			</table>
-			<div style="padding:5px 0;text-align: center;color: red;"
-						id="showMsg_edit"></div>
-			<div style="text-align: center; padding: 8px;">
-				<a href="javascript:void(0)" id="edit_btn" class="easyui-linkbutton"
-					onclick="saveEdit()"
-					iconCls="icon-ok">修 改</a> <a href="javascript:void(0)"
-					id="edit_cancel_btn" class="easyui-linkbutton" onclick="closeWin('modifyAchatWin')"
-					iconCls="icon-cancel">取消</a>
-			</div>
-		</form>
-	</div>
 	
 </body>
 </html>

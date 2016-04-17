@@ -18,6 +18,8 @@ public class Achat {
 	private String title ;
 	private String content ;
 	private String create_user ;
+	private String support_price ;//供应商报价
+	
 	private String support_id ;//供应商ID
 	private String support_name ;//供应商名称
 	
@@ -31,7 +33,7 @@ public class Achat {
 	private String parseDate ;
 	
 	/**
-	 * 状态 0：管理员处理中      1：供应商处理中
+	 * 状态 0：管理员处理中      1：供应商报价中
 	 * 2：会员处理中                  3：供应商上架中   
 	 */
 	private String state ;
@@ -115,5 +117,11 @@ public class Achat {
 	}
 	public void setSupport_name(String support_name) {
 		this.support_name = support_name;
+	}
+	public String getSupport_price() {
+		return support_price;
+	}
+	public void setSupport_price(String support_price) {
+		this.support_price = support_price;
 	}
 }

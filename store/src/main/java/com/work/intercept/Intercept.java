@@ -40,6 +40,9 @@ public class Intercept implements HandlerInterceptor {
 			if(role_id != null){
 				//说拥有的所有权限ID
 				String function_id = roleService.get(Integer.parseInt(role_id)).getFunction_id() ;
+				if(function_id == null){
+					function_id ="" ;
+				}
 				Function function = new Function() ;
 				function.setFunction_url(url) ;
 				List<Function> list = functionService.findAll(function) ;

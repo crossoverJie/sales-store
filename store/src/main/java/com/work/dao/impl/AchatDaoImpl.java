@@ -82,12 +82,25 @@ public class AchatDaoImpl implements AchatDao {
 		Page<Achat> p = new Page<Achat>() ;
 		String title =achat.getTitle() ;
 		String content = achat.getContent() ;
+		String support_id = achat.getSupport_id() ;
+		String state = achat.getState() ;
+		String create_user = achat.getCreate_user() ;
 		if(!StringUtil.isNullOrEmpty(title)){
 			criteria.add(Restrictions.like("title", title, MatchMode.ANYWHERE).ignoreCase());
 		}
 		if(!StringUtil.isNullOrEmpty(content)){
 			criteria.add(Restrictions.like("content", content, MatchMode.ANYWHERE).ignoreCase());
 		}
+		if(!StringUtil.isNullOrEmpty(support_id)){
+			criteria.add(Restrictions.eq("support_id", support_id));
+		}
+		if(!StringUtil.isNullOrEmpty(state)){
+			criteria.add(Restrictions.eq("state", state));
+		}
+		if(!StringUtil.isNullOrEmpty(create_user)){
+			criteria.add(Restrictions.eq("create_user", create_user));
+		}
+		
 		criteria.setFirstResult(open);
 		criteria.setMaxResults(end) ;
 		List<Achat> list = criteria.list() ;
@@ -102,16 +115,20 @@ public class AchatDaoImpl implements AchatDao {
 	public int findAllCount(Achat achat) {
 		Criteria criteria=getCurrentSession().createCriteria(Achat.class);
 		String title =achat.getTitle() ;
-		int id = achat.getId();
-		String create_user = achat.getCreate_user() ;
+		String content = achat.getContent() ;
+		String support_id = achat.getSupport_id() ;
+		String state = achat.getState() ;
 		if(!StringUtil.isNullOrEmpty(title)){
-			criteria.add(Restrictions.eq("title", title));
+			criteria.add(Restrictions.like("title", title, MatchMode.ANYWHERE).ignoreCase());
 		}
-		if(id!=0){
-			criteria.add(Restrictions.eq("id", id));
+		if(!StringUtil.isNullOrEmpty(content)){
+			criteria.add(Restrictions.like("content", content, MatchMode.ANYWHERE).ignoreCase());
 		}
-		if(!StringUtil.isNullOrEmpty(create_user)){
-			criteria.add(Restrictions.eq("create_user", create_user));
+		if(!StringUtil.isNullOrEmpty(support_id)){
+			criteria.add(Restrictions.eq("support_id", support_id));
+		}
+		if(!StringUtil.isNullOrEmpty(state)){
+			criteria.add(Restrictions.eq("state", state));
 		}
 		List<Achat> list = criteria.list() ;
 		return list.size();
@@ -133,6 +150,9 @@ public class AchatDaoImpl implements AchatDao {
 		}
 		if(entity.getSupport_id() != null){
 			category.setSupport_id(entity.getSupport_id());
+		}
+		if(entity.getSupport_price() != null){
+			category.setSupport_price(entity.getSupport_price());
 		}
 		this.getCurrentSession().update(category); 
 	}
