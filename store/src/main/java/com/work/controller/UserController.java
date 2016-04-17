@@ -88,6 +88,8 @@ public class UserController {
 				a.setState("会员处理中");
 			}else if("3".equals(state)){
 				a.setState("供应商上架中");
+			}else if("4".equals(state)){
+				a.setState("会员拒绝报价");
 			}
 				
 		}
@@ -232,6 +234,8 @@ public class UserController {
 				a.setState("会员处理中");
 			}else if("3".equals(state)){
 				a.setState("供应商上架中");
+			}else if("4".equals(state)){
+				a.setState("会员拒绝报价");
 			}
 			String uid = a.getCreate_user() ;
 			a.setCreate_username(userService.get(Integer.parseInt(uid)).getUsername());
@@ -247,6 +251,14 @@ public class UserController {
 		
 		model.addAttribute("achatlist", list) ;
 		return "/front/user/achatDetail" ;
+	}
+	
+	@RequestMapping("/checkPrice")
+	public String checkPrice(Model model,Achat ac,HttpSession session){
+		User user = (User) session.getAttribute("user");
+		achatService.update(ac);
+		
+		return "redirect:/user/achatDetail/"+user.getId() ;
 	}
 	
 	@RequestMapping("/getAllRoles")

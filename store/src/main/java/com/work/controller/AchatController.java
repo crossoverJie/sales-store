@@ -60,6 +60,8 @@ public class AchatController {
 				a.setState("会员处理中");
 			}else if("3".equals(state)){
 				a.setState("供应商上架中");
+			}else if("4".equals(state)){
+				a.setState("会员拒绝报价");
 			}
 			
 			Date d = a.getCreate_date() ;
@@ -104,6 +106,8 @@ public class AchatController {
 				a.setState("会员处理中");
 			}else if("3".equals(state)){
 				a.setState("供应商上架中");
+			}else if("4".equals(state)){
+				a.setState("会员拒绝报价");
 			}
 			
 			Date d = a.getCreate_date() ;

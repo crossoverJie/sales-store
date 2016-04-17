@@ -96,10 +96,10 @@
 								<td>${al.support_price }</td>
 								<td>${al.state }</td>
 								<td>
-									<c:if test="${!empty al.support_price}">
-									<a href="" class="btn btn-primary">同意</a>
+									<c:if test="${al.state eq '会员处理中'}">
+									<a href="<%=path%>/user/checkPrice?id=${al.id}&state=3" class="btn btn-primary">同意</a>
 									&nbsp;&nbsp;
-									<a href="" class="btn btn-danger">拒绝</a>
+									<a href="<%=path%>/user/checkPrice?id=${al.id}&state=4" class="btn btn-danger">拒绝</a>
 									</c:if>
 								</td>
 							</tr>
