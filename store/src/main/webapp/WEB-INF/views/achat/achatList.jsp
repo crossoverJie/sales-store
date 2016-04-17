@@ -35,18 +35,19 @@
 		标题:<input  class="easyui-validatebox" id="title_query"  />
 		内容:<input  class="easyui-validatebox" id="content_query" />
 		<a href="javascript:void(0)" onclick="submitQuery();"  plain="true" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+		<a href="javascript:void(0)" onclick="toSupport();"  plain="true" class="easyui-linkbutton" iconCls="icon-redo">分发供应商</a>
 		<a href="javascript:void(0)" onclick="removeAchat();"  plain="true" class="easyui-linkbutton" iconCls="icon-remove">删除</a>
 	</div>
 	
 	
-	<div id="accreditNewsWin" class="easyui-window" align="left" title="授权" style="width:230px; height: 460px">
-		
+	<div id="supportWin" class="easyui-window" align="left" title="分发至供应商" style="width:700px; height: 460px">
 		<div class="easyui-layout" fit="true">
-			<div region="south" border="true" style="height:30px;padding:2px;overflow: hidden;">
-				<a class="easyui-linkbutton" iconCls="icon-ok" href="javascript:void(0)" onclick="subSq()" style="float: right;">确认授权</a>
-			</div>
 			<div region="center" border="true" >
-				<ul  id="sq" class="easyui-tree">  </ul>
+				<table id="support_list"></table>
+			</div>
+			
+			<div region="south" border="true" style="height:30px;padding:2px;overflow: hidden;">
+				<a class="easyui-linkbutton" iconCls="icon-ok" href="javascript:void(0)" onclick="subSupport();" style="float: right;">确认</a>
 			</div>
 		</div>
 	</div>

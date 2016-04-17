@@ -37,6 +37,11 @@ public class AchatController {
 		return "/achat/achatList" ;
 	}
 	
+	@RequestMapping("/turnToAchatList_support")
+	public String turnToAchatList_support(){
+		return "/achat/achatList_support" ;
+	}
+	
 	@RequestMapping("/getAchatList")
 	public void getAchatList(Achat achat, HttpServletResponse response,int page,int rows){
 		Page<Achat> achats = achatService.findByParams(achat, page, rows) ;
@@ -49,9 +54,9 @@ public class AchatController {
 				a.setState("管理员处理中");
 			}else if("1".equals(state)){
 				a.setState("供应商报价中");
-			}else if("1".equals(state)){
+			}else if("2".equals(state)){
 				a.setState("会员处理中");
-			}else if("1".equals(state)){
+			}else if("3".equals(state)){
 				a.setState("供应商上架中");
 			}
 			
@@ -62,6 +67,10 @@ public class AchatController {
 			
 			String uid = a.getCreate_user() ;
 			a.setCreate_username(userService.get(Integer.parseInt(uid)).getUsername());
+			String sid = a.getSupport_id() ;
+			if(sid != null){
+				a.setSupport_name(userService.get(Integer.parseInt(sid)).getUsername());
+			}
 				
 		}
 		String json = JSON.toJSONString(achats) ;
@@ -81,5 +90,33 @@ public class AchatController {
 			response.getWriter().print("true") ;
 		}
 	}
+	
+	/**
+	 * 
+	 * @Description: 分发供应商
+	 * @param @param achat
+	 * @param @param response   
+	 * @return void  
+	 * @throws IOException 
+	 * @throws
+	 * @author crossoverJie
+	 * @date 2016年4月17日  下午5:13:45
+	 */
+	@RequestMapping("/subSupport")
+	public void subSupport(Achat achat,HttpServletResponse response) throws IOException{
+		achat.setState("1");//供应商报价中
+		achatService.update(achat);
+		try {
+			response.getWriter().print("true") ;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			response.getWriter().print("false") ;
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
 	
 }

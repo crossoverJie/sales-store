@@ -75,13 +75,13 @@ public class AchatDaoImpl implements AchatDao {
 	 * row是一页显示多少条数据
 	 */
 	@SuppressWarnings("unchecked")
-	public Page<Achat> findByParams(Achat Achat, int page, int rows) {
+	public Page<Achat> findByParams(Achat achat, int page, int rows) {
 		Criteria criteria=getCurrentSession().createCriteria(Achat.class);
 		int open = (page-1)*rows ;
 		int end = page*rows;
 		Page<Achat> p = new Page<Achat>() ;
-		String title =Achat.getTitle() ;
-		String content = Achat.getContent() ;
+		String title =achat.getTitle() ;
+		String content = achat.getContent() ;
 		if(!StringUtil.isNullOrEmpty(title)){
 			criteria.add(Restrictions.like("title", title, MatchMode.ANYWHERE).ignoreCase());
 		}
@@ -94,7 +94,7 @@ public class AchatDaoImpl implements AchatDao {
 		p.setRows(list);
 		p.setPageNo(page);
 		p.setLimit(rows);
-		int total = this.findAll().size() ;
+		int total = this.findAllCount(achat) ;
 		p.setTotal(total); 
 		return p;
 	}
@@ -107,7 +107,7 @@ public class AchatDaoImpl implements AchatDao {
 		if(!StringUtil.isNullOrEmpty(title)){
 			criteria.add(Restrictions.eq("title", title));
 		}
-		if(!StringUtil.isNullOrEmpty(id)){
+		if(id!=0){
 			criteria.add(Restrictions.eq("id", id));
 		}
 		if(!StringUtil.isNullOrEmpty(create_user)){
@@ -131,6 +131,9 @@ public class AchatDaoImpl implements AchatDao {
 		if(entity.getState() != null){
 			category.setState(entity.getState());
 		}
+		if(entity.getSupport_id() != null){
+			category.setSupport_id(entity.getSupport_id());
+		}
 		this.getCurrentSession().update(category); 
 	}
 
@@ -142,6 +145,7 @@ public class AchatDaoImpl implements AchatDao {
 		int id = achat.getId();
 		String create_user = achat.getCreate_user() ;
 		String state = achat.getState() ;
+		String support_id = achat.getSupport_id() ;
 		if(!StringUtil.isNullOrEmpty(title)){
 			criteria.add(Restrictions.eq("title", title));
 		}
@@ -151,8 +155,8 @@ public class AchatDaoImpl implements AchatDao {
 		if(!StringUtil.isNullOrEmpty(create_user)){
 			criteria.add(Restrictions.eq("create_user", create_user));
 		}
-		if(!StringUtil.isNullOrEmpty(create_user)){
-			criteria.add(Restrictions.eq("create_user", create_user));
+		if(!StringUtil.isNullOrEmpty(support_id)){
+			criteria.add(Restrictions.eq("support_id", support_id));
 		}
 		if(!StringUtil.isNullOrEmpty(state)){
 			criteria.add(Restrictions.eq("state", state));

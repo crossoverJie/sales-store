@@ -18,6 +18,9 @@ public class Achat {
 	private String title ;
 	private String content ;
 	private String create_user ;
+	private String support_id ;//供应商ID
+	private String support_name ;//供应商名称
+	
 	private String create_username ;//发起人名字
 	
 	private Date create_date ;
@@ -98,5 +101,19 @@ public class Achat {
 	}
 	public void setCreate_username(String create_username) {
 		this.create_username = create_username;
+	}
+	public String getSupport_id() {
+		return support_id;
+	}
+	public void setSupport_id(String support_id) {
+		this.support_id = support_id;
+	}
+	
+	@Transient
+	public String getSupport_name() {
+		return support_name;
+	}
+	public void setSupport_name(String support_name) {
+		this.support_name = support_name;
 	}
 }

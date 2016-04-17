@@ -9,6 +9,19 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+<!-- Bootstrap -->
+<link rel="stylesheet"
+	href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<link href="<%=path%>/css/index.css" type="text/css"
+	rel="stylesheet" />
+
+
 <link href="<%=path%>/include/default/easyui.css" type="text/css"
 	rel="stylesheet" />
 <link href="<%=path%>/include/icon.css" type="text/css" rel="stylesheet" />
@@ -20,6 +33,7 @@
 	type="text/javascript"></script>
 <script src="<%=path%>/include/js/index/index.js" type="text/javascript"></script>
 <base href="<%=basePath%>">
+
 
 <title>欢迎进入电脑销售系统</title>
 </head>
@@ -43,28 +57,28 @@
 	</div>
 	<div data-options="region:'west',split:true,title:'导航菜单'"
 		style="width:250px;">
-		<div id="menu" class="easyui-accordion" data-options="multiple:true">
+		<div id="menu" class="easyui-accordion" data-options="">
 			
 			<div title="系统管理" data-options="iconCls:'icon-sys',selected:true"
 				style="overflow:auto;padding:10px;">
 				<p>
-					<a href="javascript:void(0)" onClick="getMain(this,'role/turnToRoleList')">角色管理</a>
+					<a href="javascript:void(0)" class="btn btn-info" onClick="getMain(this,'role/turnToRoleList')">角色管理</a>
 				</p>
 				<p>
-					<a href="javascript:void(0)" onClick="getMain(this,'function/turnTofunctionList')">功能管理</a>
+					<a href="javascript:void(0)" class="btn btn-info" onClick="getMain(this,'function/turnTofunctionList')">功能管理</a>
 				</p>
 			</div>
 			
 			<div title="用户管理" data-options="iconCls:'icon-sys',selected:true"
 				style="overflow:auto;padding:10px;">
 				<p>
-					<a href="javascript:void(0)" onClick="getMain(this,'user/turnToUserList?type=1')">会员管理</a>
+					<a href="javascript:void(0)" class="btn btn-primary" onClick="getMain(this,'user/turnToUserList?type=1')">会员管理</a>
 				</p>
 				<p>
-					<a href="javascript:void(0)" onClick="getMain(this,'user/turnToUserList?type=2')">供应商管理</a>
+					<a href="javascript:void(0)" class="btn btn-primary" onClick="getMain(this,'user/turnToUserList?type=2')">供应商管理</a>
 				</p>
 				<p>
-					<a href="javascript:void(0)" onClick="getMain(this,'user/turnToUserList?type=3')">客户经理管理</a>
+					<a href="javascript:void(0)" class="btn btn-primary" onClick="getMain(this,'user/turnToUserList?type=3')">客户经理管理</a>
 				</p>
 			</div>
 			
@@ -72,17 +86,20 @@
 				data-options="iconCls:'icon-sys' "
 				style="padding:10px;">
 				<p>
-					<a href="javascript:void(0)" onClick="getMain(this,'category/turnToCategoryList')">分类管理</a>
+					<a href="javascript:void(0)" class="btn btn-danger" onClick="getMain(this,'category/turnToCategoryList')">分类管理</a>
 				</p>
 				<p>
-					<a href="javascript:void(0)" onClick="getMain(this,'img/turnToImgList')">图片管理</a>
+					<a href="javascript:void(0)" class="btn btn-danger" onClick="getMain(this,'img/turnToImgList')">图片管理</a>
 				</p>
 			</div>
 			<div title="流程管理"
 				data-options="iconCls:'icon-sys' "
 				style="padding:10px;">
 				<p>
-					<a href="javascript:void(0)" onClick="getMain(this,'achat/turnToAchatList')">流程管理</a>
+					<a href="javascript:void(0)" class="btn btn-warning" onClick="getMain(this,'achat/turnToAchatList')">分发供应商</a>
+				</p>
+				<p>
+					<a href="javascript:void(0)" class="btn btn-warning" onClick="getMain(this,'achat/turnToAchatList_support')">供应商流程</a>
 				</p>
 			</div>
 		</div>
@@ -133,5 +150,10 @@
 			</div>
 		</form>
 	</div>
+	
+	
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	
 </body>
 </html>

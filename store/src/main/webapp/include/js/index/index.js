@@ -4,8 +4,13 @@ $(function(){
 		border : false,
 		fit : true
 	});
-	
-	
+	var url="user/turnToNotification";
+	//默认创建一选项卡
+	$('#tabs').tabs('add',{
+		title: "首页",
+		content: '<iframe scrolling="auto" frameborder="0"  src="'+url+'" style="border:0;width:100%;height:100%;"></iframe>',
+		closable: false
+	});
 	
 }) ;
 

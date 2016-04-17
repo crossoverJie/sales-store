@@ -32,6 +32,11 @@ datagridD = [{
 	width : 100,
 	align : 'center'
 },{
+	field : 'support_name',
+	title : '报价供应商',
+	width : 100,
+	align : 'center'
+},{
 	field : 'state',
 	title : '状态',
 	width : 100,
@@ -78,10 +83,45 @@ tabrs = [ {
 
 ];
 
+/**用于弹出供应商的DT**/
+var datagridS = [{
+	field : 'id',
+	title : '编号',
+	//hidden : true,
+	width : 50
+}, {
+	field : 'username',
+	title : '用户名',
+	width : 200,
+	align : 'center'
+},{
+	field : 'realname',
+	title : '真实姓名',
+	width : 100,
+	align : 'center'
+},{
+	field : 'province',
+	title : '省份',
+	width : 100,
+	align : 'center'
+},{
+	field : 'role_name',
+	title : '角色名称',
+	width : 100,
+	align : 'center'
+},{
+	field : 'parseDate',
+	title : '最后登录日期',
+	width : 140,
+	align : 'center'
+}
+
+];
+
 /**
- * 打开授权窗口
+ * 打开分发至供应商窗口
  */
-function accredit(){
+function toSupport(){
 	
 	var target = $('#achat_list').datagrid('getSelections');
 	if (target.length < 1) {
@@ -96,63 +136,79 @@ function accredit(){
 		});
 	}else {
 		var achat_id = target[0].id ;
-		$("#accreditNewsWin").window("open") ;
-		$("#sq").tree({    
-			url:"achat/getFunctionByAchat?achat_id="+achat_id ,
-			animate : true,
-			checkbox : true,
-			cascadeCheck:false,
-			lines: true,
-			 onCheck: function (node, checked) {
-                 if (checked) {
-                     var parentNode = $("#sq").tree("getParent", node.target);
-                     if (parentNode != null) {
-                         $("#sq").tree("check", parentNode.target);
-                     }
-                 } else {
-                     var childNode = $("#sq").tree("getChildren", node.target);
-                     if (childNode.length > 0) {
-                         for (var i = 0; i < childNode.length; i++) {
-                             $("#sq").tree("uncheck", childNode[i].target);
-                         }
-                     }
-                 }
-             }
-		}); 
+		$("#supportWin").window("open") ;
+		
+		$('#support_list').datagrid({
+			url : "user/getUserList?type=2", // 这里可以是个json文件，也可以是个动态页面，还可以是个返回json串的function
+			frozenColumns : [ [ {
+				field : 'ck',
+				checkbox : true
+			} ] ],
+			columns : [ datagridS ],
+			rownumbers : true,
+			idField : 'id',
+			striped : true,
+			pageSize : 25,
+			pageList : [ 5,25, 35, 45, 55 ],
+			nowrap : true,
+			loadMsg : '数据加载中...请稍等',
+			pagination : true,
+			height : 'auto',
+			fit : true,
+			border : false,
+			onDblClickRow : function(rowIndex, rowData) {
+
+			}
+		});
 	}
 	
 }
+
+
 /**
- * 确认授权 更新信息
+ * 确认选择的供应商
  */
-function subSq(){
-	var target = $('#achat_list').datagrid('getSelections');
-	var nodes = $("#sq").tree("getChecked") ;
-	var json= {
-		"id":target[0].id,
-		"function_id" : nodes
+function subSupport(){
+	var target2 = $('#achat_list').datagrid('getSelections');//这是流程列表
+	var target = $('#support_list').datagrid('getSelections');//这是供应商列表
+	var json ={
+		"support_id":target[0].id,
+		"id":target2[0].id
 	};
 	
-	var list = new Array();
-	list.splice(0);
-	for(var i=0;i<nodes.length;i++){
-		list.push(nodes[i].id);
-	}
-	
-	$.ajax({
-		   type: "POST",
-		   url: "achat/editSq?id="+target[0].id+"&function_id="+list,
-		   success: function(msg){
-				$("#achat_list").datagrid('reload');	
-	   		  	$("#accreditNewsWin").window("close") ;
-	   			$.messager.show({
-	   				msg : '修改成功',
-	   				title : '提示'
-	   			});
-			   }
+	if (target.length < 1) {
+		$.messager.show( {
+			msg : '请选择一条数据!',
+			title : '提示'
 		});
-    
-    
+	}else if(target.length >1){
+		$.messager.show( {
+			msg : '只能选择一条数据进行!',
+			title : '提示'
+		});
+	}else{
+	    $.ajax({            
+	        type:"POST",   //post提交方式默认是get
+	        url:"achat/subSupport", 
+	        data:json, 
+	        error:function(request) {      // 设置表单提交出错                 
+	            $("#showMsg").html(request);  //登录错误提示信息
+	        },
+	        success:function(data) {
+	        	  if(data=="false"){
+	        	  	  $("#showMsg_edit").html("系统错误");
+	        	  	  return ;
+	        	  }else{
+	        		  	$("#achat_list").datagrid('reload');	
+	        		  	$("#supportWin").window("close") ;
+	        			$.messager.show( {
+	        				msg : '分发成功',
+	        				title : '提示'
+	        			});
+	        	  }
+	        }            
+	  });
+	}
 }
 
 function queryAchat(){
@@ -326,7 +382,7 @@ $(function(){
 	$("#addAchatWin").window("close") ;
 	$("#modifyAchatWin").window("close") ;
 	$("#queryAchatWin").window("close") ;
-	$("#accreditNewsWin").window("close") ;
+	$("#supportWin").window("close") ;
 	$('#achat_list').datagrid({
 		url : 'achat/getAchatList', // 这里可以是个json文件，也可以是个动态页面，还可以是个返回json串的function
 		frozenColumns : [ [ {

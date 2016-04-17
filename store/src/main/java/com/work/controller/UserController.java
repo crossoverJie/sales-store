@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,32 @@ public class UserController {
 	@RequestMapping("/turnToIndex")
 	public String turnToIndex(){
 		return "/index" ;
+	}
+	@RequestMapping("/turnToNotification")
+	public String turnToNotification(Model model,HttpSession session){
+		User user = (User) session.getAttribute("user") ;
+		Achat at = new Achat() ;
+		at.setSupport_id(user.getId()+"");
+		List<Achat> list = achatService.findAll(at);
+		for(Achat a : list){
+			String category_id = a.getCategory_id() ;
+			Category c = categoryService.get(Integer.parseInt(category_id)) ;
+			a.setCategory_name(c.getName());
+			String state = a.getState();
+			if("0".equals(state)){
+				a.setState("管理员处理中");
+			}else if("1".equals(state)){
+				a.setState("供应商报价中");
+			}else if("1".equals(state)){
+				a.setState("会员处理中");
+			}else if("1".equals(state)){
+				a.setState("供应商上架中");
+			}
+				
+		}
+		model.addAttribute("list", list) ;
+		
+		return "/notification" ;
 	}
 	
 	/**
