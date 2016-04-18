@@ -20,6 +20,35 @@ public class StringUtil {
 		"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f" };
 	
 	/**
+	 * 
+	 * @Description: 返回该流程状态
+	 * @param @param state
+	 * @param @return   
+	 * @return String  
+	 * @throws
+	 * @author crossoverJie
+	 * @date 2016年4月18日  下午1:41:12
+	 */
+	public static String getState(String state){
+		String status ="" ;
+		if("0".equals(state)){
+			status ="管理员处理中";
+		}else if("1".equals(state)){
+			status = "供应商报价中";
+		}else if("2".equals(state)){
+			status ="会员处理中";
+		}else if("3".equals(state)){
+			status ="供应商上架中";
+		}else if("4".equals(state)){
+			status ="会员拒绝报价";
+		}else if("5".equals(state)){
+			status ="已生成订单";
+		}
+		return status ;
+	}
+	
+	
+	/**
 	 * 随机产生指定长度的字符串
 	 */
 	public static String getRandomString(int length)

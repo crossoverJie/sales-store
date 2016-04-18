@@ -42,6 +42,11 @@ datagridD = [{
 	width : 100,
 	align : 'center'
 },{
+	field : 'produce_name',
+	title : '上架产品名称',
+	width : 100,
+	align : 'center'
+},{
 	field : 'state',
 	title : '状态',
 	width : 100,
@@ -307,47 +312,6 @@ function saveEdit(){
         }            
   });
 }
-/**
- * 新增用户之前的验证
- */
-function turnToAdd(){
-	var achat_name = $("#achat_name_add").val() ;
-	var remark = $("#remark_add").val() ;
-	if(achat_name =="" || remark =="" ){
-		$("#showMsg").html("请将数据填写完整");
-		return ;
-	}else{
-		$("#showMsg").html("");
-	}
-	
-	var json = {
-		"achat_name": achat_name,
-		"remark":remark
-	};
-
-    $.ajax({            
-        type:"POST",   //post提交方式默认是get
-        url:"achat/create", 
-        data:json, 
-        error:function(request) {      // 设置表单提交出错                 
-            $("#showMsg").html(request);  //登录错误提示信息
-        },
-        success:function(data) {
-        	  if(data=="false"){
-        	  	  $("#showMsg").html("系统错误");
-        	  	  return ;
-        	  }else{
-        		  	$("#achat_list").datagrid('reload');	
-        		  	$("#addAchatWin").window("close") ;
-        			$.messager.show( {
-        				msg : '新增成功',
-        				title : '提示'
-        			});
-        	  }
-        }            
-  }); 
-}
-
 //删除数据
 function removeAchat() {
 

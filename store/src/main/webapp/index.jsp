@@ -44,7 +44,7 @@
 	
 
 
-	<div id="carousel-example-generic" class="carousel slide"
+	<%-- <div id="carousel-example-generic" class="carousel slide"
 		data-ride="carousel">
 		<!-- Indicators -->
 		<ol class="carousel-indicators">
@@ -86,7 +86,7 @@
 			href="#carousel-example-generic" role="button" data-slide="next">
 			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 			<span class="sr-only">下一页</span> </a>
-	</div>
+	</div> --%>
 	
 	<hr/>
 <!-- 栅格系统 平均分三列 -->
@@ -187,6 +187,8 @@
 				    	&nbsp;&nbsp;&nbsp;
 				    	${com.support_price }
 				    	<span class="glyphicon glyphicon-jpy" aria-hidden="true"></span>
+				    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				    	${com.state}
 				  	</div>
 				</c:forEach>
 				

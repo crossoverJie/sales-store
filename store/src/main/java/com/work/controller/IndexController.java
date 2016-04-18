@@ -23,6 +23,7 @@ import com.work.service.RoleService;
 import com.work.service.UserService;
 import com.work.util.AbstractController;
 import com.work.util.Page;
+import com.work.util.StringUtil;
 
 @Controller
 @RequestMapping("/index")
@@ -44,6 +45,9 @@ public class IndexController extends AbstractController {
 			Achat ac = new Achat();
 			ac.setCreate_user(user.getId()+"");
 			Page<Achat> achatList = achatService.findByParams(ac, 1, 6) ;
+			for(Achat a : achatList.getRows()){
+				a.setState(StringUtil.getState(a.getState()));
+			}
 			model.addAttribute("achatList", achatList.getRows());
 		}
 		

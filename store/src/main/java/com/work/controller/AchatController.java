@@ -15,11 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.alibaba.fastjson.JSON;
 import com.work.entity.Achat;
 import com.work.entity.Category;
+import com.work.entity.Produce;
 import com.work.entity.User;
 import com.work.service.AchatService;
 import com.work.service.CategoryService;
+import com.work.service.ProduceService;
 import com.work.service.UserService;
 import com.work.util.Page;
+import com.work.util.StringUtil;
 
 @Controller
 @RequestMapping("/achat")
@@ -30,6 +33,9 @@ public class AchatController {
 	
 	@Autowired
 	private CategoryService categoryService;
+	
+	@Autowired
+	private ProduceService produceService ;
 	
 	@Autowired
 	private UserService userService ;
@@ -52,17 +58,7 @@ public class AchatController {
 			Category c = categoryService.get(Integer.parseInt(category_id)) ;
 			a.setCategory_name(c.getName());
 			String state = a.getState();
-			if("0".equals(state)){
-				a.setState("管理员处理中");
-			}else if("1".equals(state)){
-				a.setState("供应商报价中");
-			}else if("2".equals(state)){
-				a.setState("会员处理中");
-			}else if("3".equals(state)){
-				a.setState("供应商上架中");
-			}else if("4".equals(state)){
-				a.setState("会员拒绝报价");
-			}
+			a.setState(StringUtil.getState(state));
 			
 			Date d = a.getCreate_date() ;
 			SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd") ;
@@ -74,6 +70,10 @@ public class AchatController {
 			String sid = a.getSupport_id() ;
 			if(sid != null){
 				a.setSupport_name(userService.get(Integer.parseInt(sid)).getUsername());
+			}
+			String produce_id = a.getProduce_id() ;
+			if(produce_id != null){
+				a.setProduce_name(produceService.get(Integer.parseInt(produce_id)).getName());
 			}
 				
 		}
@@ -98,17 +98,7 @@ public class AchatController {
 			Category c = categoryService.get(Integer.parseInt(category_id)) ;
 			a.setCategory_name(c.getName());
 			String state = a.getState();
-			if("0".equals(state)){
-				a.setState("管理员处理中");
-			}else if("1".equals(state)){
-				a.setState("供应商报价中");
-			}else if("2".equals(state)){
-				a.setState("会员处理中");
-			}else if("3".equals(state)){
-				a.setState("供应商上架中");
-			}else if("4".equals(state)){
-				a.setState("会员拒绝报价");
-			}
+			a.setState(StringUtil.getState(state));
 			
 			Date d = a.getCreate_date() ;
 			SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd") ;
@@ -120,6 +110,11 @@ public class AchatController {
 			String sid = a.getSupport_id() ;
 			if(sid != null){
 				a.setSupport_name(userService.get(Integer.parseInt(sid)).getUsername());
+			}
+			
+			String produce_id = a.getProduce_id() ;
+			if(produce_id != null){
+				a.setProduce_name(produceService.get(Integer.parseInt(produce_id)).getName());
 			}
 				
 		}
@@ -189,6 +184,29 @@ public class AchatController {
 		}
 	}
 	
-	
+	/**
+	 * 
+	 * @Description: 供应商上架产品，并加入订单
+	 * @param    
+	 * @return void  
+	 * @throws IOException 
+	 * @throws
+	 * @author crossoverJie
+	 * @date 2016年4月18日  下午2:16:19
+	 */
+	@RequestMapping("/subProduce")
+	public void subProduce(Achat achat,HttpServletResponse response) throws IOException{
+		achat.setState("5");//供应商上架，加入订单中
+		achatService.update(achat); 
+		
+		//将该产品的数据减一保存
+		String produce_id = achat.getProduce_id() ;
+		Produce pr = produceService.get(Integer.parseInt(produce_id)) ;
+		int num = pr.getKucun_number() -1 ;
+		pr.setKucun_number(num);
+		produceService.update(pr);
+		
+		response.getWriter().print("true") ;
+	}
 	
 }

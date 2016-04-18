@@ -101,6 +101,9 @@
 									&nbsp;&nbsp;
 									<a href="<%=path%>/user/checkPrice?id=${al.id}&state=4" class="btn btn-danger">拒绝</a>
 									</c:if>
+									<c:if test="${al.state eq '已生成订单'}">
+										<a href="javascript:void(0)" onclick="alert('商品派送中。。');" class="btn btn-info">付款</a>
+									</c:if>
 								</td>
 							</tr>
 						</c:forEach>

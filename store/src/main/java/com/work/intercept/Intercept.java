@@ -55,9 +55,11 @@ public class Intercept implements HandlerInterceptor {
 						response.sendRedirect("/store/notfound.jsp") ;
 						response.getWriter().print("false") ;
 						logger.debug("当前状态------>  无权限 ");
+						System.out.println("当前状态------>  无权限 ");
 						return false ;
 					}else {
 						logger.debug("当前状态------>  通过 ");
+						System.out.println("当前状态------>  通过 ");
 						return true ;
 					}
 					
@@ -67,6 +69,7 @@ public class Intercept implements HandlerInterceptor {
 			return true;
 		}else {
 			logger.debug("当前状态------>  拦截 ");
+			System.out.println("当前状态------>  拦截 ");
 			response.sendRedirect("/store/login.jsp") ;
 //			request.getRequestDispatcher("/login.jsp").forward(request, response);  
 			return false ;

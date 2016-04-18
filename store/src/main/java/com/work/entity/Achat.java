@@ -23,6 +23,9 @@ public class Achat {
 	private String support_id ;//供应商ID
 	private String support_name ;//供应商名称
 	
+	private String produce_id ;//对呀的产品ID
+	private String produce_name ;//产品名称
+	
 	private String create_username ;//发起人名字
 	
 	private Date create_date ;
@@ -35,7 +38,7 @@ public class Achat {
 	/**
 	 * 状态 0：管理员处理中      1：供应商报价中
 	 * 2：会员处理中                  3：供应商上架中  会员已经同意
-	 * 4：会员拒绝 不同意 
+	 * 4：会员拒绝 不同意         5：加入会员订单中
 	 */
 	private String state ;
 	
@@ -124,5 +127,18 @@ public class Achat {
 	}
 	public void setSupport_price(String support_price) {
 		this.support_price = support_price;
+	}
+	public String getProduce_id() {
+		return produce_id;
+	}
+	public void setProduce_id(String produce_id) {
+		this.produce_id = produce_id;
+	}
+	@Transient
+	public String getProduce_name() {
+		return produce_name;
+	}
+	public void setProduce_name(String produce_name) {
+		this.produce_name = produce_name;
 	}
 }

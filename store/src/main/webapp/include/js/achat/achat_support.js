@@ -42,6 +42,11 @@ datagridD = [{
 	width : 100,
 	align : 'center'
 },{
+	field : 'produce_name',
+	title : '上架产品名称',
+	width : 100,
+	align : 'center'
+},{
 	field : 'state',
 	title : '状态',
 	width : 100,
@@ -216,6 +221,7 @@ $(function(){
 	$("#modifyAchatWin").window("close") ;
 	$("#queryAchatWin").window("close") ;
 	$("#supportWin").window("close") ;
+	$("#produceWin").window("close") ;
 	$('#achat_list').datagrid({
 		url : 'achat/getAchatList_notAdmin', //查看供应商报价中的
 		frozenColumns : [ [ {
@@ -240,3 +246,131 @@ $(function(){
 		}
 	});
 }) ;
+
+var datagridP = [{
+	field : 'id',
+	title : '编号',
+	//hidden : true,
+	width : 50
+}, {
+	field : 'name',
+	title : '名称',
+	width : 100,
+	align : 'center'
+},{
+	field : 'category_name',
+	title : '类别',
+	width : 100,
+	align : 'center'
+},{
+	field : 'kucun_number',
+	title : '库存数量',
+	width : 100,
+	align : 'center'
+}
+
+
+];
+
+
+/**
+ * 打开上架产品窗口
+ */
+function toAddProduce(){
+	
+	var target = $('#achat_list').datagrid('getSelections');
+	if (target.length < 1) {
+		$.messager.show( {
+			msg : '请选择一条数据进行上架!',
+			title : '提示'
+		});
+	}else if(target.length >1){
+		$.messager.show( {
+			msg : '只能选择一条数据进行上架!',
+			title : '提示'
+		});
+	}else {
+		var achat_id = target[0].id ;
+		var state = target[0].state ;
+		if(state !="供应商上架中"){
+			$.messager.show( {
+				msg : '只能选择供应商上架中的状态进行上架!',
+				title : '提示'
+			});
+			return ;
+		}
+		$("#produceWin").window("open") ;
+		
+		$('#produce_list').datagrid({
+			url : "produce/getProduceList", // 这里可以是个json文件，也可以是个动态页面，还可以是个返回json串的function
+			frozenColumns : [ [ {
+				field : 'ck',
+				checkbox : true
+			} ] ],
+			columns : [ datagridP ],
+			rownumbers : true,
+			idField : 'id',
+			striped : true,
+			pageSize : 25,
+			pageList : [ 5,25, 35, 45, 55 ],
+			nowrap : true,
+			loadMsg : '数据加载中...请稍等',
+			pagination : true,
+			height : 'auto',
+			fit : true,
+			border : false,
+			onDblClickRow : function(rowIndex, rowData) {
+
+			}
+		});
+	}
+	
+}
+
+
+/**
+ * 确认选择产品
+ */
+function subAddProduce(){
+	var target2 = $('#achat_list').datagrid('getSelections');//这是流程列表
+	var target = $('#produce_list').datagrid('getSelections');//这是产品列表
+
+	
+	if (target.length < 1) {
+		$.messager.show( {
+			msg : '请选择一条数据!',
+			title : '提示'
+		});
+	}else if(target.length >1){
+		$.messager.show( {
+			msg : '只能选择一条数据进行!',
+			title : '提示'
+		});
+	}else{
+		var json ={
+				"produce_id":target[0].id,
+				"id":target2[0].id
+			};
+	    $.ajax({            
+	        type:"POST",   //post提交方式默认是get
+	        url:"achat/subProduce", 
+	        data:json, 
+	        error:function(request) {      // 设置表单提交出错                 
+	            $("#showMsg").html(request);  //登录错误提示信息
+	        },
+	        success:function(data) {
+	        	  if(data=="false"){
+	        	  	  $("#showMsg_edit").html("系统错误");
+	        	  	  return ;
+	        	  }else{
+	        		  	$("#achat_list").datagrid('reload');	
+	        		  	$("#produceWin").window("close") ;
+	        			$.messager.show( {
+	        				msg : '上架成功',
+	        				title : '提示'
+	        			});
+	        	  }
+	        }            
+	  });
+	}
+}

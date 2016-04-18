@@ -154,6 +154,9 @@ public class AchatDaoImpl implements AchatDao {
 		if(entity.getSupport_price() != null){
 			category.setSupport_price(entity.getSupport_price());
 		}
+		if(entity.getProduce_id() != null){
+			category.setProduce_id(entity.getProduce_id());
+		}
 		this.getCurrentSession().update(category); 
 	}
 

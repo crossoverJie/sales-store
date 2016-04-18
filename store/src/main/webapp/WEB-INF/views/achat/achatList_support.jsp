@@ -51,7 +51,19 @@
 			</div>
 		</div>
 	</div>
-	<!-- add -->
+	
+	
+	<div id="produceWin" class="easyui-window" align="left" title="选择上架产品" style="width:600px; height: 460px">
+		<div class="easyui-layout" fit="true">
+			<div region="center" border="true" >
+				<table id="produce_list"></table>
+			</div>
+			
+			<div region="south" border="true" style="height:30px;padding:2px;overflow: hidden;">
+				<a class="easyui-linkbutton" iconCls="icon-ok" href="javascript:void(0)" onclick="subAddProduce();" style="float: right;">确认</a>
+			</div>
+		</div>
+	</div>
 	
 	
 </body>

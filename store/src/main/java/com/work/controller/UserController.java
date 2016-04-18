@@ -27,6 +27,7 @@ import com.work.service.CategoryService;
 import com.work.service.RoleService;
 import com.work.service.UserService;
 import com.work.util.Page;
+import com.work.util.StringUtil;
 
 
 @Controller
@@ -83,17 +84,7 @@ public class UserController {
 			Category c = categoryService.get(Integer.parseInt(category_id)) ;
 			a.setCategory_name(c.getName());
 			String state = a.getState();
-			if("0".equals(state)){
-				a.setState("管理员处理中");
-			}else if("1".equals(state)){
-				a.setState("供应商报价中");
-			}else if("2".equals(state)){
-				a.setState("会员处理中");
-			}else if("3".equals(state)){
-				a.setState("供应商上架中");
-			}else if("4".equals(state)){
-				a.setState("会员拒绝报价");
-			}
+			a.setState(StringUtil.getState(state));
 				
 		}
 		model.addAttribute("list", list) ;
@@ -229,17 +220,7 @@ public class UserController {
 			Category c = categoryService.get(Integer.parseInt(category_id)) ;
 			a.setCategory_name(c.getName());
 			String state = a.getState();
-			if("0".equals(state)){
-				a.setState("管理员处理中");
-			}else if("1".equals(state)){
-				a.setState("供应商报价中");
-			}else if("2".equals(state)){
-				a.setState("会员处理中");
-			}else if("3".equals(state)){
-				a.setState("供应商上架中");
-			}else if("4".equals(state)){
-				a.setState("会员拒绝报价");
-			}
+			a.setState(StringUtil.getState(state));
 			String uid = a.getCreate_user() ;
 			a.setCreate_username(userService.get(Integer.parseInt(uid)).getUsername());
 			String sid = a.getSupport_id() ;
