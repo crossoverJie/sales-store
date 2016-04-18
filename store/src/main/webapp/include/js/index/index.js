@@ -12,6 +12,17 @@ $(function(){
 		closable: false
 	});
 	
+	$('#state').combobox({
+		onSelect: function(obj){
+			var state = obj.value;
+			$.ajax({            
+		        type:"POST",   //post提交方式默认是get
+		        url:"user/turnToNotification?st="+state            
+		  });
+		}
+	});
+
+	
 }) ;
 
 function getMain(obj,url){

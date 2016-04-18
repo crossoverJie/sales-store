@@ -89,7 +89,7 @@
 					<a href="javascript:void(0)" class="btn btn-danger" onClick="getMain(this,'category/turnToCategoryList')">分类管理</a>
 				</p>
 				<p>
-					<a href="javascript:void(0)" class="btn btn-danger" onClick="getMain(this,'img/turnToImgList')">图片管理</a>
+					<a href="javascript:void(0)" class="btn btn-danger" onClick="getMain(this,'img/turnToImgList')">商品管理</a>
 				</p>
 			</div>
 			<div title="流程管理"

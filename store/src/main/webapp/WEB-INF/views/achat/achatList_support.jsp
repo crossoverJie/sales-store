@@ -36,6 +36,7 @@
 		内容:<input  class="easyui-validatebox" id="content_query" />
 		<a href="javascript:void(0)" onclick="submitQuery();"  plain="true" class="easyui-linkbutton" iconCls="icon-search">查询</a>
 		<a href="javascript:void(0)" onclick="toSupport();"  plain="true" class="easyui-linkbutton" iconCls="icon-redo">报价</a>
+		<a href="javascript:void(0)" onclick="toAddProduce();"  plain="true" class="easyui-linkbutton" iconCls="icon-ok">上架商品</a>
 	</div>
 	
 	

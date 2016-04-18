@@ -70,9 +70,12 @@ public class UserController {
 	 * @date 2016年4月17日  下午8:43:56
 	 */
 	@RequestMapping("/turnToNotification")
-	public String turnToNotification(Model model,HttpSession session){
+	public String turnToNotification(Model model,HttpSession session,String st){
 		User user = (User) session.getAttribute("user") ;
 		Achat at = new Achat() ;
+		if(st!=null){
+			at.setState(st);
+		}
 		at.setSupport_id(user.getId()+"");
 		List<Achat> list = achatService.findAll(at);
 		for(Achat a : list){

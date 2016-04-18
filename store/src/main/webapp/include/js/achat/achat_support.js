@@ -90,7 +90,7 @@ tabrs = [ {
 
 
 /**
- * 打开分发至供应商窗口
+ * 打开报价窗口
  */
 function toSupport(){
 	
@@ -106,8 +106,8 @@ function toSupport(){
 			title : '提示'
 		});
 	}else {
-		var support_price = target[0].state ;
-		if(support_price =="会员处理中"){
+		var state = target[0].state ;
+		if(state =="会员处理中"){
 			$.messager.show( {
 				msg : '不能重复报价',
 				title : '提示'

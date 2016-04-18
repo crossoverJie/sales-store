@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,7 +41,9 @@ public class CategoryController {
 	}
 	
 	@RequestMapping("/getCategoryList")
-	public void getCategoryList(Category category,HttpServletResponse response) throws IOException{
+	public void getCategoryList(Category category,HttpServletResponse response,HttpSession session) throws IOException{
+		User user = (User) session.getAttribute("user") ;
+//		category.setUser_id(user.getId()+"");
 		response.setCharacterEncoding("utf-8") ;
 		List<TreeGridUtil> trees = new ArrayList<TreeGridUtil>() ;
 		//只显示一级菜单
@@ -119,10 +122,12 @@ public class CategoryController {
 	 * @date 2016-1-12  下午1:21:43
 	 */
 	@RequestMapping("/getAllone")
-	public void getAllone(HttpServletResponse response) throws IOException{
+	public void getAllone(HttpServletResponse response,HttpSession session) throws IOException{
+		User user = (User) session.getAttribute("user") ;
 		response.setCharacterEncoding("utf-8") ;
 		Category f = new Category() ;
-		f.setParent_id(-1) ;
+		f.setLevel("1") ;
+//		f.setUser_id(user.getId()+"");
 		List<Category> fs = categoryService.findAll(f) ;
 		String json = JSON.toJSONString(fs) ;
 		response.getWriter().print(json) ;
@@ -140,9 +145,11 @@ public class CategoryController {
 	 * @date 2016年4月14日  下午11:28:48
 	 */
 	@RequestMapping("/getAlltwo")
-	public void getAlltwo(HttpServletResponse response) throws IOException{
+	public void getAlltwo(HttpServletResponse response,HttpSession session) throws IOException{
+		User user = (User) session.getAttribute("user") ;
 		response.setCharacterEncoding("utf-8") ;
 		Category f = new Category() ;
+//		f.setUser_id(user.getId()+"");
 		f.setLevel("2") ;//所有二级分类
 		List<Category> fs = categoryService.findAll(f) ;
 		String json = JSON.toJSONString(fs) ;
