@@ -17,6 +17,11 @@ datagridD = [{
 	width : 100,
 	align : 'center'
 },{
+	field : 'model',
+	title : '型号',
+	width : 100,
+	align : 'center'
+},{
 	field : 'kucun_number',
 	title : '库存数量',
 	width : 100,
@@ -133,22 +138,16 @@ function add(){
 }
 
 function submitQuery(){
-	var title = $("#title_query").val() ;
-	var content = $("#content_query").val();
-	if(title==""){
-		title=undefined;
-	}
-	if(content==""){
-		content=undefined;
+	var name = $("#name_query").val() ;
+	if(name==""){
+		name=undefined;
 	}
 	var json ={
-		"title":title,
-		"content":content
+		"name":name
 	};
 	$("#produce_list").datagrid('options').url = 'produce/getProduceList';
 	$("#produce_list").datagrid('options').queryParams = json;
 	$("#produce_list").datagrid('load');
-	$('#queryProduceWin').window("close");
 	
 }
 
@@ -167,6 +166,7 @@ function modifyProduce(){
 	}else{
 		$("#modifyProduceWin").window("open") ;
 		$("#name_edit").val(target[0].name);
+		$("#model_edit").val(target[0].model);
 		$("#kucun_number_edit").numberspinner("setValue",target[0].kucun_number);
 	}
 }
@@ -181,7 +181,8 @@ function saveEdit(){
 	var target = $('#produce_list').datagrid('getSelections');
 	var number = $("#kucun_number_edit").numberspinner("getValue");
 	var name =$("#name_edit").val() ;
-	if(number ==""|| name ==""){
+	var model =$("#model_edit").val() ;
+	if(number ==""|| name =="" || model ==""){
 		$("#showMsg_edit").html("请将数据填写完整");
 		return ;
 	}else{
@@ -190,6 +191,7 @@ function saveEdit(){
 	var json ={
 		"id":target[0].id,
 		"name":name,
+		"model":model,
 		"kucun_number":number
 	}
 	
@@ -256,6 +258,7 @@ function removeProduce() {
  */
 function submitSave(){
 	var name = $("#name_add").val() ;
+	var model = $("#model_add").val() ;
 	var cg1 = $("#category_one").combobox("getValue");
 	var cg2 = $("#category_two").combobox("getValue");
 	var cg3 = $("#category_three").combobox("getValue");
@@ -263,9 +266,10 @@ function submitSave(){
 	var json ={
 		"name":name,
 		"category_id":cg3,
-		"kucun_number" : number
+		"kucun_number" : number,
+		"model":model
 	};
-	if(cg1=="" || cg2 =="" || cg3==""|| name == "" ||number==""){
+	if(cg1=="" || cg2 =="" || cg3==""|| name == "" ||number=="" || model ==""){
 		alert("请把内容填写完整！") ;
 		return ;
 	}else{
@@ -320,6 +324,40 @@ $(function(){
 		border : false,
 		onDblClickRow : function(rowIndex, rowData) {
 
+		}
+	});
+	
+	
+	
+	$("#addProduceForm").submit(function(){
+		
+		var name = $("#name_add").val() ;
+		var model = $("#model_add").val() ;
+		var cg1 = $("#category_one").combobox("getValue");
+		var cg2 = $("#category_two").combobox("getValue");
+		var cg3 = $("#category_three").combobox("getValue");
+		var number = $("#kucun_number_add").numberspinner("getValue");
+		var json ={
+			"name":name,
+			"category_id":cg3,
+			"kucun_number" : number,
+			"model":model
+		};
+		if(cg1=="" || cg2 =="" || cg3==""|| name == "" ||number=="" || model ==""){
+			alert("请把内容填写完整！") ;
+			return ;
+		}
+		
+		
+		var file = $("#file_add").val() ;
+		var index = file.lastIndexOf(".");
+		file = file.substring(index + 1);
+		if( file == "jpg" || file == "gif" || file == "png" ){
+			return true;
+		}else{
+//			alert("只能上传图片") ;
+			alert("请上传图片");
+			return false ;
 		}
 	});
 	

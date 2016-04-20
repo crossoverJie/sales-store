@@ -70,11 +70,11 @@ public class ProduceController {
 	}
 	
 	@RequestMapping("/create")
-	public void save(HttpServletResponse response,HttpSession session,Produce produce) throws IOException{
+	public String save(HttpServletResponse response,HttpSession session,Produce produce) throws IOException{
 		User user = (User) session.getAttribute("user") ;
 		produce.setUser_id(user.getId()+"");
 		produceService.save(produce) ;
-		response.getWriter().print("true") ;
+		return "/produce/produceList" ;
 	}
 	
 	@RequestMapping("/edit")

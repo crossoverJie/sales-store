@@ -17,7 +17,7 @@ public class Produce {
 	private String category_name ;
 	private String user_id ;
 	private String username;
-	
+	private String model ;//商品型号
 	private int kucun_number ;//库存数量
 	private String name ;//商品名称
 	
@@ -66,5 +66,11 @@ public class Produce {
 	}
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	public String getModel() {
+		return model;
+	}
+	public void setModel(String model) {
+		this.model = model;
 	}
 }

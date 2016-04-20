@@ -6,10 +6,12 @@
 			+ path + "/";
 %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-
+<!-- Bootstrap -->
+<link rel="stylesheet"
+	href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link href="<%=path%>/include/default/easyui.css" type="text/css"
 	rel="stylesheet" />
 <link href="<%=path%>/include/icon.css" type="text/css" rel="stylesheet" />
@@ -24,6 +26,8 @@
 <script src="<%=path%>/include/js/produce/produce.js" type="text/javascript"></script>
 <script src="<%=path%>/include/js/easyui-lang-zh_CN.js"
 	type="text/javascript"></script>
+	
+<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <base href="<%=basePath%>">
 
 <title></title>
@@ -32,7 +36,7 @@
 <body>
 	<table id="produce_list"></table>
 	<div id="tabrs">
-		名称:<input  class="easyui-validatebox" id="title_query"  />
+		名称:<input  class="easyui-validatebox" id="name_query"  />
 		<a href="javascript:void(0)" onclick="submitQuery();"  plain="true" class="easyui-linkbutton" iconCls="icon-search">查询</a>
 		<a href="javascript:void(0)" onclick="turnToAddProduce();"  plain="true" class="easyui-linkbutton" iconCls="icon-add">上架商品</a>
 		<a href="javascript:void(0)" onclick="modifyProduce();"  plain="true" class="easyui-linkbutton" iconCls="icon-edit">编辑</a>
@@ -54,6 +58,7 @@
 	<div id="addProduceWin" class="easyui-window" title="新增数据"
 		data-options="iconCls:'icon-save'"
 		style="width: 460px; height: 270px; padding: 10px;">
+		<form id="addProduceForm" action="<%=path %>/produce/create" method="post" enctype="multipart/form-data">
 			<table style="width: 350px; overflow: hidden;">
 				<tr>
 					<th>一级类别</th>
@@ -69,32 +74,42 @@
 				</tr>
 				<tr>
 					<th>名称</th>
-					<td><input type="text" id="name_add" name="name_add" /></td>
+					<td><input type="text" id="name_add" name="name" /></td>
+				</tr>
+				<tr>
+					<th>型号</th>
+					<td><input type="text" id="model_add" name="model" /></td>
 				</tr>
 				<tr>
 					<th>数量</th>
 					<td><input name="kucun_number" id="kucun_number_add" width="173px" class="easyui-numberspinner" value="1" data-options="min:0" /></td>
+				</tr>
+				<tr>
+					<th>图片</th>
+					<td><input required="required" name="file_add" type="file" id="file_add" width="173px"/></td>
 				</tr>
 				
 			</table>
 			<div style="padding:5px 0;text-align: center;color: red;"
 						id="showMsg"></div>
 			<div style="text-align: center; padding: 8px;">
-				<a href="javascript:void(0)" id="add-btn" class="easyui-linkbutton" onclick="submitSave()"
-					iconCls="icon-ok">新 增</a> <a href="javascript:void(0)"
-					onclick="formClear('addUserForm')" class="easyui-linkbutton"
-					iconCls="icon-cancel">重 置</a>
+				<input type="submit" class="btn btn-primary" />
 			</div>
+			</form>
 	</div>
 	
 	
-	<div id="modifyProduceWin" class="easyui-window" title="新增数据"
+	<div id="modifyProduceWin" class="easyui-window" title="编辑数据"
 		data-options="iconCls:'icon-save'"
 		style="width: 460px; height: 200px; padding: 10px;">
 			<table style="width: 350px; overflow: hidden;">
 				<tr>
 					<th>名称</th>
 					<td><input type="text" id="name_edit" name="name_add" /></td>
+				</tr>
+				<tr>
+					<th>型号</th>
+					<td><input type="text" id="model_edit" name="name_add" /></td>
 				</tr>
 				<tr>
 					<th>数量</th>

@@ -123,6 +123,9 @@ public class ProduceDaoImpl implements ProduceDao {
 		if(entity.getKucun_number() != 0){
 			category.setKucun_number(entity.getKucun_number());
 		}
+		if(entity.getModel() != null){
+			category.setModel(entity.getModel());
+		}
 		this.getCurrentSession().update(category); 
 	}
 

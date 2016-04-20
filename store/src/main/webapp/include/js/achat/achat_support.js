@@ -47,6 +47,11 @@ datagridD = [{
 	width : 100,
 	align : 'center'
 },{
+	field : 'produce_model',
+	title : '产品型号',
+	width : 100,
+	align : 'center'
+},{
 	field : 'state',
 	title : '状态',
 	width : 100,

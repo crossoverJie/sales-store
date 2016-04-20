@@ -96,6 +96,7 @@ public class UserDaoImpl implements UserDao {
 		String username =user.getUsername() ;
 		String realname = user.getRealname() ;
 		String role_id = user.getRole_id() ;
+		String provice = user.getProvince() ;
 		if(!StringUtil.isNullOrEmpty(username)){
 			criteria.add(Restrictions.like("username", username, MatchMode.ANYWHERE).ignoreCase());
 		}
@@ -104,6 +105,9 @@ public class UserDaoImpl implements UserDao {
 		}
 		if(!StringUtil.isNullOrEmpty(role_id)){
 			criteria.add(Restrictions.like("role_id", role_id, MatchMode.ANYWHERE).ignoreCase());
+		}
+		if(!StringUtil.isNullOrEmpty(provice)){
+			criteria.add(Restrictions.eq("province", provice));
 		}
 		
 		criteria.setFirstResult(open);

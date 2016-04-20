@@ -141,6 +141,14 @@ public class UserController {
 		if("1".equals(type)){
 			user.setRole_id("2");
 		}else if("2".equals(type)){
+			int id = user.getId() ;
+			User u = userService.get(id) ;
+			String province = u.getProvince() ;
+			if(province != null){
+				user.setProvince(province);
+			}
+			
+			
 			user.setRole_id("3");
 		}else{
 			user.setRole_id("4");

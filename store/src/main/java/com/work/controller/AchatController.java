@@ -74,6 +74,7 @@ public class AchatController {
 			String produce_id = a.getProduce_id() ;
 			if(produce_id != null){
 				a.setProduce_name(produceService.get(Integer.parseInt(produce_id)).getName());
+				a.setProduce_model(produceService.get(Integer.parseInt(produce_id)).getModel());
 			}
 				
 		}
@@ -115,6 +116,7 @@ public class AchatController {
 			String produce_id = a.getProduce_id() ;
 			if(produce_id != null){
 				a.setProduce_name(produceService.get(Integer.parseInt(produce_id)).getName());
+				a.setProduce_model(produceService.get(Integer.parseInt(produce_id)).getModel());
 			}
 				
 		}

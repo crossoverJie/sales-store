@@ -25,6 +25,7 @@ public class Achat {
 	
 	private String produce_id ;//对呀的产品ID
 	private String produce_name ;//产品名称
+	private String produce_model ;//产品型号
 	
 	private String create_username ;//发起人名字
 	
@@ -140,5 +141,12 @@ public class Achat {
 	}
 	public void setProduce_name(String produce_name) {
 		this.produce_name = produce_name;
+	}
+	@Transient
+	public String getProduce_model() {
+		return produce_model;
+	}
+	public void setProduce_model(String produce_model) {
+		this.produce_model = produce_model;
 	}
 }

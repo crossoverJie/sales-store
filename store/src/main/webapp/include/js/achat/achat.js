@@ -47,6 +47,11 @@ datagridD = [{
 	width : 100,
 	align : 'center'
 },{
+	field : 'produce_model',
+	title : '产品型号',
+	width : 100,
+	align : 'center'
+},{
 	field : 'state',
 	title : '状态',
 	width : 100,
@@ -134,6 +139,7 @@ var datagridS = [{
 function toSupport(){
 	
 	var target = $('#achat_list').datagrid('getSelections');
+	var user_id = target[0].create_user ;//发起流程用户ID
 	if (target.length < 1) {
 		$.messager.show( {
 			msg : '请选择一条数据进行修改!',
@@ -149,7 +155,7 @@ function toSupport(){
 		$("#supportWin").window("open") ;
 		
 		$('#support_list').datagrid({
-			url : "user/getUserList?type=2", // 这里可以是个json文件，也可以是个动态页面，还可以是个返回json串的function
+			url : "user/getUserList?type=2&id="+user_id, // 这里可以是个json文件，也可以是个动态页面，还可以是个返回json串的function
 			frozenColumns : [ [ {
 				field : 'ck',
 				checkbox : true
