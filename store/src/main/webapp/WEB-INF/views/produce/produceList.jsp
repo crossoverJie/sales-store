@@ -86,7 +86,7 @@
 				</tr>
 				<tr>
 					<th>图片</th>
-					<td><input required="required" name="file_add" type="file" id="file_add" width="173px"/></td>
+					<td><input type="file" required  id="file" name="file"></td>
 				</tr>
 				
 			</table>

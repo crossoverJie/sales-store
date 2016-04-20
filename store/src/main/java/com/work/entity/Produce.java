@@ -21,6 +21,9 @@ public class Produce {
 	private int kucun_number ;//库存数量
 	private String name ;//商品名称
 	
+	private String path ;
+	private String url ;//用于在页面中显示图片
+	
 	
 	@Id
 	public int getId() {
@@ -72,5 +75,22 @@ public class Produce {
 	}
 	public void setModel(String model) {
 		this.model = model;
+	}
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
+	
+	@Transient
+	public String getUrl() {
+		if(path != null){
+			url = "<img alt='' src='"+this.path+"' style='height:100px; width:100px' />" ;
+		}
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
 	}
 }

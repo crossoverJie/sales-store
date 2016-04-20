@@ -26,6 +26,11 @@ datagridD = [{
 	title : '库存数量',
 	width : 100,
 	align : 'center'
+},{
+	field : 'url',
+	title : '图片',
+	width : 180,
+	align : 'center'
 }
 
 
@@ -349,7 +354,7 @@ $(function(){
 		}
 		
 		
-		var file = $("#file_add").val() ;
+		var file = $("#file").val() ;
 		var index = file.lastIndexOf(".");
 		file = file.substring(index + 1);
 		if( file == "jpg" || file == "gif" || file == "png" ){

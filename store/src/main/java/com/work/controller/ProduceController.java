@@ -1,16 +1,21 @@
 package com.work.controller;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.management.Query;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSON;
 import com.work.entity.Achat;
@@ -70,8 +75,20 @@ public class ProduceController {
 	}
 	
 	@RequestMapping("/create")
-	public String save(HttpServletResponse response,HttpSession session,Produce produce) throws IOException{
-		User user = (User) session.getAttribute("user") ;
+	public String save(@RequestParam(value="file")MultipartFile file,HttpServletResponse response,HttpServletRequest request,Produce produce) throws IOException{
+		String path = request.getSession().getServletContext().getRealPath("upload"); 
+		String fileName = file.getOriginalFilename() ;
+		File targetFile = new File(path, fileName); 
+		if(!targetFile.exists()){  
+            targetFile.mkdirs();  
+        }
+		try {
+			file.transferTo(targetFile) ;
+		} catch (Exception e) {
+			e.printStackTrace() ;
+		}
+		produce.setPath("upload/"+fileName) ;
+		User user = (User) request.getSession().getAttribute("user") ;
 		produce.setUser_id(user.getId()+"");
 		produceService.save(produce) ;
 		return "/produce/produceList" ;

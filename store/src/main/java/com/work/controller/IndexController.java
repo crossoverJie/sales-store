@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.work.entity.Achat;
+import com.work.entity.Produce;
 import com.work.entity.Role;
 import com.work.entity.User;
 import com.work.service.AchatService;
+import com.work.service.ProduceService;
 import com.work.service.RoleService;
 import com.work.service.UserService;
 import com.work.util.AbstractController;
@@ -38,6 +40,9 @@ public class IndexController extends AbstractController {
 	@Autowired
 	private AchatService achatService ;
 	
+	@Autowired
+	private ProduceService produceService ;
+	
 	@RequestMapping("/turnToIndex/{pageNum}")
 	public String trunToIndex(@PathVariable int pageNum,Model model,HttpSession session){
 		User user = (User) session.getAttribute("user") ;
@@ -50,6 +55,10 @@ public class IndexController extends AbstractController {
 			}
 			model.addAttribute("achatList", achatList.getRows());
 		}
+		Produce produce = new Produce() ;
+		Page<Produce> produces = produceService.findByParams(produce, pageNum, 6) ;
+		model.addAttribute("produces", produces.getRows()) ;
+		
 		
 		return "../../../index" ;
 	}

@@ -108,7 +108,7 @@
 			
 		
 			<div class="panel panel-info">
-				<c:forEach var="ns" items="${news }" varStatus="status" >
+				<c:forEach var="ns" items="${produces }" varStatus="status" >
 					
 					<div class="panel-heading ">
 					
@@ -117,30 +117,13 @@
 							<div class="col-md-6">
 								<div class="row">
 									<div class="col-md-2">
-									<a href="<%=path %>/frontuser/${ns.user_id}">
-										<img id="sm-name" src="
-									<c:choose>
-										<c:when test="${empty ns.user_head_img}">
-											<%=path %>/include/img/person.gif
-										</c:when>
-										<c:otherwise>
-											<%=path %>/${ns.user_head_img}
-										</c:otherwise>
-									</c:choose>
-									" class="img-responsive center-block img-circle" alt="图片无效">
-									</a>
 									</div>
 									<div class="col-md-10">
 										<b>
-										<a href="<%=path %>/topic/${ns.id}">${ns.title }</a>
+										<a href="<%=path %>/topic/${ns.id}">${ns.name }</a>
 										</b>
 									</div>
 								</div>
-							</div>
-							<div class="col-md-4 col-md-offset-2">
-								<!-- text-muted：字体颜色的样式 -->
-								<p class="text-muted text-right">${ns.dateStr }
-								</p>
 							</div>
 						</div>
 						
@@ -148,24 +131,16 @@
 					</div>
 						<div class="panel-body">
 							<c:choose>
-								<c:when test="${empty ns.index_src}">
+								<c:when test="${empty ns.url}">
 								</c:when>
 								<c:otherwise>
 								<a href="<%=path %>/topic/${ns.id}" class="thumbnail">
-									<img id="index-src" src="${ns.index_src}" alt="">
+									<img id="index-src" src="<%=path %>/${ns.path}" alt="">
 	 							</a>
 								</c:otherwise>
 							</c:choose>
 						  <%--内容暂时不显示  ${ns.content }... --%>
 						</div>
-					<div class="panel-footer">
-						<p class="text-right">
-							<span class="label label-default">
-							<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-							 ${ns.comment_count }
-							</span>
-						</p>
-					</div>
 				<hr class="divider"/>
 					
 				</c:forEach>
