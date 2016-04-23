@@ -7,4 +7,5 @@ import com.work.entity.Achat;
 public interface AchatDao extends GenericDao<Achat,String> {
 
 	List<Achat> findAll(Achat achat);
+	public void deleteByTitleAndContent(Achat achat);
 }

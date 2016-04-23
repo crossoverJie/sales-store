@@ -98,8 +98,8 @@
 								<td>
 									<c:if test="${al.state eq '会员处理中'}">
 									<a href="<%=path%>/user/checkPrice?id=${al.id}&state=3" class="btn btn-primary">同意</a>
-									&nbsp;&nbsp;
-									<a href="<%=path%>/user/checkPrice?id=${al.id}&state=4" class="btn btn-danger">拒绝</a>
+									<%-- &nbsp;&nbsp;
+									<a href="<%=path%>/user/checkPrice?id=${al.id}&state=4" class="btn btn-danger">拒绝</a> --%>
 									</c:if>
 									<c:if test="${al.state eq '已生成订单'}">
 										<a href="javascript:void(0)" onclick="alert('商品派送中。。');" class="btn btn-info">付款</a>

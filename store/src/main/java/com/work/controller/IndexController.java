@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.alibaba.fastjson.JSON;
 import com.work.entity.Achat;
 import com.work.entity.Produce;
 import com.work.entity.Role;
@@ -63,6 +64,25 @@ public class IndexController extends AbstractController {
 		return "../../../index" ;
 	}
 	
+	@RequestMapping("/getNotification")
+	public void getNotification(HttpSession session,HttpServletResponse response){
+		User user = (User) session.getAttribute("user") ;
+		if(user != null){
+			Achat ac = new Achat();
+			ac.setCreate_user(user.getId()+"");
+			Page<Achat> achatList = achatService.findByParams(ac, 1, 6) ;
+			for(Achat a : achatList.getRows()){
+				a.setState(StringUtil.getState(a.getState()));
+			}
+			String json = JSON.toJSONString(achatList) ;
+			try {
+				response.getWriter().print(json);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	
 	@RequestMapping("/register")
 	public String register(User u,HttpServletRequest request) throws IOException{
@@ -72,7 +92,10 @@ public class IndexController extends AbstractController {
 		u.setRegester_date(new Date());
 		//默认2为普通会员
 		u.setRole_id("2");
+		//默认为北京
+		u.setProvince("北京");
 		userService.save(u) ;
+		u = userService.get(u.getId());
 //		注册完之后直接登录
 		request.getSession().setAttribute("user", u) ;
 //		重定向到首页

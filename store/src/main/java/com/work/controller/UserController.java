@@ -72,11 +72,30 @@ public class UserController {
 	 */
 	@RequestMapping("/turnToNotification")
 	public String turnToNotification(Model model,HttpSession session,String st){
+//		User user = (User) session.getAttribute("user") ;
+//		Achat at = new Achat() ;
+//		if(st!=null){
+//			at.setState(st);
+//		}
+//		at.setSupport_id(user.getId()+"");
+//		List<Achat> list = achatService.findAll(at);
+//		for(Achat a : list){
+//			String category_id = a.getCategory_id() ;
+//			Category c = categoryService.get(Integer.parseInt(category_id)) ;
+//			a.setCategory_name(c.getName());
+//			String state = a.getState();
+//			a.setState(StringUtil.getState(state));
+//				
+//		}
+//		model.addAttribute("list", list) ;
+		
+		return "/notification" ;
+	}
+	
+	@RequestMapping("/getNotification")
+	public void getNotification(HttpServletResponse response,HttpSession session){
 		User user = (User) session.getAttribute("user") ;
 		Achat at = new Achat() ;
-		if(st!=null){
-			at.setState(st);
-		}
 		at.setSupport_id(user.getId()+"");
 		List<Achat> list = achatService.findAll(at);
 		for(Achat a : list){
@@ -87,9 +106,13 @@ public class UserController {
 			a.setState(StringUtil.getState(state));
 				
 		}
-		model.addAttribute("list", list) ;
-		
-		return "/notification" ;
+		String json = JSON.toJSONString(list);
+		try {
+			response.getWriter().println(json);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -142,13 +165,13 @@ public class UserController {
 			user.setRole_id("2");
 		}else if("2".equals(type)){
 			int id = user.getId() ;
-			User u = userService.get(id) ;
-			String province = u.getProvince() ;
-			if(province != null){
-				user.setProvince(province);
+			if(id!=0){
+				User u = userService.get(id) ;
+				String province = u.getProvince() ;
+				if(province != null){
+					user.setProvince(province);
+				}
 			}
-			
-			
 			user.setRole_id("3");
 		}else{
 			user.setRole_id("4");
@@ -236,7 +259,6 @@ public class UserController {
 				a.setSupport_name(userService.get(Integer.parseInt(sid)).getUsername());
 			}else{
 				a.setSupport_name("暂无供应商报价");
-				
 			}
 				
 		}
@@ -249,6 +271,17 @@ public class UserController {
 	public String checkPrice(Model model,Achat ac,HttpSession session){
 		User user = (User) session.getAttribute("user");
 		achatService.update(ac);
+		ac = achatService.get(ac.getId()) ;
+		//将同意的那条流程更新之后，将另外两个供应商的数据删掉
+		Achat ac2 = new Achat() ;
+		ac2.setTitle(ac.getTitle());
+		ac2.setContent(ac.getContent());
+		ac2.setState("2");
+		List<Achat> others = achatService.findAll(ac2) ;
+		for(Achat ac3 :others){
+			achatService.delete(ac3.getId());
+		}
+		
 		
 		return "redirect:/user/achatDetail/"+user.getId() ;
 	}

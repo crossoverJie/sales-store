@@ -18,6 +18,10 @@
 <!-- Bootstrap -->
 <link rel="stylesheet"
 	href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link href="<%=path%>/include/easyui/themes/icon.css" type="text/css"
+	rel="stylesheet" />
+<link href="<%=path%>/include/default/easyui.css" type="text/css"
+	rel="stylesheet" />
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -156,7 +160,7 @@
 				<div class="panel-heading">
 					通知
 				</div>
-				<c:forEach var="com" items="${achatList }" varStatus="status">
+				<%-- <c:forEach var="com" items="${achatList }" varStatus="status">
 				  	<div class="panel-body">
 				    	<a href="<%=path%>/user/achatDetail/${user.id}">${com.title }</a>
 				    	&nbsp;&nbsp;&nbsp;
@@ -165,7 +169,10 @@
 				    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				    	${com.state}
 				  	</div>
-				</c:forEach>
+				</c:forEach> --%>
+				
+				<table id="notification_list">
+				</table>
 				
 			</div>
 			
@@ -343,8 +350,8 @@
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script src="<%=path%>/js/index.js" type="text/javascript"></script>
-	<script type="text/javascript">
-		
-	</script>
+	<script src="<%=path%>/include/js/jquery.easyui.min.js"
+	type="text/javascript"></script>
+	<script src="<%=path%>/include/js/easyui-lang-zh_CN.js" type="text/javascript"></script>
 </body>
 </html>

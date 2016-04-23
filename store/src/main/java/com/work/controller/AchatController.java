@@ -68,13 +68,16 @@ public class AchatController {
 			String uid = a.getCreate_user() ;
 			a.setCreate_username(userService.get(Integer.parseInt(uid)).getUsername());
 			String sid = a.getSupport_id() ;
-			if(sid != null){
+			if(sid != null && !sid.equals("")){
 				a.setSupport_name(userService.get(Integer.parseInt(sid)).getUsername());
 			}
 			String produce_id = a.getProduce_id() ;
 			if(produce_id != null){
-				a.setProduce_name(produceService.get(Integer.parseInt(produce_id)).getName());
-				a.setProduce_model(produceService.get(Integer.parseInt(produce_id)).getModel());
+				Produce p1 = produceService.get(Integer.parseInt(produce_id)) ;
+				if(p1 != null){
+					a.setProduce_name(p1.getName());
+					a.setProduce_model(p1.getModel());
+				}
 			}
 				
 		}
@@ -115,8 +118,11 @@ public class AchatController {
 			
 			String produce_id = a.getProduce_id() ;
 			if(produce_id != null){
-				a.setProduce_name(produceService.get(Integer.parseInt(produce_id)).getName());
-				a.setProduce_model(produceService.get(Integer.parseInt(produce_id)).getModel());
+				Produce p1 = produceService.get(Integer.parseInt(produce_id)) ;
+				if(p1 != null){
+					a.setProduce_name(p1.getName());
+					a.setProduce_model(p1.getModel());
+				}
 			}
 				
 		}
@@ -152,6 +158,26 @@ public class AchatController {
 	@RequestMapping("/subSupport")
 	public void subSupport(Achat achat,HttpServletResponse response) throws IOException{
 		achat.setState("1");//供应商报价中
+		
+		String support_id = achat.getSupport_id() ;
+		String ids[] = support_id.split(",");
+		if(ids.length >1){//选择了多个供应商
+			for (int i = 0; i < ids.length; i++) {
+				String str = ids[i];
+				if(i == 0){
+					//如果是选择了多个供应商就把原本那条记录更新为第一个供应商
+					achat.setSupport_id(str);
+				}else{
+					Achat a2 = new Achat() ;
+					a2 = achatService.get(achat.getId()) ;
+					a2.setId(0);
+					a2.setState("1");
+					a2.setSupport_id(str);
+					achatService.save(a2) ;
+				}
+			}
+		}
+		
 		achatService.update(achat);
 		try {
 			response.getWriter().print("true") ;

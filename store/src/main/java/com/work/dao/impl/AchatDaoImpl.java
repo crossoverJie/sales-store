@@ -8,6 +8,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.SimpleExpression;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,8 +61,12 @@ public class AchatDaoImpl implements AchatDao {
 
 	public void delete(int id) {
 		// TODO Auto-generated method stub
-		Achat function = this.get(id) ;
-		this.getCurrentSession().delete(function);
+		Achat ac = this.get(id) ;
+		this.getCurrentSession().delete(ac);
+	}
+	
+	public void deleteByTitleAndContent(Achat achat){
+		this.getCurrentSession().delete(achat);
 	}
 
 	public void flush() {
@@ -103,6 +108,8 @@ public class AchatDaoImpl implements AchatDao {
 		
 		criteria.setFirstResult(open);
 		criteria.setMaxResults(end) ;
+		criteria.addOrder(Order.asc("title")) ;
+		criteria.addOrder(Order.asc("state")) ;
 		List<Achat> list = criteria.list() ;
 		p.setRows(list);
 		p.setPageNo(page);
@@ -118,6 +125,7 @@ public class AchatDaoImpl implements AchatDao {
 		String content = achat.getContent() ;
 		String support_id = achat.getSupport_id() ;
 		String state = achat.getState() ;
+		String create_user = achat.getCreate_user() ;
 		if(!StringUtil.isNullOrEmpty(title)){
 			criteria.add(Restrictions.like("title", title, MatchMode.ANYWHERE).ignoreCase());
 		}
@@ -129,6 +137,9 @@ public class AchatDaoImpl implements AchatDao {
 		}
 		if(!StringUtil.isNullOrEmpty(state)){
 			criteria.add(Restrictions.eq("state", state));
+		}
+		if(!StringUtil.isNullOrEmpty(create_user)){
+			criteria.add(Restrictions.eq("create_user", create_user));
 		}
 		List<Achat> list = criteria.list() ;
 		return list.size();
@@ -184,6 +195,7 @@ public class AchatDaoImpl implements AchatDao {
 		if(!StringUtil.isNullOrEmpty(state)){
 			criteria.add(Restrictions.eq("state", state));
 		}
+		criteria.addOrder(Order.asc("title")) ;
 		List<Achat> list = criteria.list() ;
 		return list;
 	}

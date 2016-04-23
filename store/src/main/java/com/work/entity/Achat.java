@@ -23,7 +23,7 @@ public class Achat {
 	private String support_id ;//供应商ID
 	private String support_name ;//供应商名称
 	
-	private String produce_id ;//对呀的产品ID
+	private String produce_id ;//对应的产品ID
 	private String produce_name ;//产品名称
 	private String produce_model ;//产品型号
 	

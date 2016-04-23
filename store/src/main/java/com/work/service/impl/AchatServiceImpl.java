@@ -73,7 +73,9 @@ public class AchatServiceImpl implements AchatService {
 		return achatDao.findAll(achat);
 	}
 
-	
+	public void deleteByTitleAndContent(Achat achat){
+		achatDao.deleteByTitleAndContent(achat); 
+	}
 	
 
 }

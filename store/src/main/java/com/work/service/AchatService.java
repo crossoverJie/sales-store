@@ -30,4 +30,5 @@ public interface AchatService {
 	List<Achat> findAll(Achat achat);
 
 	void update(Achat user);
+	public void deleteByTitleAndContent(Achat achat);
 }

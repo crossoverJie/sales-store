@@ -4,12 +4,17 @@ var datagridD;
 datagridD = [{
 	field : 'id',
 	title : '编号',
-	//hidden : true,
+	hidden : true,
 	width : 50
-}, {
+},{
+	field : 'state',
+	title : '状态',
+	width : 100,
+	align : 'center'
+},{
 	field : 'title',
 	title : '名称',
-	width : 100,
+	width : 200,
 	align : 'center'
 },{
 	field : 'category_name',
@@ -49,11 +54,6 @@ datagridD = [{
 },{
 	field : 'produce_model',
 	title : '产品型号',
-	width : 100,
-	align : 'center'
-},{
-	field : 'state',
-	title : '状态',
 	width : 100,
 	align : 'center'
 }

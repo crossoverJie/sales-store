@@ -93,7 +93,7 @@
 			<div style="padding:5px 0;text-align: center;color: red;"
 						id="showMsg"></div>
 			<div style="text-align: center; padding: 8px;">
-				<input type="submit" class="btn btn-primary" />
+				<input type="submit" value="新增" class="btn btn-primary" />
 			</div>
 			</form>
 	</div>

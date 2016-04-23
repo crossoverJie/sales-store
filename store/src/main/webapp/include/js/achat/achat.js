@@ -4,12 +4,17 @@ var datagridD;
 datagridD = [{
 	field : 'id',
 	title : '编号',
-	//hidden : true,
+	hidden : true,
 	width : 50
-}, {
+},{
+	field : 'state',
+	title : '状态',
+	width : 100,
+	align : 'center'
+},{
 	field : 'title',
 	title : '名称',
-	width : 100,
+	width : 200,
 	align : 'center'
 },{
 	field : 'category_name',
@@ -49,11 +54,6 @@ datagridD = [{
 },{
 	field : 'produce_model',
 	title : '产品型号',
-	width : 100,
-	align : 'center'
-},{
-	field : 'state',
-	title : '状态',
 	width : 100,
 	align : 'center'
 }
@@ -139,7 +139,7 @@ var datagridS = [{
 function toSupport(){
 	
 	var target = $('#achat_list').datagrid('getSelections');
-	var user_id = target[0].create_user ;//发起流程用户ID
+	
 	if (target.length < 1) {
 		$.messager.show( {
 			msg : '请选择一条数据进行修改!',
@@ -151,13 +151,24 @@ function toSupport(){
 			title : '提示'
 		});
 	}else {
+		var state = target[0].state ;
+		if(state !="管理员处理中"){
+			$.messager.show( {
+				msg : '只能选择管理员处理中的状态进行分发!',
+				title : '提示'
+			});
+			return ;
+		}
+		
 		var achat_id = target[0].id ;
+		var user_id = target[0].create_user ;//发起流程用户ID
 		$("#supportWin").window("open") ;
 		
 		$('#support_list').datagrid({
 			url : "user/getUserList?type=2&id="+user_id, // 这里可以是个json文件，也可以是个动态页面，还可以是个返回json串的function
 			frozenColumns : [ [ {
 				field : 'ck',
+				field:'state', 
 				checkbox : true
 			} ] ],
 			columns : [ datagridS ],
@@ -187,22 +198,30 @@ function toSupport(){
 function subSupport(){
 	var target2 = $('#achat_list').datagrid('getSelections');//这是流程列表
 	var target = $('#support_list').datagrid('getSelections');//这是供应商列表
-	var json ={
-		"support_id":target[0].id,
-		"id":target2[0].id
-	};
+	var support_id ;
 	
 	if (target.length < 1) {
 		$.messager.show( {
 			msg : '请选择一条数据!',
 			title : '提示'
 		});
-	}else if(target.length >1){
-		$.messager.show( {
-			msg : '只能选择一条数据进行!',
-			title : '提示'
-		});
 	}else{
+		var list = new Array() ;
+		if(target.length >1){
+			for ( var i = 0; i < target.length; i++) {
+				list.push(target[i].id);
+			}
+			support_id = list.toString(); 
+		}else{
+			support_id = target[0].id ;
+		}
+		
+		var json ={
+			"support_id":support_id,
+			"id":target2[0].id
+		};
+		
+		
 	    $.ajax({            
 	        type:"POST",   //post提交方式默认是get
 	        url:"achat/subSupport", 

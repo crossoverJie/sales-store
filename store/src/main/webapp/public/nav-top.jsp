@@ -64,6 +64,7 @@
 									<li>
 									<a href="<%=path%>/user/frontUserSet/${user.id}">${user.username }<span class="glyphicon glyphicon-cog"></span></a>
 									<a href="<%=path%>/user/achatDetail/${user.id}">个人流程<span class="glyphicon glyphicon-paperclip"></span></a>
+									<a href="<%=path %>/user/achatDetail/${user.id}?state=5" >购物车<span class="glyphicon glyphicon-shopping-cart"></span></a>
 									<a href="<%=path %>/login/loginOut?type=1" >退出登录<span class="glyphicon glyphicon-off"></span></a>
 									</li>
 								</ul>

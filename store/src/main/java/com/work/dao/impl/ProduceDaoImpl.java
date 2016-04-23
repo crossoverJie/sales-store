@@ -8,6 +8,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.SimpleExpression;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,6 +91,7 @@ public class ProduceDaoImpl implements ProduceDao {
 		}
 		criteria.setFirstResult(open);
 		criteria.setMaxResults(end) ;
+		criteria.addOrder(Order.desc("id"));
 		List<Produce> list = criteria.list() ;
 		p.setRows(list);
 		p.setPageNo(page);

@@ -30,7 +30,8 @@
 	type="text/javascript"></script>
 <script src="<%=path%>/include/js/jquery.easyui.min.js"
 	type="text/javascript"></script>
-<script src="<%=path%>/include/js/index/index.js" type="text/javascript"></script>
+<script src="<%=path%>/include/js/easyui-lang-zh_CN.js" type="text/javascript"></script>
+<script src="<%=path%>/include/js/index/notification.js" type="text/javascript"></script>
 <base href="<%=basePath%>">
 
 <title>通知</title>
@@ -52,8 +53,11 @@
 		        data-options="iconCls:'icon-tip',  
 		        		tools:'#ts',
 		                collapsible:true,maximizable:true">
+		    
+		    <table id="notification_list">
+		    </table>
 		                
-		    <table class="table table-hover "  >
+		    <%-- <table class="table table-hover "  >
 		    	<tr>
 					<th>名称</th>
 					<th>类别</th>
@@ -70,7 +74,7 @@
 					<td>${ls.state }</td>
 				</tr>
 		    </c:forEach>
-		    </table>           
+		    </table>   --%>         
 		    
 		    
 		</div>
