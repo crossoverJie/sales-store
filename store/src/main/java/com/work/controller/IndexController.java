@@ -65,12 +65,12 @@ public class IndexController extends AbstractController {
 	}
 	
 	@RequestMapping("/getNotification")
-	public void getNotification(HttpSession session,HttpServletResponse response){
+	public void getNotification(HttpSession session,HttpServletResponse response,int page,int rows){
 		User user = (User) session.getAttribute("user") ;
 		if(user != null){
 			Achat ac = new Achat();
 			ac.setCreate_user(user.getId()+"");
-			Page<Achat> achatList = achatService.findByParams(ac, 1, 6) ;
+			Page<Achat> achatList = achatService.findByParams(ac, page, rows) ;
 			for(Achat a : achatList.getRows()){
 				a.setState(StringUtil.getState(a.getState()));
 			}

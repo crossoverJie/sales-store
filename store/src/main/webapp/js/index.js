@@ -19,6 +19,7 @@ $(function(){
 		nowrap : true,
 		height : 'auto',
 		fit : true,
+		loadMsg:'',
 		border : false,
 		pagination : true,
 		onDblClickRow : function(rowIndex, rowData) {

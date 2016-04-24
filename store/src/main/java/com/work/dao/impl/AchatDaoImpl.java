@@ -108,8 +108,8 @@ public class AchatDaoImpl implements AchatDao {
 		
 		criteria.setFirstResult(open);
 		criteria.setMaxResults(end) ;
-		criteria.addOrder(Order.asc("title")) ;
 		criteria.addOrder(Order.asc("state")) ;
+		criteria.addOrder(Order.asc("title")) ;
 		List<Achat> list = criteria.list() ;
 		p.setRows(list);
 		p.setPageNo(page);
