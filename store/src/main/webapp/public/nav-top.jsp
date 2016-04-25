@@ -39,12 +39,18 @@
 				<ul class="nav navbar-nav navbar-right">
 					<c:choose>
 						<c:when test="${empty user}">
-						<li><a href="javascriot:void(0)" data-toggle="modal" data-target="#login">登录
+						<li><a href="javascript:void(0)" data-toggle="modal" data-target="#login">登录
 									<span class="glyphicon glyphicon-home"></span></a></li>
-						<li><a href="javascriot:void(0)" data-toggle="modal" data-target="#register">注册
-									<span class="glyphicon glyphicon-user"></span></a></li>
+						<li>
+						<a href="javascript:void(0)" data-toggle="modal" data-target="#register">注册
+									<span class="glyphicon glyphicon-user"></span></a>
+						</li>
+						<li>
+							<a href="javascript:void(0)" onclick="openShoppingCar();" data-toggle="modal" >购物车<span class="glyphicon glyphicon-shopping-cart"></span></a>
+						</li>
 						</c:when>
 						<c:otherwise>
+						
 							<li class="dropdown">
 							<a href="#" class="dropdown-toggle"
 								data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -63,8 +69,8 @@
 								<ul class="dropdown-menu">
 									<li>
 									<a href="<%=path%>/user/frontUserSet/${user.id}">${user.username }<span class="glyphicon glyphicon-cog"></span></a>
+									<a href="<%=path%>/user/achatDetail/${user.id}/?state=5">购物车<span class="glyphicon glyphicon-shopping-cart"></span></span></a>
 									<a href="<%=path%>/user/achatDetail/${user.id}">个人流程<span class="glyphicon glyphicon-paperclip"></span></a>
-									<a href="<%=path %>/user/achatDetail/${user.id}?state=5" >购物车<span class="glyphicon glyphicon-shopping-cart"></span></a>
 									<a href="<%=path %>/login/loginOut?type=1" >退出登录<span class="glyphicon glyphicon-off"></span></a>
 									</li>
 								</ul>

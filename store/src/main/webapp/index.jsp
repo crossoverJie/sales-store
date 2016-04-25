@@ -30,7 +30,6 @@
     <![endif]-->
 <link href="<%=path%>/css/index.css" type="text/css"
 	rel="stylesheet" />
-
 <style type="text/css">
 	#index-src {
 		width: 715px;
@@ -99,13 +98,15 @@
 	<!-- 分割线暂时注释掉
 	<hr class="divider"/> -->
 	<div class="row">
-		<div class="col-md-8">
+	
+		<div class="col-md-8 ">
 		
 			<div class="row">
 				<div class="col-md-12">
 					<p class="text-left">
 						<a class="btn btn-success" onclick="createTopic();" href="javascript:void(0)">发起采购</a>
 						<input type="hidden" id="session_username" value="${user.username }"/>
+						<input type="hidden" id="session_user_id" value="${user.id }"/>
 					</p>
 				</div>
 			</div>
@@ -154,7 +155,7 @@
 			
 			
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-4 ">
 			
 			<div class="panel panel-primary">
 				<div class="panel-heading">
@@ -256,9 +257,7 @@
       	<p>
       		自由开发者crossoverJie
       	</p>
-   		<address>
-   			<a href="mailto:731756881@qq.com">731756881@qq.com</a>
-   		</address>
+   		
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>

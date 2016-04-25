@@ -4,6 +4,10 @@ $(function(){
 //		$("#tab-list a[href='"+href+"']").tab("show") ;
 //	});
 	
+	//初始化左侧菜单
+	$(".vertical-nav").verticalnav({speed: 400,align: "left"});
+	
+	
 	//首页通知的datagrid
 	$('#notification_list').datagrid({
 		url : "../../index/getNotification", // 这里可以是个json文件，也可以是个动态页面，还可以是个返回json串的function
@@ -135,6 +139,18 @@ function createTopic(){
 		$('#login').modal('show') ;
 	}else{
 		window.location.href= "../../main/turnToCreateAchat" ;
+	}
+}
+/**
+ * 打开购物车
+ */
+function openShoppingCar(){
+	var user_id = $("#session_user_id").val() ;
+	if(user_id == ""){
+		alert("请登录之后再打开") ;
+		$('#login').modal('show') ;
+	}else{
+		window.location.href= "../../user/achatDetail/"+user_id+"?state=5" ;
 	}
 }
 
