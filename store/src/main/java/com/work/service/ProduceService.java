@@ -22,7 +22,7 @@ public interface ProduceService {
 
 	void flush();
 	
-	Page<Produce> findByParams(Produce achat, int page, int rows);
+	Page<Produce> findByParams(Produce produce, int page, int rows);
 
 	int findAllCount(Produce u);
 	

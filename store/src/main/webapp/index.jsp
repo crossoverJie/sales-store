@@ -47,11 +47,11 @@
 	
 
 
-	<%-- <div id="carousel-example-generic" class="carousel slide"
+	 <div id="carousel-example-generic" class="carousel slide"
 		data-ride="carousel">
 		<!-- Indicators -->
 		<ol class="carousel-indicators">
-			<c:forEach var="img" items="${newsindex }" varStatus="status" >
+			<c:forEach var="img" items="${produces_index }" varStatus="status" >
 				<li data-target="#carousel-example-generic" data-slide-to="${status.index }"
 				class="
 					<c:if test="${status.index == 0}">
@@ -64,17 +64,17 @@
 
 		<!-- Wrapper for slides -->
 		<div class="carousel-inner" role="listbox">
-			<c:forEach var="news" items="${newsindex }" varStatus="status" >
+			<c:forEach var="news" items="${produces_index }" varStatus="status" >
 				<div class="item
 					<c:if test="${status.index == 0}">
 					active
 					</c:if> 
 				">
 					<a href="<%=path %>/topic/${news.id }">
-						<img src="${news.img_path}" alt="无图片">
+						<img src="<%=path %>/${news.path}" alt="无图片">
 					</a>
 					<div class="carousel-caption">
-						<p class="text-success">${news.title}</p>
+						<p class="text-success">${news.name}</p>
 					</div>
 				</div>
 				
@@ -89,7 +89,7 @@
 			href="#carousel-example-generic" role="button" data-slide="next">
 			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 			<span class="sr-only">下一页</span> </a>
-	</div> --%>
+	</div>
 	
 	<hr/>
 <!-- 栅格系统 平均分三列 -->

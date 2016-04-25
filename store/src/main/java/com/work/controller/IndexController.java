@@ -60,6 +60,9 @@ public class IndexController extends AbstractController {
 		Page<Produce> produces = produceService.findByParams(produce, pageNum, 6) ;
 		model.addAttribute("produces", produces.getRows()) ;
 		
+		//首页显示的广告栏图片
+		Page<Produce> produces_index = produceService.findByParams(produce, 1, 6) ;
+		model.addAttribute("produces_index", produces_index.getRows()) ;
 		
 		return "../../../index" ;
 	}
