@@ -4,8 +4,6 @@ $(function(){
 //		$("#tab-list a[href='"+href+"']").tab("show") ;
 //	});
 	
-	//初始化左侧菜单
-	$(".vertical-nav").verticalnav({speed: 400,align: "left"});
 	
 	
 	//首页通知的datagrid
