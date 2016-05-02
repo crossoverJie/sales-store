@@ -349,6 +349,14 @@ function onPraise(){
 	}
 }
 
+/**
+ * 购买方法
+ */
+function buy(){
+	var produce_id = $("#produce_id").val();
+	
+}
+
 document.onkeydown = function(e) {
 	var ev = document.all ? window.event : e;
 	if (ev.ctrlKey && ev.keyCode == 13) {

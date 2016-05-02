@@ -23,7 +23,7 @@ public class Produce {
 	
 	private String path ;
 	private String url ;//用于在页面中显示图片
-	
+	private String remark ;//商品描述
 	
 	@Id
 	public int getId() {
@@ -92,5 +92,11 @@ public class Produce {
 	}
 	public void setUrl(String url) {
 		this.url = url;
+	}
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 }

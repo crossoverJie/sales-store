@@ -31,6 +31,11 @@ datagridD = [{
 	title : '图片',
 	width : 180,
 	align : 'center'
+},{
+	field : 'remark',
+	title : '描述',
+	width : 180,
+	align : 'center'
 }
 
 
@@ -113,6 +118,7 @@ var datagridS = [{
  */
 function turnToAddProduce(){
 	$("#addProduceWin").window("open");
+	$("#remark_add").val("") ;
 	$("#category_one").combobox({
 		url:"main/getCategory?level=1",
 		valueField:'id', 
@@ -172,6 +178,7 @@ function modifyProduce(){
 		$("#modifyProduceWin").window("open") ;
 		$("#name_edit").val(target[0].name);
 		$("#model_edit").val(target[0].model);
+		$("#remark_edit").val(target[0].remark) ;
 		$("#kucun_number_edit").numberspinner("setValue",target[0].kucun_number);
 	}
 }
@@ -187,6 +194,7 @@ function saveEdit(){
 	var number = $("#kucun_number_edit").numberspinner("getValue");
 	var name =$("#name_edit").val() ;
 	var model =$("#model_edit").val() ;
+	var remark = $("#remark_edit").val() ;
 	if(number ==""|| name =="" || model ==""){
 		$("#showMsg_edit").html("请将数据填写完整");
 		return ;
@@ -197,7 +205,8 @@ function saveEdit(){
 		"id":target[0].id,
 		"name":name,
 		"model":model,
-		"kucun_number":number
+		"kucun_number":number,
+		"remark":remark
 	}
 	
     $.ajax({            
@@ -333,7 +342,9 @@ $(function(){
 	});
 	
 	
-	
+	/**
+	 * 提交保存之前的验证
+	 */
 	$("#addProduceForm").submit(function(){
 		
 		var name = $("#name_add").val() ;

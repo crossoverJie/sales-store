@@ -57,7 +57,7 @@
 	
 	<div id="addProduceWin" class="easyui-window" title="新增数据"
 		data-options="iconCls:'icon-save'"
-		style="width: 460px; height: 270px; padding: 10px;">
+		style="width: 460px; height: 370px; padding: 10px;">
 		<form id="addProduceForm" action="<%=path %>/produce/create" method="post" enctype="multipart/form-data">
 			<table style="width: 350px; overflow: hidden;">
 				<tr>
@@ -88,6 +88,13 @@
 					<th>图片</th>
 					<td><input type="file" required  id="file" name="file"></td>
 				</tr>
+				<tr>
+					<th>详情</th>
+					<td>
+						<textarea rows="" cols="" id="remark_add" name="remark">
+						</textarea>
+					</td>
+				</tr>
 				
 			</table>
 			<div style="padding:5px 0;text-align: center;color: red;"
@@ -114,6 +121,13 @@
 				<tr>
 					<th>数量</th>
 					<td><input name="kucun_number" id="kucun_number_edit" width="173px" class="easyui-numberspinner" value="1" data-options="min:0" /></td>
+				</tr>
+				<tr>
+					<th>详情</th>
+					<td>
+						<textarea rows="" cols="" id="remark_edit">
+						</textarea>
+					</td>
 				</tr>
 				
 			</table>

@@ -201,9 +201,6 @@
       	<p>
       		自由开发者crossoverJie
       	</p>
-   		<address>
-   			<a href="mailto:731756881@qq.com">731756881@qq.com</a>
-   		</address>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>

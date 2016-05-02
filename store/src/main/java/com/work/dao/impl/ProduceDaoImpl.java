@@ -128,6 +128,9 @@ public class ProduceDaoImpl implements ProduceDao {
 		if(entity.getModel() != null){
 			category.setModel(entity.getModel());
 		}
+		if(entity.getRemark() != null){
+			category.setRemark(entity.getRemark());
+		}
 		this.getCurrentSession().update(category); 
 	}
 
