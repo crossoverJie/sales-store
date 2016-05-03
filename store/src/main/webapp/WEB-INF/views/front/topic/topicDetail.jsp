@@ -81,10 +81,20 @@
 		</div>
 	</div>
 	<hr/>
-	<p class="text-right">
-	<input type="hidden" id="produce_id"  value="${produce.id }"/>
-	<button onclick="buy();" class="btn btn-primary btn-lg">购&nbsp;&nbsp;&nbsp;买</button>
-	</p>
+	<form>
+  <div class="form-group">
+    <label >名称</label>
+    <input type="text" required="required" class="form-control" id="name" placeholder="名称">
+  </div>
+  <div class="form-group">
+    <label >备注</label>
+    <textarea rows="" cols="" class="form-control" required="required" placeholder="备注"></textarea>
+    <input type="hidden" name="" value="${produce.id }"/>
+  </div>
+  <p class="text-right">
+  <button type="submit" class="btn btn-primary btn-lg">购&nbsp;&nbsp;&nbsp;买</button>
+  </p>
+</form>
 </div>
 
 
