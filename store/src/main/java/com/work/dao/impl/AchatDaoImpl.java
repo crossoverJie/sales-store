@@ -1,6 +1,10 @@
 package com.work.dao.impl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -90,6 +94,8 @@ public class AchatDaoImpl implements AchatDao {
 		String support_id = achat.getSupport_id() ;
 		String state = achat.getState() ;
 		String create_user = achat.getCreate_user() ;
+		String start_date = achat.getStart_date() ;
+		String end_date = achat.getEnd_date() ;
 		if(!StringUtil.isNullOrEmpty(title)){
 			criteria.add(Restrictions.like("title", title, MatchMode.ANYWHERE).ignoreCase());
 		}
@@ -104,6 +110,19 @@ public class AchatDaoImpl implements AchatDao {
 		}
 		if(!StringUtil.isNullOrEmpty(create_user)){
 			criteria.add(Restrictions.eq("create_user", create_user));
+		}
+		SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd") ;
+		if(start_date != null && end_date != null){
+			Date d1 =null;
+			Date d2 = null ;
+			try {
+				d1 = sm.parse(start_date);
+				d2 = sm.parse(start_date) ;
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			
+			criteria.add(Restrictions.between("create_date", d1, d2)) ;
 		}
 		
 		criteria.setFirstResult(open);

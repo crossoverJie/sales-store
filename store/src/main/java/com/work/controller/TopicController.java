@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.work.entity.Produce;
+import com.work.service.CategoryService;
 import com.work.service.ProduceService;
 
 /**
@@ -23,12 +24,14 @@ public class TopicController {
 	@Autowired
 	private ProduceService produceService;
 	
+	@Autowired
+	private CategoryService categoryservice ;
+	
 	@RequestMapping("/topic/{id}")
 	public String showProduceDetail(@PathVariable int id,Model model){
 		
 		Produce produce = produceService.get(id) ;
 		model.addAttribute("produce", produce) ;
-		
 		return "/front/topic/topicDetail" ;
 	}
 	

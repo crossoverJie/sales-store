@@ -1,5 +1,6 @@
+
+ var sv1 ;
 $(function(){
-	
 	$('#notification_list').datagrid({
 		url : "user/getNotification", // 这里可以是个json文件，也可以是个动态页面，还可以是个返回json串的function
 		columns : [ datagridD ],
@@ -22,14 +23,19 @@ $(function(){
 	
 	
 	 /**定时刷新通知**/
-	 setInterval(showTime, 2000);
+	 sv1 = setInterval(showTime, 2000);
 	 function showTime(){
 		 $("#notification_list").datagrid('reload');
 	 }
 	
 }) ;
 
-
+/**
+ * 停止刷新
+ */
+function stopRefresh(){
+	clearInterval(sv1);
+}
 
 var datagridD = [{
 	field : 'title',

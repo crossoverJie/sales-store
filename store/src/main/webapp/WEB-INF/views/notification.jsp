@@ -38,13 +38,11 @@
 </head>
 
 <body style="overflow: hidden;background: #ffffff;">
-	<!-- <div id="ts">
-		<select id="state" class="easyui-combobox" name="dept">   
-		    <option value="">请选择</option>   
-		    <option value="3">会员同意报价</option>   
-		    <option value="4">会员拒绝报价</option>   
-		</select>
-	</div> -->
+	<div id="ts">
+	<a href="javascript:void(0)" class="icon-no" onclick="stopRefresh();">
+	</a>
+	</div>
+
 	
 	
 	<div style="position:absolute;width:100%;height:100%;background: url('<%=basePath%>include/img/homebg.gif');background-repeat:no-repeat;padding-bottom:0px;background-position-x:right;background-position-y: bottom;background-position:right bottom">

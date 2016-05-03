@@ -180,15 +180,25 @@ function add(){
 function submitQuery(){
 	var title = $("#title_query").val() ;
 	var content = $("#content_query").val();
+	var start_date =$("#start_date").datebox("getValue") ;
+	var end_date =$("#end_date").datebox("getValue") ;
 	if(title==""){
 		title=undefined;
 	}
 	if(content==""){
 		content=undefined;
 	}
+	if(start_date==""){
+		start_date=undefined;
+	}
+	if(end_date==""){
+		end_date=undefined;
+	}
 	var json ={
 		"title":title,
-		"content":content
+		"content":content,
+		"start_date":start_date,
+		"end_date":end_date
 	};
 	$("#achat_list").datagrid('options').url = 'achat/getAchatList_notAdmin';
 	$("#achat_list").datagrid('options').queryParams = json;

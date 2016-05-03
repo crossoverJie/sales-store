@@ -2,8 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
 
@@ -33,83 +32,85 @@
       <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-<link href="<%=path%>/css/index.css" type="text/css"
-	rel="stylesheet" />
+<link href="<%=path%>/css/index.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
-<jsp:include page="../../../../public/nav-top.jsp"></jsp:include>
+	<jsp:include page="../../../../public/nav-top.jsp"></jsp:include>
 
-	<hr/>
-<!-- 栅格系统 -->
-<div class="container-fluid">
-	<div class="row">
-		
-		<div class="col-md-10 col-md-offset-1">
-			<div class="panel panel-info">
-				
-				<div class="panel-heading">
-					<h3 class="panel-title">发布</h3>
+	<hr />
+	<!-- 栅格系统 -->
+	<div class="container-fluid">
+		<div class="row">
+
+			<div class="col-md-10 col-md-offset-1">
+				<div class="panel panel-info">
+
+					<div class="panel-heading">
+						<h3 class="panel-title">发布</h3>
+					</div>
+
+					<div class="panel-body">
+						<form id="createAchatForm" method="post"
+							action="<%=path%>/main/createAchat">
+							<div class="form-group">
+								<input type="text" required="required" name="title"
+									class="form-control" id="title" placeholder="主题/标题">
+							</div>
+							<div class="form-group">
+								<div class="row">
+									<div class="col-md-4">
+										<input type="text" id="category_one" />
+									</div>
+
+									<div class="col-md-4">
+										<input id="category_two" class="easyui-combobox" />
+									</div>
+
+									<div class="col-md-4">
+										<input id="category_three" name="category_id"
+											class="easyui-combobox" />
+									</div>
+
+								</div>
+							</div>
+							<div class="form-group">
+								<textarea required="required" class="form-control" id="content"
+									name="content" rows="10" cols=""></textarea>
+							</div>
+
+							<button type="submit" class="btn btn-success">发&nbsp;&nbsp;&nbsp;&nbsp;布</button>
+						</form>
+					</div>
 				</div>
 
-			
-				<div class="panel-body">
-				<form id="createAchatForm" method="post" action="<%=path %>/main/createAchat">
-				  <div class="form-group">
-				    <input type="text" required="required" name="title" class="form-control" id="title" placeholder="主题/标题">
-				  </div>
-				  <div class="form-group">
-					  <div class="row">
-						  <div class="col-md-4">
-						  	<input type="text" id="category_one" />
-						  </div>
-						  
-						  <div class="col-md-4">
-						  	<input id="category_two" class="easyui-combobox" />  
-						  </div>
-						  
-						  <div class="col-md-4">
-						  	<input  id="category_three" name="category_id" class="easyui-combobox" />  
-						  </div>
-					  
-					  </div>
-				  </div>
-				  <div class="form-group">
-				    <textarea required="required" class="form-control" id="content" name="content"  rows="10" cols="">
-				    </textarea>
-				  </div>
-				  
-				  <button type="submit" class="btn btn-success">发&nbsp;&nbsp;&nbsp;&nbsp;布</button>
-				</form>
-				</div>
 			</div>
-			
+
+
+
 		</div>
-		
-  
-  
 	</div>
-</div>
 
 
 
 
 
-<jsp:include page="../../../../public/nav-bottom.jsp"></jsp:include>
+	<jsp:include page="../../../../public/nav-bottom.jsp"></jsp:include>
 
-<!-- 弹出框 模态框关于 -->
-<jsp:include page="../../../../public/login&register.jsp"></jsp:include>
+	<!-- 弹出框 模态框关于 -->
+	<jsp:include page="../../../../public/login&register.jsp"></jsp:include>
 
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	
+	<script
+		src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 	<script src="<%=path%>/include/js/jquery.easyui.min.js"
-	type="text/javascript"></script>
+		type="text/javascript"></script>
 	<script src="<%=path%>/include/js/easyui-lang-zh_CN.js"
-	type="text/javascript"></script>
+		type="text/javascript"></script>
 	<script src="<%=path%>/js/createAchat.js" type="text/javascript"></script>
-	
+
 </body>
 </html>

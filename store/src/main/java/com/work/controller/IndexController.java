@@ -95,8 +95,6 @@ public class IndexController extends AbstractController {
 		u.setRegester_date(new Date());
 		//默认2为普通会员
 		u.setRole_id("2");
-		//默认为北京
-		u.setProvince("北京");
 		userService.save(u) ;
 		u = userService.get(u.getId());
 //		注册完之后直接登录

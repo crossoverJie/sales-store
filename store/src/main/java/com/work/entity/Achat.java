@@ -36,6 +36,10 @@ public class Achat {
 	private String category_name ;
 	private String parseDate ;
 	
+	/**用于时间查询的区间条件**/
+	private String start_date ;
+	private String end_date ;
+	
 	/**
 	 * 状态 0：管理员处理中      1：供应商报价中
 	 * 2：会员处理中                  3：供应商上架中  会员已经同意
@@ -148,5 +152,19 @@ public class Achat {
 	}
 	public void setProduce_model(String produce_model) {
 		this.produce_model = produce_model;
+	}
+	@Transient
+	public String getStart_date() {
+		return start_date;
+	}
+	public void setStart_date(String start_date) {
+		this.start_date = start_date;
+	}
+	@Transient
+	public String getEnd_date() {
+		return end_date;
+	}
+	public void setEnd_date(String end_date) {
+		this.end_date = end_date;
 	}
 }

@@ -79,6 +79,19 @@ $(function(){
 		
 	});
 	
+	/**
+	 * 购买
+	 */
+	$("#buyProduceForm").submit(function(){
+		var username = $("#session_username").val() ;
+		if(username == ""){
+			alert("请登录之后再购买") ;
+			$('#login').modal('show') ;
+			return false;
+		}
+	});
+	
+	
 	
 });
 
@@ -349,13 +362,6 @@ function onPraise(){
 	}
 }
 
-/**
- * 购买方法
- */
-function buy(){
-	var produce_id = $("#produce_id").val();
-	
-}
 
 document.onkeydown = function(e) {
 	var ev = document.all ? window.event : e;

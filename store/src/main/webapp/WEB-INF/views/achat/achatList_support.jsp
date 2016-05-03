@@ -34,6 +34,8 @@
 	<div id="tabrs">
 		标题:<input  class="easyui-validatebox" id="title_query"  />
 		内容:<input  class="easyui-validatebox" id="content_query" />
+		开始时间:<input class="easyui-datebox" id="start_date" />
+		截止时间:<input class="easyui-datebox" id="end_date" />
 		<a href="javascript:void(0)" onclick="submitQuery();"  plain="true" class="easyui-linkbutton" iconCls="icon-search">查询</a>
 		<a href="javascript:void(0)" onclick="toSupport();"  plain="true" class="easyui-linkbutton" iconCls="icon-redo">报价</a>
 		<a href="javascript:void(0)" onclick="toAddProduce();"  plain="true" class="easyui-linkbutton" iconCls="icon-ok">上架商品</a>
