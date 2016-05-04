@@ -150,11 +150,16 @@ function add(){
 
 function submitQuery(){
 	var name = $("#name_query").val() ;
+	var category_id = $("#category_query").combobox("getValue");
 	if(name==""){
 		name=undefined;
 	}
+	if(category_id ==""){
+		category_id = undefined ;
+	}
 	var json ={
-		"name":name
+		"name":name,
+		"category_id":category_id
 	};
 	$("#produce_list").datagrid('options').url = 'produce/getProduceList';
 	$("#produce_list").datagrid('options').queryParams = json;

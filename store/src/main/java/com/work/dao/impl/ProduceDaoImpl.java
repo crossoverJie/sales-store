@@ -83,11 +83,15 @@ public class ProduceDaoImpl implements ProduceDao {
 		Page<Produce> p = new Page<Produce>() ;
 		String name =produce.getName() ;
 		String user_id = produce.getUser_id() ;
+		String category_id = produce.getCategory_id() ;
 		if(!StringUtil.isNullOrEmpty(name)){
 			criteria.add(Restrictions.like("name", name, MatchMode.ANYWHERE).ignoreCase());
 		}
 		if(!StringUtil.isNullOrEmpty(user_id)){
 			criteria.add(Restrictions.eq("user_id", user_id));
+		}
+		if(!StringUtil.isNullOrEmpty(category_id)){
+			criteria.add(Restrictions.eq("category_id", category_id));
 		}
 		criteria.setFirstResult(open);
 		criteria.setMaxResults(end) ;
@@ -96,8 +100,7 @@ public class ProduceDaoImpl implements ProduceDao {
 		p.setRows(list);
 		p.setPageNo(page);
 		p.setLimit(rows);
-		int total = this.findAllCount(produce) ;
-		p.setTotal(total); 
+		p.setTotal(list.size()); 
 		return p;
 	}
 

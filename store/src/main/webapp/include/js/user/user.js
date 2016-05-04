@@ -117,6 +117,7 @@ function modifyUser(){
 		$("#modifyUserWin").window("open") ;
 		$("#username_edit").val(target[0].username);
 		$("#realname_edit").val(target[0].realname);
+		$("#province_edit").combobox("setValue",target[0].province);
 	}
 }
 
@@ -131,6 +132,7 @@ function saveEdit(){
 	var role_id = $("#role_id_edit").combobox('getValue');
 	var username = $("#username_edit").val() ;
 	var realname = $("#realname_edit").val() ;
+	var province = $("#province_edit").combobox("getValue");
 	if(username =="" || realname == ""){
 		$("#showMsg_edit").html("请将数据填写完整");
 		return ;
@@ -141,7 +143,8 @@ function saveEdit(){
 		"id":target[0].id,
 		"username":username,
 		"role_id":role_id,
-		"realname":realname
+		"realname":realname,
+		"province":province
 	}
 	
     $.ajax({            

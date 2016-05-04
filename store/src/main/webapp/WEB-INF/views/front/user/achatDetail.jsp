@@ -35,6 +35,12 @@
     <![endif]-->
 <link href="<%=path%>/css/index.css" type="text/css"
 	rel="stylesheet" />
+	
+<link href="<%=path%>/include/default/easyui.css" type="text/css"
+	rel="stylesheet" />
+<link href="<%=path%>/include/easyui/themes/icon.css" type="text/css"
+	rel="stylesheet" />
+
 </head>
 <body>
 <jsp:include page="../../../../public/nav-top.jsp"></jsp:include>
@@ -52,6 +58,9 @@
 						<div class="col-md-4">
 							<h4>流程列表</h4>
 						</div>
+						<div class="col-md-4">
+							
+						</div>
 						 <div class="col-md-4 col-md-offset-4">
 							<div class="dropdown">
 							  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -66,6 +75,14 @@
 							    <li><a href="<%=path%>/user/achatDetail/${user.id}?state=3">商品上架中</a></li>
 							  </ul>
 							</div>
+							<input id="start_date" class="easyui-datebox"/>
+							~
+							<input id="end_date" class="easyui-datebox"/>
+							<input type="hidden" id="hd_start_date" value="${start_date }" />
+							<input type="hidden" id="hd_end_date" value="${end_date }" />
+							<a id="btn" href="javascript:void(0)"
+							onclick="submitQuery();" 
+							class="easyui-linkbutton" data-options="iconCls:'icon-search'"></a>  
 						</div>
 					</div>
 					

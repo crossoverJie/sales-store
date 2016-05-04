@@ -47,6 +47,17 @@ public class StringUtil {
 		return status ;
 	}
 	
+	/**
+	 * 给日期字符串后边加完整
+	 * @param str
+	 * @return
+	 */
+	public static String getDateStr(String str){
+		StringBuffer str1 = new StringBuffer(str) ;
+		str1.append(" 00:00:00") ;
+		return str1.toString() ;
+	}
+	
 	
 	/**
 	 * 随机产生指定长度的字符串

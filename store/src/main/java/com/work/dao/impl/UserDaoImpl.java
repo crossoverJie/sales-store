@@ -178,6 +178,9 @@ public class UserDaoImpl implements UserDao {
 		if(entity.getRole_id()!= null){
 			user.setRole_id(entity.getRole_id());
 		}
+		if(entity.getProvince()!= null){
+			user.setProvince(entity.getProvince());
+		}
 		
 		this.getCurrentSession().update(user); 
 	}

@@ -36,8 +36,9 @@ public class Test {
 //		System.out.println(arr);
 //		System.out.println(paths);
 		
-		Date date = new Date() ;
-		System.out.println(date);
+		StringBuffer str = new StringBuffer("2015-04-05") ;
+		str.append(" 00:00:00") ;
+		System.out.println(str.toString());
 		
 	}
 }

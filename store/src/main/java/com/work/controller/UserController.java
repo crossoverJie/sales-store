@@ -263,6 +263,13 @@ public class UserController {
 				
 		}
 		
+		String start_date = ac.getStart_date() ;
+		String end_date = ac.getEnd_date();
+		if(start_date != null && end_date != null){
+			model.addAttribute("start_date", start_date);
+			model.addAttribute("end_date", end_date);
+		}
+		
 		model.addAttribute("achatlist", list) ;
 		return "/front/user/achatDetail" ;
 	}

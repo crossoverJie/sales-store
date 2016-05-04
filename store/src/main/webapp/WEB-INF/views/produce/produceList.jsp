@@ -37,6 +37,8 @@
 	<table id="produce_list"></table>
 	<div id="tabrs">
 		名称:<input  class="easyui-validatebox" id="name_query"  />
+		类别:<input id="category_query" class="easyui-combobox"  
+    data-options="valueField:'id',textField:'name',url:'<%=path %>/category/getAllThree'" />
 		<a href="javascript:void(0)" onclick="submitQuery();"  plain="true" class="easyui-linkbutton" iconCls="icon-search">查询</a>
 		<a href="javascript:void(0)" onclick="turnToAddProduce();"  plain="true" class="easyui-linkbutton" iconCls="icon-add">上架商品</a>
 		<a href="javascript:void(0)" onclick="modifyProduce();"  plain="true" class="easyui-linkbutton" iconCls="icon-edit">编辑</a>

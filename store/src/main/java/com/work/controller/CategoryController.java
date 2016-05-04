@@ -146,11 +146,22 @@ public class CategoryController {
 	 */
 	@RequestMapping("/getAlltwo")
 	public void getAlltwo(HttpServletResponse response,HttpSession session) throws IOException{
-		User user = (User) session.getAttribute("user") ;
 		response.setCharacterEncoding("utf-8") ;
 		Category f = new Category() ;
 //		f.setUser_id(user.getId()+"");
 		f.setLevel("2") ;//所有二级分类
+		List<Category> fs = categoryService.findAll(f) ;
+		String json = JSON.toJSONString(fs) ;
+		response.getWriter().print(json) ;
+		
+	}
+	
+	@RequestMapping("/getAllThree")
+	public void getAllThree(HttpServletResponse response,HttpSession session) throws IOException{
+		response.setCharacterEncoding("utf-8") ;
+		Category f = new Category() ;
+//		f.setUser_id(user.getId()+"");
+		f.setLevel("3") ;//所有二级分类
 		List<Category> fs = categoryService.findAll(f) ;
 		String json = JSON.toJSONString(fs) ;
 		response.getWriter().print(json) ;

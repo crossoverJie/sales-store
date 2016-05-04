@@ -1,5 +1,6 @@
 package com.work.dao.impl;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -113,16 +114,9 @@ public class AchatDaoImpl implements AchatDao {
 		}
 		SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd") ;
 		if(start_date != null && end_date != null){
-			Date d1 =null;
-			Date d2 = null ;
-			try {
-				d1 = sm.parse(start_date);
-				d2 = sm.parse(start_date) ;
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-			
-			criteria.add(Restrictions.between("create_date", d1, d2)) ;
+			Timestamp t1 = Timestamp.valueOf(StringUtil.getDateStr(start_date));
+			Timestamp t2 = Timestamp.valueOf(StringUtil.getDateStr(end_date));
+			criteria.add(Restrictions.between("create_date", t1,t2)) ;
 		}
 		
 		criteria.setFirstResult(open);
@@ -133,8 +127,7 @@ public class AchatDaoImpl implements AchatDao {
 		p.setRows(list);
 		p.setPageNo(page);
 		p.setLimit(rows);
-		int total = this.findAllCount(achat) ;
-		p.setTotal(total); 
+		p.setTotal(list.size()); 
 		return p;
 	}
 
@@ -199,6 +192,8 @@ public class AchatDaoImpl implements AchatDao {
 		String create_user = achat.getCreate_user() ;
 		String state = achat.getState() ;
 		String support_id = achat.getSupport_id() ;
+		String start_date = achat.getStart_date() ;
+		String end_date = achat.getEnd_date() ;
 		if(!StringUtil.isNullOrEmpty(title)){
 			criteria.add(Restrictions.eq("title", title));
 		}
@@ -213,6 +208,11 @@ public class AchatDaoImpl implements AchatDao {
 		}
 		if(!StringUtil.isNullOrEmpty(state)){
 			criteria.add(Restrictions.eq("state", state));
+		}
+		if(start_date != null && end_date != null){
+			Timestamp t1 = Timestamp.valueOf(StringUtil.getDateStr(start_date));
+			Timestamp t2 = Timestamp.valueOf(StringUtil.getDateStr(end_date));
+			criteria.add(Restrictions.between("create_date", t1,t2)) ;
 		}
 		criteria.addOrder(Order.asc("title")) ;
 		List<Achat> list = criteria.list() ;
