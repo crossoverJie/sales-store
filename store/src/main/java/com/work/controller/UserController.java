@@ -52,6 +52,9 @@ public class UserController {
 		LOGGER.info("查询用户"+id) ;
 		User user = userService.get(id) ;
 		model.addAttribute("user", user) ;
+		/**
+		 * 基于Idea上传的测试
+		 */
 		return "/user/showUser" ;
 	}
 	
